@@ -1,13 +1,13 @@
 # BatDongSan-WebTech
 Tạo trang web tương tự trang batdongsan.com.vn
 
-SETUP
-npm install
+SETUP<br>
+npm install<br>
 
-RUN SERVER
-nodemon server.js
+RUN SERVER<br>
+nodemon server.js<br>
 
-CSDL
-url :  https://remotemysql.com/phpmyadmin
-user:TYXZWsroXo
-pass:VS14xzygg1
+CSDL<br>
+url :  https://remotemysql.com/phpmyadmin<br>
+user:TYXZWsroXo<br>
+pass:VS14xzygg1<br>
