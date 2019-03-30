@@ -1,0 +1,316 @@
+html,body{
+    width:100%;
+    height: 100%;
+}
+
+a:hover{
+    cursor: pointer;
+}
+.itemtop{
+    float: left;
+    margin-left: 5px;
+}
+.xanh{
+    background: green;
+}
+.itemtop a{
+color: black;
+text-decoration: none;
+padding: 2px;
+font-weight: 500;
+}
+.dangnhap, .dangki{
+    color: black;
+text-decoration: none;
+padding: 2px;
+font-weight: 500;
+cursor: pointer;
+}
+.itemtop a  img{
+    margin-right: 5px;
+}
+.xanh a {
+    color: white;
+}
+.xanh a:hover{
+    background: orange;
+}
+.menu{
+    margin-top: 15px;
+    clear: both;
+    background: blue;
+    text-align: center;
+    height: 30px;
+}
+.menu .itemmenu{
+    float: left;
+    background: #1c1c82;
+    font-weight: 500;
+    border-left: 1px solid #0d106e;
+    height: 30px;
+}
+.menu .itemmenu a{
+    color: white;
+    text-align: center;
+    padding-left: 11px;
+    padding-right: 11px;
+    text-decoration: none;
+}
+.menu .itemmenu:hover{
+    background: #9799f5;
+    height: 30px;
+}
+.timkiem{
+    clear: both;
+    /* border: 1px solid gray; */
+    height: 75px;
+}
+.timkiem .itemtimkiem{
+    float: left;
+    margin-right: 22px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.timkiem .itemtimkiem h5{
+    color: #1c1c82;
+    font-weight: 500;
+}
+.timkiem .itemtimkiem p{
+    background: green;
+    padding: 10px;
+    color: white;
+}
+.timkiem .itemtimkiem input{
+   
+    width: 470px;
+    height: 36px;
+}
+.timkiem .hotrovay{
+    background: url(img/vaynganhang.gif);
+    height: 31px;
+    width: 210px;
+    text-align: center;
+    color: white;
+    padding: 2px;
+    margin-top: 25px;
+}
+.underheader__topright{
+    background: url(img/congcutimkiem.jpg) no-repeat;
+    background-size: cover;
+    color: #000;
+    font-weight: 500;
+    font-size: 16pt;
+    height: 40px;
+    
+    text-align: right;
+    line-height: 40px;
+}
+.underheader__centerright{
+    display: flex;
+    
+    width: 100%;
+    text-align: center;
+}
+.underheader__centerright .item{
+background: #9799f5;
+border-right: 1px solid #000;
+font-weight: 500;
+}
+.underheader__bottomright__content{
+    border: 1px solid gray;
+    padding: 5px;
+}
+.underheader__bottomright__content .doc{
+   margin: 10px;}
+   .underheader__bottomright__content .doc a:hover{
+       color: orangered;
+       cursor: pointer;
+   }
+.underheader__bottomright__content input{
+    width: 100%;
+}.thongtinanh{
+    display: flex;
+}
+.thongtinanh .item{
+    margin-left: 10px;
+}
+.thongtinanh .item img{
+    width: 210px;
+    height: 160px;
+}
+.thongtinanh .tieude{
+    color: #0d106e;
+}
+.bangthongtinchu table{
+    border: 1px solid gray;
+    width: 100%;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+.bangthongtinchu table tr{
+    height: 40px;
+    border: 1px solid;
+    text-align: left;
+    color:#0d106e;
+    font-weight: 450;
+   
+}
+.bangthongtinchu table tr td{
+    padding-left: 30px;
+}
+
+.row .topvay{
+    margin-top: 30px;
+    text-align: center;
+    width: 100%;
+}
+ .row .topvay img{
+     width: 100%;
+ }
+ .tinrao{
+     margin-top: 15px;
+ }
+ .tieuderao{
+    background: blue;
+    width: 170px;
+    height: 30px;
+    color: white;
+    font-weight: 500;
+    border: 1px solid gray;
+    border-radius: 10% 10% 0% 0%;
+ }
+ .listtinrao {
+    border: 1px solid gray;
+    height: 900px;}
+    .anhrao {
+        width: 120px;
+        height: 90px;
+        padding: 5px;
+    }
+    .anhrao img{
+width: 175px;
+padding: 5px;
+    }
+.iteminrao{
+    height: 150px;
+    border-bottom: 1px solid;
+    display: flex;
+
+}
+.tin{
+    margin-left: 100px;
+}
+.ndtin .gia{
+    display: flex;
+    height: 20px;
+}
+.ndtin .gia p{
+    font-weight: 500;
+    width: 200px;
+}
+    .tieudetin {
+        font-size: 22px;
+        color: blue;
+        font-weight: 500;
+    }
+.mail{
+    border: 1px solid #9799f5;
+    background: #9799f5;
+    height: 50px;
+    position: relative;
+    margin-top: 30px;
+}
+.mail input{
+    width: 500px;
+    margin-left: 100px;
+    height: 35px;
+}
+.mail button{
+    position: absolute;
+    top: 6px;
+    right: 15px;
+    width: 100px;
+    background: #0d106e;
+    color: #fff;
+    border: none;
+    height: 35px;
+}
+.chinhanh{
+    /* border: 1px solid gray; */
+    background:#ededed;
+}
+.chinhanh a{
+    color: #000;
+}
+.chinhanh .row .col-md-3{
+    padding: 50px;
+}
+.footer{
+    margin-top: 50px;
+    /* border: 1px solid gray; */
+    background: #ededed;
+    position: relative;
+}
+.footer img{
+    position: absolute;
+    top: 30px;
+    right: 40px;
+}
+.optrai{
+    position: fixed;
+    top:0px;
+    
+}
+.opphai{
+    position: fixed;
+    top:0px;
+    right: 3px;
+}
+.an{
+    display: none;
+}
+.hien{
+    display: block;
+}
+.noidungpopup{
+    width: 600px;
+    height: 500px;
+    background: white;
+    z-index: 1000;
+    position: absolute;
+    /* margin-top: -2000px; */
+    /* margin: 0 auto; */
+    top: 150px;
+    left: 400px;
+}
+
+.manhinhden{
+    width: 100%;
+    height: 2761px;
+    opacity: 0.5;
+    background: black;
+    z-index: 50;
+    position: absolute;
+    top: 0px;
+}
+.manhinhdendk{
+    width: 100%;
+    height: 2761px;
+    opacity: 0.5;
+    background: black;
+    z-index: 50;
+    position: absolute;
+    top: 0px;
+}
+.noidungpopupdk{
+    width: 600px;
+    height: 800px;
+    background: white;
+    z-index: 1000;
+    position: absolute;
+    /* margin-top: -2000px; */
+    /* margin: 0 auto; */
+    top: 150px;
+    left: 400px;
+    text-align: center;
+}
