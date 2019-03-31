@@ -1,4 +1,6 @@
-const user=require('./user')
-module.exports={
-    user
+const user = require('./user');
+const sanpham = require('./sanpham')
+module.exports = {
+    user,
+    sanpham
 }
