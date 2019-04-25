@@ -199,7 +199,7 @@
                         apiKey: '384762415366912',
                         cloudName: 'dunguyen',
                     }
-                    let file = this.event.target.files
+                    // let file = this.event.target.files
                     const formData = new FormData()
                     formData.append('file', file[0])
                     formData.append('upload_preset',cloudinary.uploadPreset)
@@ -211,7 +211,9 @@
                     }
                     axios.post('https://api.cloudinary.com/v1_1/dunguyen/image/upload', formData).then(res => {
                         console.log(res.data.secure_url)
-                    })
+                    }).catch(err){
+                      
+                    }
                 }
             </script>
           </div>

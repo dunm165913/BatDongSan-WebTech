@@ -11,6 +11,9 @@ module.exports = {
       tensp: {
         type: Sequelize.TEXT
       },
+      image:{
+        type:Sequelize.TEXT
+      },
       ngaydang: {
         type: Sequelize.DATE
       },
@@ -27,25 +30,53 @@ module.exports = {
         type: Sequelize.TEXT
       },
       id_loaisp: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references:{
+          model:'loaisps',
+          key:'id'
+        }
       },
       id_huong: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references:{
+          model:'huongs',
+          key:'id'
+        }
       },
       id_duan: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references:{
+          model:'duans',
+          key:'id'
+        }
       },
       id_user: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references:{
+          model:'users',
+          key:'id'
+        }
       },
       id_vitri: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references:{
+          model:'vitris',
+          key:'id'
+        }
       },
       id_huyen: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references:{
+          model:'huyens',
+          key:'id'
+        }
       },
       id_tinh: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references:{
+          model:'tinhs',
+          key:'id'
+        }
       },
       createdAt: {
         allowNull: false,

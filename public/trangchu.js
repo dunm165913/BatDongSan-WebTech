@@ -42,3 +42,7 @@ trangbandaudk=function(){
   popupdangki.classList.remove('hien');
 }
 manhinhdendk.addEventListener('click',trangbandaudk);
+function dangki(){
+let a= $('#form').serialize();
+console.log(a)
+};

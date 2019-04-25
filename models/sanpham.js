@@ -13,10 +13,20 @@ module.exports = (sequelize, DataTypes) => {
     id_user: DataTypes.INTEGER,
     id_vitri: DataTypes.INTEGER,
     id_huyen: DataTypes.INTEGER,
-    id_tinh: DataTypes.INTEGER
+    id_tinh: DataTypes.INTEGER,
+    diachi: DataTypes.TEXT,
+    chieudai: DataTypes.DOUBLE,
+    chieungang: DataTypes.DOUBLE,
+    image: DataTypes.TEXT
   }, {});
-  sanpham.associate = function(models) {
+  sanpham.associate = function (models) {
     // associations can be defined here
   };
+  sanpham.check = function (req, res, next) {
+    let check = req.body
+    if (check.tensp&&check.gia&&check.mota_soluoc) next();
+    else res.json({ mes: 'loi tham so' })
+  }
+
   return sanpham;
 };

@@ -454,7 +454,7 @@
           <div class="form-group" style="">
 
           </div>
-          <div style="display:none;"><input type="hidden" ></div>
+          <div style="display:none;"><input type="hidden"></div>
           <div class="form-group">
             <div style="text-align: center;">
 
@@ -530,7 +530,7 @@
       <div class="manhinhdendk"></div>
       <div class="noidungpopupdk">
 
-        <form action="" method="">
+        <form id="form">
 
           <div class="form-group">
             <div class="row ">
@@ -646,11 +646,19 @@
             <div class="form-group hidden-xs">
               <div class="row justify-content-md-center">
                 <div class="col-sm-6">
-                  <div><button type="submit" class="btn btn-danger" style="width:200px;background: #1623b9;">Đăng
-                      kí</button></div>
+                  <div>
+                    <div onclick="dangki()" class="btn btn-danger" style="width:200px;background: #1623b9;">Đăng
+                      kí</div>
+                  </div>
                 </div>
               </div>
-
+              <script>
+                function dangki() {
+                  alert("ok")
+                  let a = $('#form').serialize()
+                  console.log(a)
+                }
+              </script>
 
             </div>
             <div>

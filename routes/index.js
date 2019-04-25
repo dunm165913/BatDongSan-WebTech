@@ -1,34 +1,48 @@
 
-const controllers=require('../controllers')
-const models= require('../models')
+const controllers = require('../controllers')
+const models = require('../models')
 
-const path= require('path')
-module.exports=(app)=>{
-    app.get('/api/abc',models.user.logined,controllers.user.getAllUser)
-    app.get('/api/abcd',controllers.user.getAllUser)
-    app.get('/api/sanpham',controllers.sanpham.getAll)
+const path = require('path')
+module.exports = (app) => {
 
-    app.post('/api/dangnhap',models.user.checksingup,controllers.user.singup)
-    app.get('/kichhoat',controllers.user.kichhoat)
-    app.post('/login',controllers.user.login)
-    
-    
-    
-    
-    
-    app.get('/',(req,res)=>{
+    app.get('/api/sanpham/getAll', controllers.sanpham.getAll)
+    app.get('/api/sanpham/getnsanpham', controllers.sanpham.getnsanpham)
+    app.get('/api/sanpham/getinfor', controllers.sanpham.chitietsanpham)
+
+    app.get('/api/tintuc/getntintuc', controllers.tintuc.getntintuc)
+    app.get('/api/tintuc/getinfor', controllers.tintuc.getinfor)
+    app.get('/api/duan/getinfor', controllers.duan.getinfor)
+    app.get('/api/duan/getnduan', controllers.duan.getnduan)
+    app.get('/kichhoat', controllers.user.kichhoat)
+    app.get('/api/user/taoma',models.user.logined,controllers.user.taoma)
+app.get('/api/user/checkma',models.user.logined,controllers.user.checkma)
+
+
+    app.post('/api/user/dangki', models.user.checksingup, controllers.user.singup)
+
+    app.post('/api/user/login', controllers.user.login)
+    app.post('/api/user/delete', models.user.logined, models.user.checkadmin, controllers.user.delete, controllers.duan.deletebyuser, controllers.sanpham.deletebyuser)
+    app.post('/api/sanpham/dangsanpham', models.user.logined, models.sanpham.check, controllers.sanpham.create)
+    app.post('/api/tintuc/taotintuc', models.user.logined, models.tintuc.check, controllers.tintuc.create)
+    app.post('/api/tintuc/delete', models.user.logined, models.user.checkadmin, controllers.tintuc.delete)
+    app.post('/api/sanpham/deletes', models.user.logined, models.user.checkadmin, controllers.sanpham.deletemany)
+    app.post('/api/duan/taoduan', models.user.logined, controllers.duan.create)
+    app.post('/api/duan/delete',models.user.logined, controllers.duan.delete)
+
+
+    app.get('/', (req, res) => {
         res.render('trangchu')
     })
 
-    app.get('/dangtin',models.user.logined,(req,res)=>{
+    app.get('/dangtin', (req, res) => {
         res.render('dangraotin')
     })
 
-    app.get('/muathue',(req,res)=>{
+    app.get('/muathue', (req, res) => {
         res.render('muathue')
     })
-    app.get('/nhadatban',(req,res)=>{
+    app.get('/nhadatban', (req, res) => {
         res.render('nhadatban')
     })
-   
+
 }

@@ -11,11 +11,12 @@ module.exports = {
       url: {
         type: Sequelize.TEXT
       },
-      id_tintuc: {
-        type: Sequelize.INTEGER
-      },
       id_sanpham: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references:{
+          model:'sanphams',
+          key:'id'
+        }
       },
       createdAt: {
         allowNull: false,

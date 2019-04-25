@@ -15,8 +15,12 @@ module.exports = {
         type: Sequelize.TEXT
       },
       id_loaitin: {
-        type: Sequelize.INTEGER
-      },
+        type: Sequelize.INTEGER,
+        references:{
+          model:'loaitins',
+          key:'id'
+        }
+            },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

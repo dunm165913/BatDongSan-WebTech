@@ -1,15 +1,18 @@
 'use strict';
-
+const jwt = require('jsonwebtoken')
 const sequelize = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   const user = sequelize.define('user', {
     tendangnhap: DataTypes.TEXT,
     matkhau: DataTypes.TEXT,
     email: DataTypes.TEXT,
-    dienthoai: DataTypes.TEXT,
+    sodienthoai: DataTypes.TEXT,
     avatar: DataTypes.TEXT,
+    ngaysinh: DataTypes.DATE,
+    diachi: DataTypes.TEXT,
+    gioitinh: DataTypes.TEXT,
     isactive: DataTypes.BOOLEAN,
-    role: DataTypes.INTEGER,
+    role: DataTypes.TEXT,
     code: DataTypes.TEXT
   }, {});
   user.associate = function (models) {
@@ -21,7 +24,8 @@ module.exports = (sequelize, DataTypes) => {
       const decoded = jwt.verify(token, "Batdongsan");
       req.userData = decoded;
       next();
-    } catch (err) { 
+    } catch (err) {
+      console.log(err)
       res.json({
         code: 9999,
         message: "Khong xac thuc duoc"
@@ -58,6 +62,21 @@ module.exports = (sequelize, DataTypes) => {
       })
     }
 
-  }
+  },
+    user.checkadmin = function (req, res, next) {
+
+      try {
+        if (req.userData.role == "admin") next();
+        else res.json({
+          code: 1111,
+          message: "not admin"
+        })
+      } catch (err) {
+        res.json({
+          code: 1111,
+          message: "not admin"
+        })
+      }
+    }
   return user;
 };

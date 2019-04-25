@@ -4,7 +4,8 @@
     "password": "VS14xzygg1",
     "database": "TYXZWsroXo",
     "host": "remotemysql.com",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "logging":false
   },
   "test": {
     "username": "root",
