@@ -2,6 +2,9 @@
 const crypto = require('crypto');
 const https = require('https')
 const models = require('../models')
+const transporter = require('../mail/mail').transporter
+const sequelize = require('sequelize')
+
 function kiemtra(request, response) {
     var partnerCode = "MOMOXSGV20190424"
     var accessKey = "mxX5K6WV2FRZxUUs"
@@ -61,6 +64,23 @@ function kiemtra(request, response) {
                             where: {
                                 id: d.orderId,
                                 trangthai: "No"
+                            }
+                        }).then(re => {
+                            console.log("---------------------"+re)
+                            if (re==1) {
+                                
+                               models.sequelize.query("Select email from users,sanphams where users.id=sanphams.id_user and sanphams.id=:id",
+                                    { replacements: { id: [request.query.id_sanpham] }, type: sequelize.QueryTypes.SELECT }).then(re => {
+                                        let option = {
+
+                                            from: 'Batdongsan.test<no-rep>',
+                                            to: re[0].email,
+                                            subject: "Thong bao",
+                                            text: "ban da thanh toan cho san pham voi id=" + request.query.id_sanpham + "\nCam on ban!"
+                                        }
+                                        transporter.sendMail(option)
+                                    })
+
                             }
                         })
                 }
@@ -132,20 +152,20 @@ module.exports = {
                 // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>" + d)
                 // // let r=JSON.parse(body.replace(/\n/g,''))
                 if (d[d.length - 1] == '}') {
-                    d=JSON.parse(d)
-                    if(d.errorCode==0){
+                    d = JSON.parse(d)
+                    if (d.errorCode == 0) {
                         response.json({
-                            code:1000,
-                            data:{
-                                url:d.payUrl
+                            code: 1000,
+                            data: {
+                                url: d.payUrl
                             }
                         })
-                    }else{
+                    } else {
                         response.json({
-                            code:1111,
-                            data:{
-                                errorCode:d.errorCode,
-                                message:d.message
+                            code: 1111,
+                            data: {
+                                errorCode: d.errorCode,
+                                message: d.message
                             }
                         })
                     }
@@ -167,7 +187,7 @@ module.exports = {
         req.end();
     },
     async kiemtra(request, response) {
-       await kiemtra(request,response)
+        await kiemtra(request, response)
     },
     async result(req, res) {
         // console.log(req)
@@ -176,15 +196,21 @@ module.exports = {
                 //update trang thai
                 req.query.id_sanpham = req.query.orderId
                 await kiemtra(req, res);
-            }else{
+            } else {
                 res.json({
-                    code:9999,
-                    data:{
-                        error:req.query.errorCode,
-                        message:req.query.message
+                    code: 9999,
+                    data: {
+                        error: req.query.errorCode,
+                        message: req.query.message
                     }
                 })
             }
+        }
+        else {
+            res.json({
+                code: 9999,
+                message: "sai thong so"
+            })
         }
     }
 }

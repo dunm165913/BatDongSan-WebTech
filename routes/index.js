@@ -27,7 +27,7 @@ module.exports = (app) => {
     app.post('/api/sanpham/dangsanpham', models.user.logined, models.sanpham.check, controllers.sanpham.create)
     app.post('/api/tintuc/taotintuc', models.user.logined, models.tintuc.check, controllers.tintuc.create)
     app.post('/api/tintuc/delete', models.user.logined, models.user.checkadmin, controllers.tintuc.delete)
-    app.post('/api/sanpham/deletes', models.user.logined, models.user.checkadmin, controllers.sanpham.deletemany)
+    app.post('/api/sanpham/deletes', models.user.logined,models.sanpham.checkuser , controllers.sanpham.deletemany)
     app.post('/api/duan/taoduan', models.user.logined, controllers.duan.create)
     app.post('/api/duan/delete', models.user.logined, controllers.duan.delete)
 

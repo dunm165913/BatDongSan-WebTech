@@ -28,6 +28,11 @@ module.exports = (sequelize, DataTypes) => {
     else res.json({ mes: 'loi tham so' })
   }
   sanpham.checkuser = async function (req, res, next) {
+    try {
+      if (req.userData.role == "admin") next()
+    } catch (er) {
+
+    }
     let sanpham = await sequelize.query('select * from sanphams where id_user = :email and id=:id',
       { replacements: { email: [req.userData.id], id: [req.query.id_sanpham] }, type: sequelize.QueryTypes.SELECT })
     console.log(sanpham)
