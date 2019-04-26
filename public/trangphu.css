@@ -1,0 +1,114 @@
+.danhsach{
+  width: 100%;
+  height: 952px;
+  border: 1px solid gray;
+}
+.danhsach__item{
+border-bottom: 1px solid;
+
+
+}
+.danhsach__item .noidung{
+  display: flex;
+}
+.danhsach__item p{
+  font-weight: 600;
+  color: brown;
+}
+.danhsach__item img{
+  padding: 5px;
+  width: 200px;
+}
+.danhsach__item .item__tt{
+  margin-left: 50px;
+}
+
+
+
+
+.linkdang{
+  display: flex;
+}
+.tieudechitiet{
+  font-weight: 500;
+  color:blue;
+  font-size: 1.5em;
+}
+.container .noidung{
+  width: 700px;
+  margin: 0 auto;
+}
+.huongdan{
+  border: 1px solid gray;
+  color: #605555;
+  font-size: 12pt;
+  font-family: -webkit-body;
+}
+.huongdan__tieude{
+  background: rgb(9, 9, 115);
+  color: white;
+  text-align: center;
+  height: 35px;
+  line-height: 35px;
+  
+}
+.bancobiet{
+  color: green;
+}
+.formdang__tieude {
+  text-align: center;
+}
+.formdangtop {
+  color: blue;
+  font-size: 15pt;
+  font-weight: 500;
+}
+.chonmuc{
+  background: #bbb2b2;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-weight: 500;
+}
+.thongtinmota {
+  border: 1px solid gray;
+  margin-top: 20px;
+}
+.thongtinmota__tieude {
+  height: 35px;
+  line-height: 35px;
+  color: white;
+  background: #4b4b85;
+  text-align: center;
+  font-size: 1.25em;
+}
+.noidungmota {
+  padding: 30px;
+  width: 100%;
+}
+.flex{
+  display: flex;
+    margin-bottom: 10px;
+    margin-top: 30px;
+}
+.tieude {
+  height: 30px;
+  background: green;
+  padding: 5px;
+  color: white;
+}
+.col-md-7 select{
+  width: 200px;
+}
+form button{
+  margin-top: 30px;
+  background: green;
+  border: none;
+  text-align: center;
+  width: 150px;
+  height: 40px;
+  margin-left: 320px;
+}
+.noidungmota .lienhe{
+  margin: 20px;
+}
