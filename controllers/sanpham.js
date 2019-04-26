@@ -15,7 +15,7 @@ module.exports = {
             dientich: request.dientich,
             gia: request.gia,
             mota_soluoc: request.mota_soluoc,
-            trangthai: request.trangthai,
+            trangthai: "No",
             id_loaisp: request.id_loaisp ? request.id_loaisp : 1,
             id_tinh: request.id_tinh ? request.id_tinh : 1,
             id_huyen: request.id_huyen ? request.id_huyen : 1,

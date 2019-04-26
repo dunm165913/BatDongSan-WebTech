@@ -14,8 +14,15 @@
     <script>
         function momo() {
             axios.get('http://localhost:1000/api/momo/thanhtoan').then(re => {
-                let url=JSON.parse(re.data).payUrl
-                window.location.replace(url)
+                // let url=JSON.parse(re.data).payUrl
+                // window.location.replace(url)
+                if(res.code==1000){
+                    alert("ok");
+                    
+
+                }else{
+                    alert("loi")
+                }
             })
         }
     </script>

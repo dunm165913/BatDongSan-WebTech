@@ -34,19 +34,15 @@ module.exports = (app) => {
 
 
     //momo
-    app.get('/api/momo/result', (req, res) => {
-        res.json(req.query)
-    })
+    app.get('/api/momo/result', controllers.momo.result)
     app.get('/test/momo', (req, res) => { res.render('momo') })
-
-    app.get('/api/momo/thanhtoan', controllers.momo.thanhtoan)
-
+    app.get('/api/momo/thanhtoan', models.user.logined, models.sanpham.checkuser, controllers.momo.thanhtoan);
+    app.get('/api/momo/kiemtra', models.user.logined, models.sanpham.checkuser, controllers.momo.kiemtra)
 
 
     app.get('/', (req, res) => {
         res.render('trangchu')
     })
-
     app.get('/dangtin', (req, res) => {
         res.render('dangraotin')
     })

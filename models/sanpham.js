@@ -24,8 +24,18 @@ module.exports = (sequelize, DataTypes) => {
   };
   sanpham.check = function (req, res, next) {
     let check = req.body
-    if (check.tensp&&check.gia&&check.mota_soluoc) next();
+    if (check.tensp && check.gia && check.mota_soluoc) next();
     else res.json({ mes: 'loi tham so' })
+  }
+  sanpham.checkuser = async function (req, res, next) {
+    let sanpham = await sequelize.query('select * from sanphams where id_user = :email and id=:id',
+      { replacements: { email: [req.userData.id], id: [req.query.id_sanpham] }, type: sequelize.QueryTypes.SELECT })
+    console.log(sanpham)
+    if (sanpham.length == 1) next();
+    else res.json({
+      code: 1111,
+      message: "ko chinh chu hoac ko co san pham"
+    })
   }
 
   return sanpham;
