@@ -2,6 +2,8 @@
 const controllers = require('../controllers')
 const models = require('../models')
 
+const https = require('https')
+
 const path = require('path')
 module.exports = (app) => {
 
@@ -14,8 +16,8 @@ module.exports = (app) => {
     app.get('/api/duan/getinfor', controllers.duan.getinfor)
     app.get('/api/duan/getnduan', controllers.duan.getnduan)
     app.get('/kichhoat', controllers.user.kichhoat)
-    app.get('/api/user/taoma',models.user.logined,controllers.user.taoma)
-app.get('/api/user/checkma',models.user.logined,controllers.user.checkma)
+    app.get('/api/user/taoma', models.user.logined, controllers.user.taoma)
+    app.get('/api/user/checkma', models.user.logined, controllers.user.checkma)
 
 
     app.post('/api/user/dangki', models.user.checksingup, controllers.user.singup)
@@ -27,7 +29,18 @@ app.get('/api/user/checkma',models.user.logined,controllers.user.checkma)
     app.post('/api/tintuc/delete', models.user.logined, models.user.checkadmin, controllers.tintuc.delete)
     app.post('/api/sanpham/deletes', models.user.logined, models.user.checkadmin, controllers.sanpham.deletemany)
     app.post('/api/duan/taoduan', models.user.logined, controllers.duan.create)
-    app.post('/api/duan/delete',models.user.logined, controllers.duan.delete)
+    app.post('/api/duan/delete', models.user.logined, controllers.duan.delete)
+
+
+
+    //momo
+    app.get('/api/momo/result', (req, res) => {
+        res.json(req.query)
+    })
+    app.get('/test/momo', (req, res) => { res.render('momo') })
+
+    app.get('/api/momo/thanhtoan', controllers.momo.thanhtoan)
+
 
 
     app.get('/', (req, res) => {
@@ -45,4 +58,4 @@ app.get('/api/user/checkma',models.user.logined,controllers.user.checkma)
         res.render('nhadatban')
     })
 
-}
+}   
