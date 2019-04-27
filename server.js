@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op
 const path = require('path')
+const schedule = require('node-schedule')
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -13,7 +14,7 @@ app.use(Express.static(path.join(__dirname, 'public')))
 app.set('view engine', 'ejs');
 app.use(Express.static(__dirname + '/public'));
 
-setInterval(() => {
+schedule.scheduleJob({ hour: 0, minute: 0, second: 10 }, () => {
     models.sanpham.findAll({
         where: {
 
@@ -31,7 +32,8 @@ setInterval(() => {
     }).then(re => {
         re.map(x => x.destroy())
     })
-}, 24 * 60 * 60 * 1000);
+    
+})
 
 
 models.sequelize.sync().then(() => {
