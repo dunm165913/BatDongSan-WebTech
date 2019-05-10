@@ -9,8 +9,8 @@ function kiemtra(request, response) {
     var partnerCode = "MOMOXSGV20190424"
     var accessKey = "mxX5K6WV2FRZxUUs"
     var serectkey = "mI7NugXjCv1egAg73vDKMBRqRt9lTsBi"
-    var orderId = request.query.id_sanpham
-    var requestId = request.query.id_sanpham
+    var orderId = request.query.id
+    var requestId = request.query.id
     var requestType = 'transactionStatus'
     var rawSignature = "partnerCode=" + partnerCode + "&accessKey=" + accessKey + "&requestId=" + requestId + "&orderId=" + orderId + "&requestType=" + requestType
     var signature = crypto.createHmac('sha256', serectkey)
@@ -54,7 +54,7 @@ function kiemtra(request, response) {
                     data: {
                         errorCode: d.errorCode,
                         id_sanpham: d.orderId,
-                        massage: d.message
+                        message: d.message
                     }
                 })
                 if (d.errorCode == 0) {
@@ -66,10 +66,10 @@ function kiemtra(request, response) {
                                 trangthai: "No"
                             }
                         }).then(re => {
-                            console.log("---------------------"+re)
-                            if (re==1) {
-                                
-                               models.sequelize.query("Select email from users,sanphams where users.id=sanphams.id_user and sanphams.id=:id",
+                            console.log("---------------------" + re)
+                            if (re == 1) {
+
+                                models.sequelize.query("Select email from users,sanphams where users.id=sanphams.id_user and sanphams.id=:id",
                                     { replacements: { id: [request.query.id_sanpham] }, type: sequelize.QueryTypes.SELECT }).then(re => {
                                         let option = {
 
@@ -109,8 +109,8 @@ module.exports = {
         var returnUrl = "http://localhost:1000/api/momo/result"
         var notifyurl = "http://localhost:1000/api/momo/result1"
         var amount = "1000"
-        var orderId = request.query.id_sanpham
-        var requestId = request.query.id_sanpham
+        var orderId = request.query.id
+        var requestId = request.query.id
         var requestType = "captureMoMoWallet"
         var extraData = "merchantName=;merchantId="
         var rawSignature = "partnerCode=" + partnerCode + "&accessKey=" + accessKey + "&requestId=" + requestId + "&amount=" + amount + "&orderId=" + orderId + "&orderInfo=" + orderInfo + "&returnUrl=" + returnUrl + "&notifyUrl=" + notifyurl + "&extraData=" + extraData
@@ -157,7 +157,9 @@ module.exports = {
                         response.json({
                             code: 1000,
                             data: {
-                                url: d.payUrl
+                                url: d.payUrl,
+                                errorCode: d.errorCode,
+                                message: d.message
                             }
                         })
                     } else {

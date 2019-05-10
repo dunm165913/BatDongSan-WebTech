@@ -6,7 +6,7 @@ module.exports = {
     async getinfor(req, res) {
         models.duan.findAll({
             where: {
-                id: req.query.id_duan
+                id: req.query.id
             }
         }).then(re => {
             if (re[0]) res.json({
@@ -24,7 +24,7 @@ module.exports = {
     },
     async getnduan(req, res) {
         let id = 1000000000;
-        req.body.id ? id = req.body.id : id = id
+        req.query.id ? id = req.query.id : id = id
         models.duan.findAll({
             where: {
                 id: {
@@ -51,6 +51,7 @@ module.exports = {
         }).then(re => {
             res.json({
                 code: 1000,
+                message: "ok",
                 data: re
             })
         })
@@ -59,7 +60,7 @@ module.exports = {
         models.duan.findAll({
             where: {
                 id: req.body.id,
-                id_user:req.userData.id
+                id_user: req.userData.id
             }
         }).then(re => {
             if (re[0]) {
@@ -68,20 +69,35 @@ module.exports = {
                     code: 1000,
                     message: "ok"
                 })
-            }else res.json({
-                code:1111,
-                message:"not found"
+            } else res.json({
+                code: 1111,
+                message: "not found"
             })
         })
     },
-    async deletebyuser(req,res,next){
+    async deletebyuser(req, res, next) {
         models.duan.findAll({
-            where:{
-                id_user:req.body.id_user
+            where: {
+                id_user: req.body.id
             }
-        }).then(re=>{
-            re.map(x=>x.destroy())
+        }).then(re => {
+            re.map(x => x.destroy())
             next();
+        })
+    },
+    async deletebyadmin(req, res) {
+        models.duan.findAll({
+            where: {
+                id: req.body.id
+            }
+        }).then(response => {
+            response.map(x => {
+                x.destroy()
+            })
+            res.json({
+                code: 1000,
+                message: "ok"
+            })
         })
     }
 }

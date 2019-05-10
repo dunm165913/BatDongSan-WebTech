@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
   };
   tintuc.check = function (req, res, next) {
-    if (req.body.ten && req.body.noidung && req.body.id_loaitin && req.body.image) next();
+    if (req.body.ten && req.body.noidung && req.body.image) next();
     else res.json({
       code: 1111,
       message: "Loi tham so"

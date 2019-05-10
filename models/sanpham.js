@@ -33,8 +33,8 @@ module.exports = (sequelize, DataTypes) => {
     } catch (er) {
 
     }
-    let sanpham = await sequelize.query('select * from sanphams where id_user = :email and id=:id and trangthai = "No"',
-      { replacements: { email: [req.userData.id], id: [req.query.id_sanpham] }, type: sequelize.QueryTypes.SELECT })
+    let sanpham = await sequelize.query('select * from sanphams where id_user = :id_user and id=:id and trangthai = "No"',
+      { replacements: { od_user: [req.userData.id], id: [req.query.id] }, type: sequelize.QueryTypes.SELECT })
     console.log(sanpham)
     if (sanpham.length == 1) next();
     else res.json({

@@ -6,7 +6,7 @@ module.exports = {
     //get thong tin co ban n tin tuc
     async getntintuc(req, res) {
         let id = 100000000;
-        req.body.id ? id = req.body.id : id = id
+        req.query.id ? id = req.query.id : id = id
         let result = await models.tintuc.findAll({
             where: {
                 id: {
@@ -27,7 +27,7 @@ module.exports = {
             }
         }).then(re => {
 
-            re[0] ? res.json({ code: 1000, data: re[0] }) : res.json({ code: 1111, message: "not found" })
+            re[0] ? res.json({ code: 1000, message: "ok", data: re[0] }) : res.json({ code: 1111, message: "not found" })
         })
 
     },
@@ -39,11 +39,15 @@ module.exports = {
             id_loaitin: req.body.id_loaitin,
             image: req.body.image
         }).then(re => {
-            res.json(re)
+            res.json({
+                code:1000,
+                message:"ok"
+            })
         }).catch(err => {
             console.log(err)
             res.json({
-                mes: 'loi'
+                code:9999,
+                message: 'loi'
             })
         })
     },

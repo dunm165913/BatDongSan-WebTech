@@ -30,10 +30,14 @@ module.exports = {
             // phongan: request.phongan ? request.phongan : 0,
             image: request.image,
         }).then(re => {
-            res.json(re)
+            res.json({
+                code:1000,
+                message:"ok"
+            })
         }).catch(err => {
             res.json({
-                mes: "loi"
+               code:1111,
+               message:"Loi database"
             })
         });
 
@@ -45,12 +49,24 @@ module.exports = {
                 id: req.query.id
             }
         });
-        res.json(resu)
+        if(resu){
+            res.json({
+                code:1000,
+                message:"ok",
+                data:resu
+            })
+        }
+        else{
+            res.json({
+                code:9999,
+                message:"khong tim thay san pham"
+            })
+        }
     },
     //lay thongt tin co ban cua n du an
     async getnsanpham(req, res) {
         let id = 10000000;
-        req.body.id ? id = req.body.id : id = id
+        req.query.id ? id = req.query.id : id = id
 
         let resu = await models.sanpham.findAll({
             where: {
@@ -62,7 +78,10 @@ module.exports = {
             attributes: ['id', 'image', 'tensp', 'gia', 'dientich'],
             limit: 10,
         })
-        res.json(resu)
+        res.json({
+            code:1000,
+            data:resu
+        })
     },
     //xoa bai dang
     async delete(req, res) {
@@ -92,7 +111,7 @@ module.exports = {
         models.sanpham.findAll({
             where: {
                 id: {
-                    [Op.or]: req.body.manyid
+                    [Op.or]: req.body.id
                 }
             }
         }).then(re => {
@@ -103,17 +122,24 @@ module.exports = {
             })
         })
     },
-    async deletebyuser(req, res) {
+    async deletebyuser(req, res,next) {
         models.sanpham.findAll({
             where: {
-                id_user: req.body.id_user
+                id_user: req.body.id
             }
         }).then(re => {
             re.map(x => x.destroy())
-            res.json({
-                code: 1000,
-                messageL: "ok"
-            })
+            next()
+        })
+    },
+    async deletebyadmin(req, res,next) {
+        models.sanpham.findAll({
+            where: {
+                id_duan: req.body.id
+            }
+        }).then(re => {
+            re.map(x => x.destroy())
+            next()
         })
     }
 

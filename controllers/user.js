@@ -29,7 +29,7 @@ module.exports = {
 
         }).then((result) => {
             res.json({
-                coe: 1000,
+                code: 1000,
                 message: "ok"
             })
             let option = {
@@ -121,15 +121,18 @@ module.exports = {
             })
         })
     },
-    async delete(req, res, next) {
+    async delete(req, res) {
         models.user.findAll({
             where: {
-                id: req.body.id_user
+                id: req.body.id
             }
         }).then(re => {
             if (re[0]) {
                 re[0].destroy()
-                next()
+                res.json({
+                    code:1000,
+                    message:"ok"
+                })
             } else {
                 res.json({
                     code: 1111,
