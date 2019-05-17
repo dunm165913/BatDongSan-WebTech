@@ -33,17 +33,17 @@
                     <img src="img/gg.png" alt="" />
                     <img src="img/youtube.png" alt="" />
                   </div>
-                  <div class="col-md-8" style="margin-top: 3px;">
+                  <div class="col-md-8" style="margin-top: 3px;" id="navBar">
                     <div class="itemtop">
                       <a href=""><img src="img/banxehoi.png" />Oto.com.vn</a>
                     </div>
                     <div class="itemtop xanh">
                       <a href=""><img src="img/plus.png" />Đăng rao tin</a>
                     </div>
-                    <div class="itemtop dangki">
+                    <div class="itemtop dangki" data-toggle="modal" href='#modalDangKy'>
                       <img src="img/register.png" />Đăng ký
                     </div>
-                    <div class="itemtop dangnhap">
+                    <div class="itemtop dangnhap" data-toggle="modal" href='#modalDangNhap'>
                       <img src="img/login.png" />Đăng nhập
                     </div>
                     <div class="itemtop">
@@ -70,8 +70,7 @@
             <div class="itemtimkiem">
               <h5>TÌM KIẾM DỰ ÁN</h5>
             </div>
-            <div class="itemtimkiem"><input type="text" name="" id=""
-                placeholder="Nhập từ khóa tìm kiếm(ví dụ: dự án quận Hà Đông)"></div>
+            <div class="itemtimkiem"><input type="text" placeholder="Nhập từ khóa tìm kiếm(ví dụ: dự án quận Hà Đông)"></div>
             <div class="itemtimkiem">
               <p class="fa fa-search" aria-hidden="true"> Tìm kiếm</p>
             </div>
@@ -443,248 +442,210 @@
     <div class="optrai"><img src="img/quangcaotrai.jpg" alt="" /></div>
     <div class="opphai"><img src="img/quangcaophai.jpg" alt="" /></div>
 
-    <!-- popupdang nhap -->
-    <div class="popupdangnhap an">
-      <div class="manhinhden"></div>
-      <div class="noidungpopup">
-
-
-
-        <form>
-          <div class="form-group" style="">
-
+    <div class="modal fade" id="modalDangNhap">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Đăng nhập</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
-          <div style="display:none;"><input type="hidden"></div>
-          <div class="form-group">
-            <div style="text-align: center;">
-
-
-              <p>xin vui lòng điền đầy đủ chính xác các trường để </p>
-              <p>đảm bảo thông tin và quyền lợi</p>
-
-            </div>
-          </div>
-          <div class="form-group" style="text-align:center;">
-            <div class="row">
-
-
-              <label class="col-sm-3 control-label lable">Số điện thoại:</label>
-              <div class="col-sm-6">
-                <div class=" number required" aria-required="true">
-                  <input style="width:370px;height:45px;" name="sdt" class="form-control"
-                    placeholder="Xin vui lòng nhập số điện thoại" autofocus="autofocus" value=""
-                    data-rule-required="true" data-msg-required="Vui lòng nhập số điện thoại của bạn"
-                    data-rule-number="true" data-msg-number="Xin vui lòng nhập số" data-rule-minlength="10"
-                    data-msg-minlength="Số điện thoại từ 10 - 11 ký tự" data-rule-maxlength="11"
-                    data-msg-maxlength="Số điện thoại từ 10 - 11 ký tự" type="number" id="UserPhonenumber"
-                    required="required" aria-required="true"></div>
-              </div>
-            </div>
-
-          </div>
-          <div class="form-group" style="text-align:center;">
-            <div class="row">
-              <label class="col-sm-3 control-label lable">Mật khẩu:</label>
-              <div class="col-sm-6">
-                <div class="password required" aria-required="true">
-                  <input style="width:370px;height:45px;" name="password" class="form-control" maxlength="30"
-                    placeholder="Xin vui lòng nhập mật khẩu" data-rule-required="true"
-                    data-msg-required="Vui lòng nhập mật khẩu" data-rule-lettersonly="true"
-                    data-msg-lettersonly="Vui lòng chỉ nhập chữ và số" data-rule-minlength="6"
-                    data-msg-minlength="Mật khẩu tối thiểu 6 ký tự" data-rule-maxlength="30"
-                    data-msg-maxlength="Mật khẩu tối đa 30 ký tự" type="password" id="UserPassword" required="required"
-                    aria-required="true"></div>
-              </div>
-            </div>
-
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-sm-6 col-sm-offset-3 ">
-                <a href="#" style="    color: #1623b9;
-                              margin-left: 30px;">Quên mật khẩu</a>
-              </div>
-            </div>
-          </div>
-          <div class="form-group hidden-xs">
-            <div class="row justify-content-md-center">
-              <div class="col-sm-6">
-                <button class="btn dangnhap btn-danger text-center mb-5" style="background: #1623b9" type="submit">Đăng
-                  nhập</button> </div>
-            </div>
-
-
-          </div>
-          <div>
-            <p style="text-align:center;clear: both;">Nếu bạn chưa có tài khoản Đăng kí <a href="dangki">tại đây</a></p>
-          </div>
-        </form>
-
-
-
-      </div>
-    </div>
-
-    <!-- popup dang ki -->
-    <div class="popupdangki an">
-      <div class="manhinhdendk"></div>
-      <div class="noidungpopupdk">
-
-        <form id="form">
-
-          <div class="form-group">
-            <div class="row ">
-              <div style="text-align:center;">
-
-                <p style="margin-left: 110px;">xin vui lòng điền đầy đủ chính xác các trường để </p>
-                <p style="margin-left: 149px;">đảm bảo thông tin và quyền lợi</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="row">
-              <label class="col-sm-3 control-label lable">tên tài khoản:</label>
-              <div class="col-sm-6">
-                <div><input type="text" name="username" class="form-control" placeholder="Xin vui lòng nhập ten" />
-
+          <div class="modal-body">
+            <form id="formDangNhap">
+              <div style="display:none;"><input type="hidden"></div>
+              <div class="form-group">
+                <div style="text-align: center;">
+                  <p class="text-info h6">Xin vui lòng điền đầy đủ chính xác các trường để đảm bảo thông tin và quyền lợi</p>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="row">
-              <label class="col-sm-3 control-label lable">Mật khẩu:</label>
-              <div class="col-sm-6">
-                <div><input name="password" class="form-control" type="password" placeholder="nhap password"></div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <label class="col-sm-3 control-label lable"> Nhập lại mật khẩu:</label>
-              <div class="col-sm-6">
-                <div><input name="passwordconf" class="form-control" type="password" placeholder="nhap password"></div>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="form-group">
-            <div class="row">
-              <label class="col-sm-3 control-label lable">ngày sinh:</label>
-              <div class="col-sm-6">
-                <div><input name="tuoi" class="form-control" type="date"></div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <label for="" class="col-md-3 control-label lable">Giới tính</label>
-              <div>
-                <select class="col-md-6" style="    width: 342px;
-  height: 40px;
-  margin-left: 15px;
-  margin-bottom: 20px;">
-                  <option>nam</option>
-                  <option>nữ</option>
-                  <option>
-                    khác
-                  </option>
-                </select>
-              </div>
-
-
-            </div>
-
-            <div class="form-group">
-              <div class="row">
-                <label class="col-sm-3 control-label lable">Số điện thoại:</label>
-                <div class="col-sm-6">
-                  <div class=" number required" aria-required="true"><input name="sdt" class="form-control"
-                      placeholder="Xin vui lòng nhập số điện thoại" autofocus="autofocus" value=""
-                      data-rule-required="true" data-msg-required="Vui lòng nhập số điện thoại của bạn"
-                      data-rule-number="true" data-msg-number="Xin vui lòng nhập số" data-rule-minlength="10"
-                      data-msg-minlength="Số điện thoại từ 10 - 11 ký tự" data-rule-maxlength="11"
-                      data-msg-maxlength="Số điện thoại từ 10 - 11 ký tự" type="number" id="UserPhonenumber"
-                      required="required" aria-required="true"></div>
-                </div>
-              </div>
-
-            </div>
-            <div class="form-group">
-              <div class="row">
-                <label class="col-sm-3 control-label lable">Email:</label>
-                <div class="col-sm-6">
-                  <div><input name="email" class="form-control" placeholder="Xin vui lòng nhập email"></div>
-                </div>
-              </div>
-
-            </div>
-            <div class="form-group">
-              <div class="row">
-                <label class="col-sm-3 control-label lable">Địa chỉ:</label>
-                <div class="col-sm-6">
-                  <div><input name="diachi" class="form-control" placeholder="Xin vui lòng nhập dia chi"></div>
-                </div>
-              </div>
-
-            </div>
-            <div class="form-group">
-              <div class="row ">
-                <div>
-                  <span class="text-name">Bằng việc bạn click nút
-                    <span class="register-link">Đăng ký</span>. Bạn đã đồng ý với <span class="dieukhoan-link">
-                      <a href="#" style="color:blue;">Điều khoản dịch vụ</a>
-                    </span> của <span class="register-link">Batdongsan.com</span>
-                  </span></div>
-              </div>
-            </div>
-
-
-            <div class="form-group hidden-xs">
-              <div class="row justify-content-md-center">
-                <div class="col-sm-6">
-                  <div>
-                    <div onclick="dangki()" class="btn btn-danger" style="width:200px;background: #1623b9;">Đăng
-                      kí</div>
+              <div class="form-group" style="text-align:center;">
+                <div class="row">
+                  <label class="col-sm-3 control-label lable">Số điện thoại:</label>
+                  <div class="col-sm-9">
+                    <div class="number required" aria-required="true">
+                      <input name="loginNumber" class="form-control"
+                        placeholder="Xin vui lòng nhập số điện thoại"></div>
                   </div>
                 </div>
               </div>
-              <script>
-                function dangki() {
-                  alert("ok")
-                  let a = $('#form').serialize()
-                  console.log(a)
-                }
-              </script>
-
-            </div>
-            <div>
-              <p style="text-align:center;clear: both;">Nếu bạn đa có tài khoản Đăng nhập <a href="">tại đây</a></p>
-            </div>
-
-
-        </form>
-
-
+              <div class="form-group" style="text-align:center;">
+                <div class="row">
+                  <label class="col-sm-3 control-label lable">Mật khẩu:</label>
+                  <div class="col-sm-9">
+                    <div class="password required">
+                      <input name="loginPassword" class="form-control"
+                        placeholder="Xin vui lòng nhập mật khẩu" type="password" id="UserPassword"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-sm-6 col-sm-offset-3 ">
+                    <a href="#" style="color: #1623b9; margin-left: 30px;">Quên mật khẩu</a>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group hidden-xs">
+                <div class="row justify-content-md-center">
+                  <div class="col-sm-6">
+                    <input class="btn dangnhap btn-info text-center mb-5 offset-3" style="background: #1623b9" type="button"
+                      value="Đăng nhập" onclick="Authenciate.dangNhap()" />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p style="text-align:center;clear: both;">Nếu bạn chưa có tài khoản Đăng kí <a href="dangki">tại đây</a></p>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
+    <!-- Modal Dang Ky -->
+    <div class="modal fade" id="modalDangKy">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Đăng ký</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+            <form id="formDangKy" name="formDangKy">
+              <div class="form-group">
+                <div style="text-align:center;">
+                  <p class="h6 text-info">Xin vui lòng điền đầy đủ chính xác các trường để đảm bảo thông tin và quyền lợi</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-sm-3 control-label lable">Tên tài khoản:</label>
+                  <div class="col-sm-6">
+                    <div>
+                      <input type="text" name="username" class="form-control" placeholder="Nhập tên tài khoản" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-sm-3 control-label lable">Mật khẩu:</label>
+                  <div class="col-sm-6">
+                    <div><input id="password" name="password" class="form-control" type="password" placeholder="Nhập mật khẩu">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-sm-3 control-label lable"> Nhập lại mật khẩu:</label>
+                  <div class="col-sm-6">
+                    <div><input name="passwordconf" class="form-control" type="password" placeholder="Nhập lại mật khẩu"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <label class="col-sm-3 control-label lable">Ngày sinh:</label>
+                  <div class="col-sm-6">
+                    <div><input id="tuoi" name="tuoi" class="form-control" type="date"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <label for="" class="col-md-3 control-label lable">Giới tính</label>
+                  <div>
+                    <select class="col-md-6" style="width: 342px; height: 40px; margin-left: 15px; margin-bottom: 20px;"
+                      id="gender">
+                      <option value="nam">Nam</option>
+                      <option value="nữ">Nữ</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <label class="col-sm-3 control-label lable">Số điện thoại:</label>
+                    <div class="col-sm-6">
+                      <div class=" number required" aria-required="true">
+                        <input name="sdt" class="form-control" placeholder="Nhập số điện thoại" type="text" id="UserPhonenumber" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <label class="col-sm-3 control-label lable">Email:</label>
+                    <div class="col-sm-6">
+                      <div><input name="email" class="form-control" placeholder="Nhập email"></div>
+                    </div>
+                  </div>
 
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <label class="col-sm-3 control-label lable">Địa chỉ:</label>
+                    <div class="col-sm-6">
+                      <div><input name="diachi" class="form-control" placeholder="Nhập địa chỉ"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row ">
+                    <div>
+                      <span class="text-name">Bằng việc bạn click nút
+                        <span class="register-link">Đăng ký</span>. Bạn đã đồng ý với <span class="dieukhoan-link">
+                          <a href="#" style="color:blue;">Điều khoản dịch vụ</a>
+                        </span> của <span class="register-link">Batdongsan.com</span>
+                      </span></div>
+                  </div>
+                </div>
+                <div class="form-group hidden-xs">
+                  <div class="row justify-content-md-center">
+                    <div class="col-sm-6">
+                      <div>
+                        <div onclick="Authenciate.dangKy()" class="btn btn-danger" style="width:200px;background: #1623b9;">Đăng
+                          kí</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <p style="text-align:center;clear: both;">Nếu bạn đã có tài khoản Đăng nhập <a href="">tại đây</a></p>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="trangchu.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.js" integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+    <script src="js/lib/jquery.validate.min.js"></script>
+    <script src="js/lib/additional-methods.min.js"></script>
+    <script src="js/lib/jquery.cookie.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+    <script src="common.js"></script>
+    <script src="index.js"></script>
+    <script>
+      $.extend($.validator.messages, {
+          required: "Trường bắt buộc.",
+          email: "Xin hãy nhập đúng định dạng Email.",
+          minlength: $.validator.format("Xin hãy nhập ít nhất là {0} kí tự."),
+          maxlength: $.validator.format("Xin hãy không nhập quá {0} kí tự."),
+          equalTo: "Nhập lại mật khẩu không đúng",
+          digits: "Vui lòng chỉ nhập số.",
+
+        });
+      Authenciate.validate();
+      isLogin();
+    </script>
 </body>
 
 </html>
