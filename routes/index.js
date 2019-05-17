@@ -18,8 +18,10 @@ module.exports = (app) => {
     app.get('/api/user/taoma', models.user.logined, controllers.user.taoma)
     app.get('/api/user/checkma', models.user.logined, controllers.user.checkma)
 
-
-    app.post('/api/user/dangki', models.user.checksingup, controllers.user.singup)
+    app.post('/api/user/change_password', models.user.logined, controllers.user.thaymatkhau)
+    app.post('/api/user/update', models.user.logined, models.user.checkemail, models.user.checksodienthoai, controllers.user.update)
+    app.post('/api/user/getinfor', models.user.logined, controllers.user.getinfor)
+    app.post('/api/user/dangki', models.user.checksingup,models.user.checksodienthoai, controllers.user.singup)
     app.post('/api/user/login', controllers.user.login)
     app.post('/api/user/delete', models.user.logined, models.user.checkadmin, controllers.sanpham.deletebyuser, controllers.duan.deletebyuser, controllers.user.delete)
     app.post('/api/sanpham/dangsanpham', models.user.logined, models.sanpham.check, controllers.sanpham.create)
@@ -29,7 +31,7 @@ module.exports = (app) => {
     app.post('/api/tintuc/delete', models.user.logined, models.user.checkadmin, controllers.tintuc.delete)
     app.post('/api/duan/taoduan', models.user.logined, controllers.duan.create)
     app.post('/api/duan/delete', models.user.logined, controllers.duan.delete)
-    app.post('/api/duan/deletebyadmin',models.user.logined, models.user.checkadmin,controllers.sanpham.deletebyadmin,controllers.duan.deletebyadmin)
+    app.post('/api/duan/deletebyadmin', models.user.logined, models.user.checkadmin, controllers.sanpham.deletebyadmin, controllers.duan.deletebyadmin)
 
     //momo
     app.get('/api/momo/result', controllers.momo.result)
@@ -49,6 +51,9 @@ module.exports = (app) => {
     })
     app.get('/nhadatban', (req, res) => {
         res.render('nhadatban')
+    })
+    app.get('/user', (req, res) => {
+        res.render('trangcanhan')
     })
 
 }   

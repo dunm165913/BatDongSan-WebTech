@@ -17,6 +17,7 @@ module.exports = {
 
     async singup(req, res) {
         models.user.create({
+            tendangnhap:req.body.tendangnhap?req.body.tendangnhap:"user",
             sodienthoai: req.body.sodienthoai,
             matkhau: bcrypt.hashSync(req.body.matkhau),
             email: req.body.email,
@@ -130,8 +131,8 @@ module.exports = {
             if (re[0]) {
                 re[0].destroy()
                 res.json({
-                    code:1000,
-                    message:"ok"
+                    code: 1000,
+                    message: "ok"
                 })
             } else {
                 res.json({
@@ -194,6 +195,91 @@ module.exports = {
             }
             else res.json({ code: 1111, message: "not found" })
         })
+    },
+    async thaymatkhau(req, res) {
+        if (req.body.new_password && req.body.new_password.length >= 6) {
+            models.user.findAll({
+                where: {
+                    email: req.userData.email
+                }
+            }).then(response => {
+                console.log(response[0].dataValues)
+                if (bcrypt.compareSync(req.body.old_password, response[0].dataValues.matkhau)) {
+                    res.json({
+                        code: 1000,
+                        message: "Ban thay mat khau thanh cong"
+                    })
+                    models.user.update({
+                        matkhau: bcrypt.hashSync(req.body.new_password)
+                    }, {
+                            where: {
+                                email: req.userData.email
+                            }
+                        })
+                }
+                else {
+                    res.json({
+                        code: 1111,
+                        message: "Mat khua  cu ko chinh xac"
+                    })
+                }
+
+            })
+        }
+        else
+            res.json({
+                code: 1111,
+                message: 'mat khau ko hop le'
+            })
+
+
+
+    },
+
+    async getinfor(req, res) {
+        models.user.findAll({
+            where: {
+                email: req.userData.email
+            },
+            attributes: ['id', 'tendangnhap','email', 'sodienthoai', 'isactive', 'ngaysinh', 'diachi'],
+        }
+        ).then(response => {
+            res.json({
+                code: 1000,
+                data: response
+            })
+        })
+    },
+    async update(req, res) {
+        console.log(req.body)
+        if (req.body.email.length == 0) {
+            delete req.body["email"]
+        }
+        if (req.body.sodienthoai.length == 0) {
+            delete req.body["sodienthoai"]
+        }
+        if (req.body.ngaysinh.length == 0) {
+            delete req.body["ngaysinh"]
+        }
+        if (req.body.diachi.length == 0) {
+            delete req.body["diachi"]
+        }
+        if ( req.body.tendangnhap.length == 0) {
+            delete req.body["tendangnhap"]
+        }
+        console.log(req.body)
+        models.user.update(req.body, {
+            where: {
+                email: req.userData.email
+            }
+
+        }).then(response => {
+            res.json({
+                code: 1000,
+                message: "ok"
+            })
+        })
+
     }
 
 }
