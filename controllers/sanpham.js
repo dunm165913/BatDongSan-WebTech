@@ -72,7 +72,8 @@ module.exports = {
             where: {
                 id: {
                     [Op.lt]: id
-                }
+                },
+                id_loaisp:req.query.id_loaisp?req.query.id_loaisp:{[Op.in]:[1,2,3,4]}
             },
             order: [['id', 'DESC']],
             attributes: ['id', 'image', 'tensp', 'gia', 'dientich'],
