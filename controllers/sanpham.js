@@ -35,6 +35,7 @@ module.exports = {
                 message:"ok"
             })
         }).catch(err => {
+            console.log(err)
             res.json({
                code:1111,
                message:"Loi database"

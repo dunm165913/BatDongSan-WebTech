@@ -115,3 +115,10 @@ form button{
 .noidungmota .lienhe{
   margin: 20px;
 }
+.input__changemk{
+  width: 450px;
+  margin-bottom: 33px;
+  margin-left: 148px;
+  height: 40px;
+  box-shadow: 2px 2px 2px #9593d0;
+}
