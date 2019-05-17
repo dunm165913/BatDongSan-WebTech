@@ -17,6 +17,7 @@ module.exports = (app) => {
     app.get('/kichhoat', controllers.user.kichhoat)
     app.get('/api/user/taoma', models.user.logined, controllers.user.taoma)
     app.get('/api/user/checkma', models.user.logined, controllers.user.checkma)
+    app.get('/api/huyen',controllers.huyen.select)
 
     app.post('/api/user/change_password', models.user.logined, controllers.user.thaymatkhau)
     app.post('/api/user/update', models.user.logined, models.user.checkemail, models.user.checksodienthoai, controllers.user.update)
