@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const sanpham = sequelize.define('sanpham', {
     tensp: DataTypes.TEXT,
     ngaydang: DataTypes.DATE,
-    dientich: DataTypes.DOUBLE,
+    dientich: DataTypes.TEXT,
     gia: DataTypes.INTEGER,
     mota_soluoc: DataTypes.TEXT,
     trangthai: DataTypes.TEXT,

@@ -101,7 +101,7 @@
             <div class="user">
 
               <div><i class="fa fa-user-circle" aria-hidden="true">
-                  
+
                 </i>
               </div>
               <div class="taikhoan">
@@ -249,27 +249,27 @@
         }).then(res => {
           let data = res.data.data[0]
           data.isactive == 0 ? data.isactive = "true" : data.isactive = "fasle"
-          data.tendangnhap==null?data.tendangnhap="undefined":""
+          data.tendangnhap == null ? data.tendangnhap = "undefined" : ""
           console.log(data)
           let html = '<div class="profile__right__title">Thông tin cá nhân</div>'
           html += '<div id="img_profile"></div>'
           html += '<div  style="display:flex>'
-            html += '<div style="display:flex"><span style="width:100px">        Tên đăng nhậo:</span><input class=" input__changemk" type="text " id="tendangnhap" placeholder=' + data.tendangnhap.replace(/\s/g,"_")  + ' ></div>'
+          html += '<div style="display:flex"><span style="width:100px">        Tên đăng nhậo:</span><input class=" input__changemk" type="text " id="tendangnhap" placeholder=' + data.tendangnhap.replace(/\s/g, "_") + ' ></div>'
           html += '<div style="display:flex"><span style="width:100px">        Email:</span><input class=" input__changemk" type="text " id="new_email" placeholder=' + data.email + ' ></div>'
           html += '<div style="display:flex"<span style="width:100px">Số điện thoại:</span><input  class=" input__changemk" type="text " id="new_sodienthoai" placeholder=' + data.sodienthoai + ' ></span></div>'
           html += '<div style="display:flex"><span>Active:</span>' + data.isactive + ' </div>'
           html += '<div style="display:flex"><span>Ngày sinh:</span><input class=" input__changemk" type="text" id="ngaysinh" placeholder=' + data.ngaysinh + '  ></div>'
-          html += '<div style="display:flex"><span>Địa chỉ:</span><input class=" input__changemk" type="text" id="diachi" placeholder=' + data.diachi.replace(/\s/g,"_") + '  ></div>'
+          html += '<div style="display:flex"><span>Địa chỉ:</span><input class=" input__changemk" type="text" id="diachi" placeholder=' + data.diachi.replace(/\s/g, "_") + '  ></div>'
           html += '<div style="display:flex;margin-left: 290px"><span style="display:flex"  onclick="send_profile()"><div id="loading"></div><p class="check">Cập nhật</p></span></div>'
           html += '<div id="dialog" class="hidden"></div>'
           html += '</div>'
           $('#profile__right').html(html)
-          $('#img_profile').html("<div style='text-align:center'><i class='fa fa-user-circle col-xs-12 col-md-12' aria-hidden='true' style='font-size:150px'></i><p style='font-size:50px'>"+data.tendangnhap+"</p></div>")
+          $('#img_profile').html("<div style='text-align:center'><i class='fa fa-user-circle col-xs-12 col-md-12' aria-hidden='true' style='font-size:150px'></i><p style='font-size:50px'>" + data.tendangnhap + "</p></div>")
         })
 
 
       })
-     
+
       $('#change_password').click(() => {
         let html = '<div class="profile__right__title">Thay mat khau</div>'
 
@@ -285,9 +285,9 @@
         let sodienthoai = $('#new_sodienthoai').val()
         let diachi = $('#diachi').val()
         let ngaysinh = $('#ngaysinh').val()
-        let tendangnhap=$('#tendangnhap').val()
+        let tendangnhap = $('#tendangnhap').val()
         console.log(email + "   " + sodienthoai + "  " + diachi + "  " + ngaysinh)
-        axios.post('/api/user/update', { email, sodienthoai, diachi, ngaysinh,tendangnhap }, {
+        axios.post('/api/user/update', { email, sodienthoai, diachi, ngaysinh, tendangnhap }, {
           headers: { "Authorization": "Bearer " + $.cookie('tokenId') }
         }).then(res => {
           console.log(res.data)
