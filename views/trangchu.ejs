@@ -21,7 +21,9 @@
           <div class="topheader">
             <div class="row">
               <div class="col-md-3">
-                <img src="img/logo.jpg" alt="" />
+                <a href="/">
+                  <img src="img/logo.jpg" alt="" />
+                </a>
               </div>
               <div class="col-md-9">
                 <div class="topright">
@@ -55,14 +57,13 @@
             </div>
           </div>
           <div class="menu">
-            <div class="itemmenu"><img src="img/homea.png" alt="" /></div>
-            <div class="itemmenu"><a href="nhadatban.html">Nhà đất bán</a></div>
-            <div class="itemmenu"><a href="">Nhà đất cho thuê</a></div>
-            <div class="itemmenu"><a href="">Dự án</a></div>
-            <div class="itemmenu"><a href="">Cần mua-Cần thuê</a></div>
-            <div class="itemmenu"><a href="">Tin tức</a></div>
-            <div class="itemmenu"><a href="">Xây dựng-Kiến trúc</a></div>
-            <div class="itemmenu"><a href="">Nội - Ngoại thất</a></div>
+            <div class="itemmenu"><a href="#">Nhà đất bán</a></div>
+            <div class="itemmenu"><a href="/nhadatthue">Nhà đất cho thuê</a></div>
+            <div class="itemmenu"><a href="/duan">Dự án</a></div>
+            <div class="itemmenu"><a href="/muathue">Cần mua-Cần thuê</a></div>
+            <div class="itemmenu"><a href="#">Tin tức</a></div>
+            <div class="itemmenu"><a href="#">Xây dựng-Kiến trúc</a></div>
+            <div class="itemmenu"><a href="#">Nội - Ngoại thất</a></div>
             <div class="itemmenu"><a href="#">Phong thủy</a></div>
             <div class="itemmenu"><a href="#">Danh bạ</a></div>
           </div>
@@ -77,8 +78,6 @@
             <div class="itemtimkiem hotrovay">Hỗ trợ vay ngân hàng</div>
           </div>
           <!-- hết phần header -->
-
-
           <div class="underheader">
             <div class="row">
               <div class="col-md-9">
@@ -94,9 +93,7 @@
                         </div>
                         <div class="ttchitiet">sdf hefuw wjfe rejge kerjierg it ha ferf nư ẻ sowjenf hfjw hfr
                           hqaqhjhBEQHJBFUBF hsbh he hdnw</div>
-
                       </div>
-
                     </div>
                     <div class="bangthongtinchu">
                       <table>
@@ -392,6 +389,7 @@
 
         });
       Authenciate.validate();
+      TinTuc.getBaiViet();
       TinTuc.getTinTuc();
       isLogin();
     </script>

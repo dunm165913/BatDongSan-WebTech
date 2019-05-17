@@ -103,3 +103,14 @@ function isLogin() {
         $('#navBar').append(element1);
     }
 }
+function substringInSpace(str, subLength, textExtend) {
+    if (str == undefined) {
+        return '';
+    }
+    if (str.length < subLength) {
+        return str;
+    }
+    var temp = str.substring(0, subLength);
+    temp = temp.substring(0, str.lastIndexOf(" "));
+    return temp + textExtend;
+};
