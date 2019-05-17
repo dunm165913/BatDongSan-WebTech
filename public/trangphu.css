@@ -34,10 +34,6 @@ border-bottom: 1px solid;
   color:blue;
   font-size: 1.5em;
 }
-.container .noidung{
-  width: 700px;
-  margin: 0 auto;
-}
 .huongdan{
   border: 1px solid gray;
   color: #605555;
@@ -50,7 +46,7 @@ border-bottom: 1px solid;
   text-align: center;
   height: 35px;
   line-height: 35px;
-  
+
 }
 .bancobiet{
   color: green;

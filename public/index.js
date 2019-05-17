@@ -97,3 +97,60 @@ const Authenciate = {
         isLogin();
     }
 }
+const TinTuc = {
+    getTinTuc: function () {
+        axios.get('/api/sanpham/getnsanpham?id=30').then(function (response) {
+            if (response.data.code == 1000) {
+                response.data.data.forEach(element => {
+                    $('.listtinrao').append(TinTuc.buildTinTucItem(element));
+                });
+            }
+        });
+    },
+    getDetail: function () {
+        let urlString = window.location.href;
+        let url = new URL(urlString);
+        let id = url.searchParams.get('id');
+        axios.get('/api/sanpham/getinfor?id=' + id).then(function (response) {
+            if (response.data.code == 1000) {
+                $('.noidung').append(TinTuc.buildDetail(response.data.data[0]))
+            }
+        });
+    },
+    getNhaDatBan: function () {
+        axios.get('/api/sanpham/getnsanpham?id=30&&id_loaisp=2').then(function (response) {
+            console.log(response);
+        })
+    },
+    buildTinTucItem(data) {
+        let element1 = '';
+        element1 += '<div class="iteminrao">';
+        element1 += '	<div class="tin">';
+        element1 += '	  <div class="tieudetin"><a href="/chitiet?id='+data.id+'">' + data.tensp + '</a></div>';
+        element1 += '	  <div class="ndtin">';
+        element1 += '		<div class="gia">';
+        element1 += '		  <p>Giá:</p>' + data.gia + '';
+        element1 += '		</div>';
+        element1 += '		<div class="gia">';
+        element1 += '		  <p>Diện tích:</p>' + data.dientich + 'm2';
+        element1 += '		</div>';
+        element1 += '	  </div>';
+        element1 += '	</div>';
+        element1 += '</div>';
+        return element1;
+    },
+    buildDetail(data) {
+        let element = '';
+        element += '<div class="tieudechitiet">' + data.tensp + '</div>';
+        element += '<p><strong>Khu vực: </strong>' + data.diachi + '</p>';
+        element += '<p><strong>Giá: </strong>' + data.gia + '<strong>&#8195;Diện tích: </strong>' + data.dientich + '</p>';
+        element += '<div class="thongtinchitiet">';
+        element += '	<p style="color: gray;font-weight: 500;">Thông tin mô tả</p>';
+        element += '	<p>' + data.mota_soluoc + '</p>';
+        element += '</div>';
+        element += '<div class="anhchitiet">';
+        element += '	<img src="' + data.image + '" alt="">';
+        element += '</div>';
+        return element;
+    }
+}

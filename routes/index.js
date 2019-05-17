@@ -40,6 +40,9 @@ module.exports = (app) => {
     app.get('/', (req, res) => {
         res.render('trangchu')
     })
+    app.get('/chitiet', (req, res) => {
+        res.render('chitiet')
+    })
     app.get('/dangtin', (req, res) => {
         res.render('dangraotin')
     })
@@ -51,4 +54,4 @@ module.exports = (app) => {
         res.render('nhadatban')
     })
 
-}   
+}
