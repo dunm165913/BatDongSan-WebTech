@@ -128,8 +128,25 @@ const TinTuc = {
     },
     getBaiViet: function () {
         axios.get('/api/tintuc/getntintuc?id=30').then(function (response) {
-            console.log(response);
+            response.data.forEach((element, i) => {
+                if (i == 0) {
+                    $('.thongtinanh').append(TinTuc.buildBaiVietAnh(element));
+                } else {
+                    $('.bangthongtinchu table').append(TinTuc.buildBaiViet(element));
+                }
+            });
         })
+    },
+    getBaiVietDetail: function () {
+        let urlString = window.location.href;
+        let url = new URL(urlString);
+        let id = url.searchParams.get('id');
+        axios.get('/api/tintuc/getinfor?id=' + id).then(function (response) {
+            console.log(response);
+            if (response.data.code == 1000) {
+                $('.noidung').append(TinTuc.buildDetail(response.data.data[0]))
+            }
+        });
     },
     buildTinTucItem(data) {
         let element1 = '';
@@ -170,6 +187,25 @@ const TinTuc = {
         element += '    <div style="display:flex;"> <strong>Giá:</strong><p>  ' + data.gia +'</p><strong>&#8195;Diện tích</strong><p>'+data.dientich+'m2</p></div>';
         element += '    </div>';
         element += '    </div>';
+        return element;
+    },
+    buildBaiVietAnh(data) {
+        let element = '';
+        element += '<div class="item">';
+        element += '	<img src="'+data.image+'" alt="" />';
+        element += '</div>';
+        element += '<div class="item">';
+        element += '	<div class="tieude">';
+        element += '	  <h4><a href="/chitietbaiviet?id='+data.id+'">'+data.ten+'</a></h4>';
+        element += '	</div>';
+        element += '<div class="ttchitiet"></div>';
+        return element;
+    },
+    buildBaiViet(data) {
+        let element = '';
+        element += '<tr>';
+        element += '  <td><a href="/chitietbaiviet?id='+data.id+'">'+data.ten+'</a></td>';
+        element += '</tr>';
         return element;
     }
 }

@@ -43,6 +43,9 @@ module.exports = (app) => {
     app.get('/chitiet', (req, res) => {
         res.render('chitiet')
     })
+    app.get('/chitietbaiviet', (req, res) => {
+        res.render('chitietbaiviet')
+    })
     app.get('/dangtin', (req, res) => {
         res.render('dangraotin')
     })
