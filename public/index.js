@@ -54,20 +54,21 @@ const Authenciate = {
             let ngaysinh = $('#tuoi').val();
             let diachi = $('input[name="diachi"]').val();
             let gioitinh = $('#gender :selected').val();
-            waitingDialog.show();
+            $('.loading').show();
             axios.post('/api/user/dangki', { sodienthoai, matkhau, email, ngaysinh, diachi, gioitinh }).then(function (response) {
+                console.log(response);
                 if (response.data.code == 1000) {
                     // Dang ky thanh cong
                     axios.post('/api/user/login', { sodienthoai, matkhau }).then(function (response) {
                         if (response.data.code == 1000) {
-                            waitingDialog.hide();
+                            $('.loading').hide();
                             $('#modalDangKy').modal('hide');
                             $.cookie('tokenId', response.data.data, { path: "/" });
                             isLogin();
                         }
                     });
                 } else {
-                    waitingDialog.hide();
+                    $('.loading').hide();
                     alert("Đã có lỗi xảy ra. Vui lòng thử lại");
                 }
             });
@@ -77,16 +78,16 @@ const Authenciate = {
         if (this.$formDangNhap.valid()) {
             let sodienthoai = $('input[name="loginNumber"]').val();
             let matkhau = $('input[name="loginPassword"').val();
-            waitingDialog.show();
+            $('.loading').show();
             axios.post('/api/user/login', { sodienthoai, matkhau }).then(function (response) {
                 if (response.data.code == 1000) {
-                    waitingDialog.hide();
+                    $('.loading').hide();
                     $('#modalDangNhap').modal('hide');
                     $.cookie('tokenId', response.data.data, { path: "/" });
                     isLogin();
                 }
                 else {
-                    waitingDialog.hide();
+                    $('.loading').hide();
                     alert('Số điện thoại hoặc mật khẩu không đúng!');
                 }
             });

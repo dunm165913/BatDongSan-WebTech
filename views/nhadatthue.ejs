@@ -35,7 +35,7 @@
                                     <img src="img/gg.png" alt="" />
                                     <img src="img/youtube.png" alt="" />
                                 </div>
-                                <div class="col-md-8" style="margin-top: 3px;">
+                                <div class="col-md-8" style="margin-top: 3px;" id="navBar">
                                     <div class="itemtop">
                                         <a href=""><img src="img/banxehoi.png" />Oto.com.vn</a>
                                     </div>
@@ -61,7 +61,6 @@
                     <div class="itemmenu"><a href="#">Nhà đất cho thuê</a></div>
                     <div class="itemmenu"><a href="/duan">Dự án</a></div>
                     <div class="itemmenu"><a href="/canmuathue">Cần mua-Cần thuê</a></div>
-                    <div class="itemmenu"><a href="#">Tin tức</a></div>
                     <div class="itemmenu"><a href="#">Xây dựng-Kiến trúc</a></div>
                     <div class="itemmenu"><a href="#">Nội - Ngoại thất</a></div>
                     <div class="itemmenu"><a href="#">Phong thủy</a></div>
@@ -121,6 +120,9 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
+        <script src="js/lib/jquery.validate.min.js"></script>
+        <script src="js/lib/additional-methods.min.js"></script>
+        <script src="js/lib/jquery.cookie.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
@@ -132,6 +134,7 @@
     <script src="index.js"></script>
     <script>
         TinTuc.getNhaDatThue();
+      isLogin();
     </script>
 </body>
 
