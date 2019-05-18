@@ -43,19 +43,19 @@ module.exports = (sequelize, DataTypes) => {
     })
   }
   sanpham.checkuser = async function (req, res, next) {
-    try {
-      if (req.userData.role == "admin") next()
-    } catch (er) {
 
+    if (req.userData.role == "admin") next()
+    else {
+      let sanpham = await sequelize.query('select * from sanphams where id_user = :id_user and id=:id ',
+        { replacements: { id_user: [req.userData.id], id: [req.query.id] }, type: sequelize.QueryTypes.SELECT })
+      console.log(sanpham)
+      if (sanpham.length == 1) next();
+      else res.json({
+        code: 1111,
+        message: "ko chinh chu hoac ko co san pham can thanh toan duoc tim thay"
+      })
     }
-    let sanpham = await sequelize.query('select * from sanphams where id_user = :id_user and id=:id ',
-      { replacements: { id_user: [req.userData.id], id: [req.query.id] }, type: sequelize.QueryTypes.SELECT })
-    console.log(sanpham)
-    if (sanpham.length == 1) next();
-    else res.json({
-      code: 1111,
-      message: "ko chinh chu hoac ko co san pham can thanh toan duoc tim thay"
-    })
+
   }
 
   return sanpham;

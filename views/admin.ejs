@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Batdongsan</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+        integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="header__top">
+                <div class="logo"><img src="img/logo.jpg" alt=""></div>
+                <div class="topleftmobile">
+                    <i class="fa fa-bars" aria-hidden="true">
+                        <div class="nav__hover">
+                            <div class="user">
+                                <div><i class="fa fa-user-circle" aria-hidden="true"></i></div>
+                                <div class="log__sign"><a href="/user">Xin chào admin</a>|<span
+                                        id="logout">Logout</span></div>
+                                <a href=""><button>Đăng tin</button></a>
+                            </div>
+                            <div class="nav__list">
+                                <ul>
+                                    <li>trang chủ</li>
+                                    <li>Nhà đất bán</li>
+                                    <li>nhà đất cho thuê</li>
+                                    <li>Cần mua/cần thuê</li>
+                                    <li style="color:green;">chat</li>
+                                    <li>Dự án</li>
+                                    <li>Danh bạ</li>
+                                    <li>tin tức</li>
+                                    <li>Xây dựng-kiến trúc</li>
+                                    <li>Nội-Ngoại thất</li>
+                                    <li>Phong thủy</li>
+                                    <li>Nhận bất động sản qua email</li>
+                                    <li>góp ý báo lỗi</li>
+                                    <li>giới thiệu chung</li>
+                                    <li>liên hệ</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </i>
+                </div>
+                <div class="header__right">
+                    <div class="right__top"><img src="img/quangcao1.jpg" alt=""></div>
+                    <div class="right__bottom">
+                        <div class="right__bottom__icon">
+                            <img src="img/fb.png" alt="" />
+                            <img src="img/gg.png" alt="" />
+                            <img src="img/youtube.png" alt="" />
+                        </div>
+                        <div class="right__bottom__menu" style="margin-top: 3px;">
+                            <ul>
+                                <li><a href=""><img src="img/banxehoi.png" />Oto.com.vn</a></li>
+                                <li class="xanh"><a href=""><img src="img/plus.png" />Đăng rao tin</a></li>
+                                <li class="dangki"><img src="img/register.png" />Đăng ký</li>
+                                <li class="dangnhap"><img src="img/login.png" />Đăng nhập</li>
+                                <li><a href=""><img src="img/english.png" />English</a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu">
+                <nav>
+                    <ul>
+                        <li class="itemmenu"><img src="img/homea.png" alt="" /></li>
+                        <li class="itemmenu"><a href="nhadatban.html">Nhà đất bán</a></li>
+                        <li class="itemmenu"><a href="">Nhà đất cho thuê</a></li>
+                        <li class="itemmenu"><a href="">Dự án</a></li>
+                        <li class="itemmenu"><a href="">Cần mua-Cần thuê</a></li>
+                        <li class="itemmenu"><a href="">Tin tức</a></li>
+                        <li class="itemmenu"><a href="">Xây dựng-Kiến trúc</a></li>
+                        <li class="itemmenu"><a href="">Nội - Ngoại thất</a></li>
+                        <li class="itemmenu"><a href="#">Phong thủy</a></li>
+                        <li class="itemmenu"><a href="#">Danh bạ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <!-- het header -->
+        <div class="container">
+            <ul style="display: flex">
+                <span id="user">User </span>|
+                <span id="sanpham">Sản phẩm</span>|
+                <span id="tintuc">Tin tức</span>|
+                <span id="addtintuc">Thêm tin</span>|
+                <span id="duan">Dự án</span>|
+
+            </ul>
+            <div id="list">
+                <div class="tittle">
+                    <p id="tit">Danh sách user</p>
+                </div>
+                <div class="list" id="list1">
+                    <table class="table table-striped table-inverse ">
+                        <thead class="thead-inverse">
+                            <tr id="table">
+                                <th>id</th>
+                                <th>Email</th>
+                                <th> Số Điện Thoại</th>
+                                <th>Địa chỉ</th>
+                                <th>isActive</th>
+                                <th>Thao Tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="showuser">
+
+                        </tbody>
+                    </table>
+                    <div id="add"></div>
+                </div>
+            </div>
+            <div id="formadd">
+                <form>
+                    <div class="row">
+                        <label class="col-sm-3 control-label lable">Title:</label>
+                        <div class="col-sm-9">
+                            <div class="number required" aria-required="true">
+                                <input id="ten" class="form-control" placeholder=""></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 control-label lable">Loại tin:</label>
+                        <div class="col-sm-9">
+                            <select name="" id="id_loaitin">
+                                <option value="1">All</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 control-label lable">Nội dung</label>
+                        <div class="col-sm-9">
+                            <div class="number required" aria-required="true">
+                                <textarea name="" id="noidung" cols="60" rows="10"></textarea></div>
+                        </div>
+                    </div>
+                    <div>
+                        chỗ up ảnh(* nhỏ hơn 5MB)<label class="file-upload-container" for="file-upload" style="    width: 150px;
+                height: 50px;
+                background: green;
+                text-align: center;
+                vertical-align: middle;
+                line-height: 50px;
+                color: white;
+                margin-left: 20px;
+                font-size: 20pt;
+              ">
+                            <input id="file-upload" type="file" style="display:none;" onchange="a()">
+                            upload
+                        </label>
+                        <div id="title_image"></div>
+                        <div id="loading"></div>
+                        <div id="create">Đăng tin</div>
+
+                </form>
+                <div id="message"></div>
+            </div>
+
+            <script src="trangchu.js"></script>
+        </div>
+        <!-- footer -->
+        <footer>
+            <div style="text-align: center;">
+                <h5>Công ty cổ Phần và Đầu tư thương Mại MMD</h5>
+                <h6 style="color: gray;">Tổng Đài chăm sóc Khách Hàng:0989879000</h6>
+                <div>
+                    <p>coppyright 2017-2019 Batdongsan.com</p>
+                    <p>email: batdongsan@gmail.com|batdongsan.com.vn</p>
+                    <p>giấy đăng kí kinh doanh số 23445566 sở kế hoạch đầu tư thahf phố hà nội vấp 23/3/2019</p>
+                </div>
+            </div>
+            <img src="img/dadangki.jpg" alt="">
+        </footer>
+    </div>
+    <script src="trangchu.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.js"
+        integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="js/lib/jquery.validate.min.js"></script>
+    <script src="js/lib/additional-methods.min.js"></script>
+    <script src="js/lib/jquery.cookie.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+    <script src="common.js"></script>
+    <script src="index.js"></script>
+    <script>
+        $('#formadd').hide()
+        $('#logout').click(() => {
+            $.removeCookie('tokenId', { path: "/" });
+            window.location.reload()
+        })
+        axios.post('/api/checkadmin', {}, {
+            headers: { "Authorization": "Bearer " + $.cookie('tokenId') }
+        }).then(res => {
+            usershow(10000000)
+            console.log(res.data)
+            if (res.data.code != 1000) {
+                window.location.replace('/')
+            }
+        })
+        $('#user').click(() => {
+            usershow(10000000)
+        })
+
+        function usershow(id) {
+            console.log("----user")
+            $('#tit').html("<span>Danh sách người dùng</span>")
+            $('#list1').show()
+            $('#formadd').hide()
+            $('#table').html("<th>id</th><th>Email</th><th>Số điện thoại</th><th>địa chỉ</th><th>isActive</th><th>thao tác</th>")
+            axios.post('/api/admin/user', { id }, {
+                headers: { "Authorization": "Bearer " + $.cookie('tokenId') }
+            }).then(res => {
+                console.log(res)
+                let html = ''
+                let id = 0;
+                if (res.data.data.length > 0) {
+                    res.data.data.map(x => {
+                        id = x.id
+                        html += "<tr>"
+                        x.isactive == 0 ? x.isactive = "true" : x.isactive = "false"
+                        html += '<th>' + x.id + '</th>'
+                        html += '<th>' + x.email + '</th>'
+                        html += '<th>' + x.sodienthoai + '</th>'
+                        html += '<th>' + x.diachi + '</th>'
+                        html += '<th>' + x.isactive + '</th>'
+                        html += '<td><div onclick="xacthuc(' + x.id + ')"><i class="fa fa-user-times" aria-hidden="true"></i></div>/ <div onclick="xoauser(' + x.id + ')"><i class="fa fa-remove"aria-hidden="true"></i><div></td></tr>'
+
+                    })
+                    $('#showuser').html(html)
+                    if (res.data.data.length == 10)
+                        $('#add').html("<span onclick='usershow(" + id + ")'>Tiếp</span>")
+                }
+                else {
+                    $('#add').html("")
+                    $('#showuser').html('<span>no data</span>')
+                }
+            })
+        }
+
+        function xacthuc(id) {
+            console.log(id)
+            if (window.confirm("Bạn muốn xác thực người dùng này?\n Tiếp tuc?")) {
+                axios.post('/api/admin/userauth', {
+                    id
+                }, {
+                        headers: { "Authorization": "Bearer " + $.cookie('tokenId') }
+                    }).then(res => {
+                        alert(res.data.message)
+                    })
+            }
+        }
+        function xoauser(id) {
+            console.log(id)
+            if (window.confirm("Bạn muốn xoa người dùng này?\n Tiếp tuc?")) {
+                axios.post('/api/admin/deleteuser', {
+                    id
+                }, {
+                        headers: { "Authorization": "Bearer " + $.cookie('tokenId') }
+                    }).then(res => {
+                        alert(res.data.message)
+                    })
+            }
+        }
+        $('#sanpham').click(() => {
+            sanphamshow(10000000)
+        })
+        function sanphamshow(id) {
+            $('#tit').html("<span>Danh sách sản phẩm</span>")
+            $('#list1').show()
+            $('#formadd').hide()
+            $('#table').html("<th>id</th><th>Tên sản phẩm</th><th>giá</th><th>diện tich</th><th>thao tác</th>")
+            let html = ''
+            axios.get('/api/sanpham/getnsanpham?id=' + id).then(res => {
+                let id = 0;
+                console.log(res)
+                if (res.data.data.length > 0) {
+                    res.data.data.map(x => {
+                        id = x.id
+                        html += '<tr>'
+                        html += '<td scope="row"><a href='+'"/chitiet?id='+x.id+'">' + x.id + '</a></td>'
+                        html += '<th>' + x.tensp + '</th>'
+                        html += '<th>' + x.gia + '</th>'
+                        html += '<th>' + x.dientich + '</th>'
+                        html += '<td><div onclick="kiemtra(' + x.id + ')"><i class="fa fa-check-circle" aria-hidden="true"></i></div>/ <div onclick="xoa(' + x.id + ')"><i class="fa fa-remove"aria-hidden="true"></i><div></td>'
+                    })
+                    $('#showuser').html(html)
+                    if (res.data.data.length == 10)
+                        $('#add').html("<span onclick='sanphamshow(" + id + ")'>Tiếp</span>")
+                }
+                else {
+                    $('#add').html("")
+                    $('#showuser').html('<span>no data</span>')
+                }
+            })
+        }
+        function kiemtra(x) {
+            console.log(x)
+            axios.post('/api/momo/kiemtra?id=' + x, {}, {
+                headers: { "Authorization": "Bearer " + $.cookie('tokenId') }
+            }).then(res => {
+                console.log(res.data)
+                alert("Trạng thái thanh toán " + res.data.data.message)
+            })
+        }
+        function xoa(id) {
+            console.log(id + "dele")
+            if (window.confirm("Bạn muốn xóa sản phẩm này?"))
+                axios.post('/api/sanpham/delete', { id }, {
+                    headers: { "Authorization": "Bearer " + $.cookie('tokenId') }
+                }).then(res => {
+                    console.log(res.data.data)
+                    alert(res.data.message)
+                })
+        }
+        $('#tintuc').click(() => {
+            tintucshow(1000000)
+        })
+        function tintucshow(id) {
+            $('#tit').html("<span>Danh sách tin tức</span>")
+            $('#list1').show()
+            $('#formadd').hide()
+            $('#table').html("<th>id</th><th>Tên </th><th>Loại tin</th><th>thao tác</th>")
+            axios.get('/api/tintuc/getntintuc?id=' + id).then(res => {
+                let html = ''
+                let id = 0;
+                console.log(res.data)
+                if (res.data.length > 0) {
+                    res.data.map(x => {
+                        id = x.id
+                        if (x.id_loaitin == 1) x.id_loaitin = "ko xác định"
+                        if (x.id_loaitin == 2) x.id_loaitin = "tin bán"
+                        if (x.id_loaitin == 3) x.id_loaitin = "tin cho thuê"
+                        if (x.id_loaitin == 3) x.id_loaitin = "tin cần mua - cần thuê"
+                        html += '<tr>'
+                        html += '<td scope="row"><a href='+'"/chitietbaiviet?id='+x.id+'">' + x.id + '</a></td>'
+                        html += '<th>' + x.ten + '</th>'
+                        html += '<th>' + x.id_loaitin + '</th>'
+                        html += '<td> <div onclick="xoatin(' + x.id + ')"><i class="fa fa-remove"aria-hidden="true"></i><div></td>'
+
+                    })
+                    $('#showuser').html(html)
+                    if (res.data.length == 10)
+                        $('#add').html("<span onclick='tintucshow(" + id + ")'>Tiếp</span>")
+                }
+                else {
+                    $('#add').html("")
+                    $('#showuser').html('<span>no data</span>')
+                }
+            })
+        }
+
+        function xoatin(id) {
+            console.log(id)
+            if (window.confirm("Bạn muốn xóa tin này?\n Tiếp tục?"))
+                axios.post('/api/tintuc/delete', { id }, {
+                    headers: { "Authorization": "Bearer " + $.cookie('tokenId') }
+                }).then(re => {
+                    alert("Xóa tin :" + re.data.mesage)
+                })
+        }
+        $('#addtintuc').click(() => {
+            $('#tit').html("<span>Thêm tin tức</span>")
+            $('#list1').hide()
+            $('#formadd').show()
+        })
+        let image = 'as'
+        let flag = 0
+        let formData = new FormData()
+        function a() {
+
+
+            try {
+                let file = this.event.target.files
+
+                formData.append('file', file[0])
+
+                // For debug purpose only
+                // Inspects the content of formData
+
+
+                if (file[0].type.indexOf("image") >= 0 && file[0].size < 5000000) {
+                    flag = 1
+                    console.log(file[0])
+                    $('#title_image').html("<span>" + file[0].name + "</span>")
+
+                } else {
+
+                    $('#message').html("<div>Loi anh</div>")
+                }
+            } catch (err) {
+                console.log(err)
+                $('#loading').html("")
+                $('#message').html("<div>Loi anh</div>")
+            }
+        }
+
+        $('#create').click(() => {
+            $('#tit').html("<span>Thêm tin tức</span>")
+            $('#list').hide()
+            let noidung = $('#noidung').val()
+            let ten = $('#ten').val()
+            let id_loaitin = $('#id_loaitin').find(':selected').val()
+            console.log(id_loaitin)
+            if (!(noidung.length > 0 && ten.length > 0)) {
+                $('#message').html("<span>Thông tin bạn nhập chưa chính xác, vui long kiem tra lại</span>")
+            }
+            else {
+                if (flag == 1) {
+                    $('#loading').html("<img src='/img/loading.gif'style='width: 260px;margin-left:200px;' >")
+                    $('#loadingstatus').html("<img src='/img/loading.gif'style='width: 90px;margin-left:200px;' >")
+                    $('#message').html("<span>Uploading image...</span>")
+                    axios.post('/upload', formData, {
+                        headers: { "Authorization": "Bearer " + $.cookie('tokenId') }
+                    }).then(res => {
+                        console.log(res)
+                        if (res.data.length > 10) {
+                            image = res.data
+                            $('#loading').html('<img src=' + image + ' style="width: 260px;margin-left:200px;" >')
+                            $('#message').html("<span>Uploading ...</span>")
+                            axios.post("/api/tintuc/taotintuc",
+                                { image, ten, noidung, id_loaitin },
+                                { headers: { "Authorization": "Bearer " + $.cookie('tokenId') } }).then(res => {
+                                    if (res.data.code === 1000) {
+                                        $('#message').html("<span>Thanh cong</span>")
+                                        $('#loadingstatus').html("")
+                                    }
+                                    else {
+                                        $('#loadingstatus').html("")
+                                        $('#message').html("<span>" + res.data.message + "</span>")
+                                    }
+                                })
+                        } else {
+                            $('#loading').html("")
+                            $('#loadingstatus').html("")
+                            $('#message').html("<span>co loi xay ra, vui long thu lai</span>")
+                        }
+
+                    })
+                }
+                if (flag == 0) {
+                    $('#message').html("<span>Thông tin bạn nhập chưa chính xác, vui long kiem tra lại</span>")
+                }
+
+            }
+
+
+            //=======
+            //     console.log(id_loaisp)
+            //>>>>>>> master
+        })
+    </script>
+</body>
+
+</html>

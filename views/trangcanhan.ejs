@@ -170,7 +170,7 @@
               <thead class="thead-inverse">
                 <tr>
                   <th>STT</th>
-                  <th style="width:250px">Tên sản phẩm</th>
+                  <th style="width:200px">Tên sản phẩm</th>
                   <th>Giá</th>
                   <th>Khu vực</th>
                   <th>Trạng thái </th>
@@ -181,6 +181,7 @@
 
               </tbody>
             </table>
+            <div id="add"></div>
           </div>
         </div>
 
@@ -318,74 +319,31 @@
 
 
       }
-      $('#ban').click(() => {
-        $('#sanpham').show()
-        $('#profile__right').hide()
-        $('#title').html("<span>Danh sách tin bán</span>")
-        axios.post('/api/sanpham/getbyuser?id_loaisp=2', {}, {
-          headers: { "Authorization": "Bearer " + $.cookie('tokenId') }
-        }).then(res => {
-          // <tr>
-          //         <td scope="row">1</td>
-          //         <td>Cần bán/ cho thuê</td>
-          //         <td>15/5/2000</td>
-          //         <td>Hai Bà Trưng Hà Nội</td>
-          //         <td>5 tỷ</td>
-          //         <td><a href="#"><i class="fas fa-edit    "></i></a> / <a
-          //             onclick="return xoahaykhong('ban co chac chan muon xoa');" href="#"><i class="fa fa-remove"
-          //               aria-hidden="true"></i></a></td>
 
-          //       </tr>
-          console.log(res)
-          if (res.data.data.length == 0) {
-            $('#show').html("<span>Không có dữ liệu</span>")
-          }
-          else {
-            let ban = ''
 
-            res.data.data.map(x => {
-              console.log(x)
-              ban += "<tr>"
-              x.trangthai === "Yes" ? x.trangthai = "đã thanh toán" : x.trangthai = "chưa thanh toán"
-              ban += '<td scope="row">' + x.id + '</td>'
-              ban += '<td style="width:250px">' + x.tensp + '</td>'
-              ban += '<td >' + x.gia + '</td>'
-              ban += '<td >' + x.diachi + '</td>'
-              ban += '<td >' + x.trangthai + '</td>'
-              ban += '<td>'
-              if (x.trangthai === "đã thanh toán") {
-                ban += '<div onclick="xoa(' + x.id + ')"><i class="fa fa-remove"aria-hidden="true"></i><div></td>'
-              }
-              else {
-                ban += '<div onclick="thanhtoan(' + x.id + ')"><i class="fas fa-money "></i></div>/ <div onclick="xoa(' + x.id + ')"><i class="fa fa-remove"aria-hidden="true"></i><div></td>'
-              }
-
-            })
-            ban += "</tr>"
-            $('#show').html(ban)
-          }
-        })
-      })
-
-      $('#thue').click(() => {
+      function loaisp(id, id_loai) {
+        console.log("--------------" + id + "-----------------" + id_loai)
         $('#sanpham').show()
         $('#profile__right').hide()
         $('#title').html("<span>Danh sách tin cho thuê</span>")
-        axios.post('/api/sanpham/getbyuser?id_loaisp=3', {}, {
+        axios.post('/api/sanpham/getbyuser?id=' + id + '&&id_loaisp=' + id_loai, {}, {
           headers: { "Authorization": "Bearer " + $.cookie('tokenId') }
         }).then(res => {
           console.log(res)
           if (res.data.data.length == 0) {
             $('#show').html("<span>Không có dữ liệu</span>")
+            $('#add').html('')
           }
           else {
             let thue = ''
-            thue += "<tr>"
+            let id = 0
             res.data.data.map(x => {
+              id = x.id
+              thue += "<tr>"
               console.log(x)
               x.trangthai === "Yes" ? x.trangthai = "đã thanh toán" : x.trangthai = "chưa thanh toán"
-              thue += '<td scope="row">' + x.id + '</td>'
-              thue += '<td style="width:250px">' + x.tensp + '</td>'
+              thue += '<td scope="row"><a href='+'"/chitiet?id='+x.id+'">' + x.id + '</a></td>'
+              thue += '<td style="width:200px">' + x.tensp + '</td>'
               thue += '<td >' + x.gia + '</td>'
               thue += '<td >' + x.diachi + '</td>'
               thue += '<td >' + x.trangthai + '</td>'
@@ -394,57 +352,43 @@
                 thue += '<div onclick="xoa(' + x.id + ')"><i class="fa fa-remove"aria-hidden="true"></i><div></td>'
               }
               else {
-                thue += '<div onclick="thanhtoan(' + x.id + ')"><i class="fas fa-money "></i></div>/ <div onclick="xoa(' + x.id + ')"><i class="fa fa-remove"aria-hidden="true"></i><div></td>'
+                thue += '<div onclick="thanhtoan(' + x.id + ')"><i class="fas fa-money " aria-hidden="true"></i></div>' +
+                  ' /<div onclick="kiemtra(' + x.id + ')"><i class="fa fa-check-circle" aria-hidden="true"></i></div>/ <div onclick="xoa(' + x.id + ')"><i class="fa fa-remove"aria-hidden="true"></i><div></td>'
               }
-
+              thue += "</tr>"
             })
-            thue += "</tr>"
+            let df = id + id_loai
+            if (res.data.data.length == 10)
+            $('#add').html("<span onclick='loaisp(" + id + ',' + id_loai + ")'>Tiep</span>")
+
             $('#show').html(thue)
           }
 
         })
+      }
+      $('#ban').click(() => {
+        loaisp(10000000, 2)
+      })
+      $('#thue').click(() => {
+        loaisp(10000000, 3)
       })
       $('#canban-thue').click(() => {
-        $('#sanpham').show()
-        $('#profile__right').hide()
-        $('#title').html("<span>Danh sách tin cần mua - cần thuê</span>")
-        axios.post('/api/sanpham/getbyuser?id_loaisp=4', {}, {
+        loaisp(10000000, 4)
+      })
+      function kiemtra(x) {
+        console.log(x)
+        axios.post('/api/momo/kiemtra?id=' + x, {}, {
           headers: { "Authorization": "Bearer " + $.cookie('tokenId') }
         }).then(res => {
-          console.log(res)
-          if (res.data.data.length == 0) {
-            $('#show').html("<span>Không có dữ liệu</span>")
-          }
-          else {
-            let canban_thue = ''
-            canban_thue += "<tr>"
-            res.data.data.map(x => {
-              console.log(x)
-              x.trangthai === "Yes" ? x.trangthai = "đã thanh toán" : x.trangthai = "chưa thanh toán"
-              canban_thue += '<td scope="row">' + x.id + '</td>'
-              canban_thue += '<td style="width:250px">' + x.tensp + '</td>'
-              canban_thue += '<td >' + x.gia + '</td>'
-              canban_thue += '<td >' + x.diachi + '</td>'
-              canban_thue += '<td >' + x.trangthai + '</td>'
-              canban_thue += '<td>'
-              if (x.trangthai === "đã thanh toán") {
-                canban_thue += '<div onclick="xoa(' + x.id + ')"><i class="fa fa-remove"aria-hidden="true"></i><div></td>'
-              }
-              else {
-                canban_thue += '<div onclick="thanhtoan(' + x.id + ')"><i class="fas fa-money "></i></div>/ <div onclick="xoa(' + x.id + ')"><i class="fa fa-remove"aria-hidden="true"></i><div></td>'
-              }
-
-            })
-            canban_thue += "</tr>"
-            $('#show').html(canban_thue)
-          }
-
+          console.log(res.data)
+          alert(res.data.data.message)
         })
-      })
+      }
+
       function thanhtoan(x) {
         console.log(x)
         if (window.confirm("Bạn chỉ có duy nhất 1 lần thanh toán. Nếu thanh toán thất bại, sản phẩm sẽ bị xóa vào ngày mai. Bạn tiếp tục?"))
-          axios.post('/api/momo/thanhtoan' , {id:x}, {
+          axios.post('/api/momo/thanhtoan', { id: x }, {
             headers: { "Authorization": "Bearer " + $.cookie('tokenId') }
           }).then(res => {
             console.log(res)
@@ -455,9 +399,9 @@
           })
       }
       function xoa(id) {
-        console.log(id+"dele")
+        console.log(id + "dele")
         if (window.confirm("Bạn muốn xóa sản phẩm này?"))
-          axios.post('/api/sanpham/delete', {id}, {
+          axios.post('/api/sanpham/delete', { id }, {
             headers: { "Authorization": "Bearer " + $.cookie('tokenId') }
           }).then(res => {
             console.log(res.data.data)
