@@ -67,6 +67,7 @@ module.exports = {
 
     async getbuyuser(req, res) {
         let id=100000000
+        console.log(req.query)
         req.query.id ? id = req.query.id : id = id
         let result = await models.sanpham.findAll({
             where: {
@@ -80,7 +81,7 @@ module.exports = {
             attributes: ['id', 'trangthai', 'tensp', 'gia','id_loaisp','diachi'],
             limit: 10,
         })
-        console.log(result)
+        // console.log(result)
         res.json({
             code: 1000,
             data: result

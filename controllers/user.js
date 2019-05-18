@@ -8,8 +8,22 @@ module.exports = {
     async getAllUser(req, res) {
         console.log("------------------------Start")
         console.log(req.body);
-        await models.user.findAll().then(re => {
-            res.json(re)
+        let id = 10000000000
+        req.body.id ? id = req.body.id : id = id
+        models.user.findAll({
+            where: {
+                id: {
+                    [Op.lt]: id
+                }
+            },
+            order: [['id', 'DESC']],
+            attributes: ['id', 'email', 'sodienthoai', 'isactive', 'diachi'],
+            limit: 10,
+        }).then(re => {
+            res.json({
+                code: 1000,
+                data: re
+            })
         }).catch(err => {
             console.log(err)
         })
@@ -17,7 +31,7 @@ module.exports = {
 
     async singup(req, res) {
         models.user.create({
-            tendangnhap:req.body.tendangnhap?req.body.tendangnhap:"user",
+            tendangnhap: req.body.tendangnhap ? req.body.tendangnhap : "user",
             sodienthoai: req.body.sodienthoai,
             matkhau: bcrypt.hashSync(req.body.matkhau),
             email: req.body.email,
@@ -99,7 +113,8 @@ module.exports = {
             else if (bcrypt.compareSync(req.body.matkhau, re[0].dataValues.matkhau)) {
                 let token = jwt.sign({
                     id: re[0].dataValues.id,
-                    email: re[0].dataValues.email
+                    email: re[0].dataValues.email,
+                    role: re[0].dataValues.role,
                 },
                     "Batdongsan",
                     {
@@ -241,7 +256,7 @@ module.exports = {
             where: {
                 email: req.userData.email
             },
-            attributes: ['id', 'tendangnhap','email', 'sodienthoai', 'isactive', 'ngaysinh', 'diachi'],
+            attributes: ['id', 'tendangnhap', 'email', 'sodienthoai', 'isactive', 'ngaysinh', 'diachi'],
         }
         ).then(response => {
             res.json({
@@ -264,7 +279,7 @@ module.exports = {
         if (req.body.diachi.length == 0) {
             delete req.body["diachi"]
         }
-        if ( req.body.tendangnhap.length == 0) {
+        if (req.body.tendangnhap.length == 0) {
             delete req.body["tendangnhap"]
         }
         console.log(req.body)
@@ -280,6 +295,42 @@ module.exports = {
             })
         })
 
+    },
+    async admin(req, res) {
+        res.json({
+            code: 1000,
+            message: "ok"
+        })
+    },
+    async reauth(req, res) {
+        models.user.update({
+            isactive: -1
+        }, {
+                where: {
+                    id: req.body.id
+                }
+            }).then(re => {
+                console.log(re)
+                res.json({
+                    code: 1000,
+                    message: "ok"
+                })
+                models.user.findAll({
+                    where: {
+                        id: req.body.id
+                    }
+                }).then(re => {
+                    let option = {
+
+                        from: 'Batdongsan.test<no-rep>',
+                        to: re[0].dataValues.email,
+                        subject: "Xac nhan",
+                        text: "Bạn được yêu cầu xác thực.\nVui lòng click vào dường dẫn sau.\n http://127.0.0.1:1000/kichhoat?id=" + re[0].dataValues.id + "&&username=" + re[0].dataValues.sodienthoai + "&&code=" + Math.floor(Math.random() * 999999)
+                    }
+                    transporter.sendMail(option)
+                })
+
+            })
     }
 
 }

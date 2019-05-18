@@ -36,7 +36,7 @@ module.exports = {
         models.tintuc.create({
             ten: req.body.ten,
             noidung: req.body.noidung,
-            id_loaitin: req.body.id_loaitin,
+            id_loaitin: req.body.id_loaitin?req.body.id_loaitin:1,
             image: req.body.image
         }).then(re => {
             res.json({
@@ -54,15 +54,13 @@ module.exports = {
     async delete(req, res) {
         let result = await models.tintuc.findAll({
             where: {
-                id: req.body.id_tin,
+                id: req.body.id,
 
             }
         })
         console.log(result)
         if (result[0]) {
-            result[0].destroy(err => {
-
-            })
+            result[0].destroy()
             res.json({
                 code: 1000,
                 message: "ok"

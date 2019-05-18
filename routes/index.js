@@ -27,7 +27,6 @@ module.exports = (app) => {
     app.post('/api/user/getinfor', models.user.logined, controllers.user.getinfor)
     app.post('/api/user/dangki', models.user.checksingup, models.user.checksodienthoai, controllers.user.singup)
     app.post('/api/user/login', controllers.user.login)
-    app.post('/api/user/delete', models.user.logined, models.user.checkadmin, controllers.sanpham.deletebyuser, controllers.duan.deletebyuser, controllers.user.delete)
     app.post('/api/sanpham/dangsanpham', models.user.logined, models.sanpham.check, controllers.sanpham.create)
     app.post('/api/sanpham/deletebyadmin', models.user.logined, models.user.checkadmin, controllers.sanpham.deletemany)
     app.post('/api/sanpham/delete', models.user.logined, models.sanpham.checkuser, controllers.sanpham.delete)
@@ -40,8 +39,12 @@ module.exports = (app) => {
     //momo
     app.get('/api/momo/result', controllers.momo.result)
     app.post('/api/momo/thanhtoan', models.user.logined, models.sanpham.checkthanhtoan, controllers.momo.thanhtoan);
-    app.get('/api/momo/kiemtra', models.user.logined, models.sanpham.checkuser, controllers.momo.kiemtra)
+    app.post('/api/momo/kiemtra', models.user.logined, models.sanpham.checkuser, controllers.momo.kiemtra)
 
+    app.post('/api/checkadmin', models.user.logined, models.user.checkadmin, controllers.user.admin)
+    app.post('/api/admin/user', models.user.logined, models.user.checkadmin, controllers.user.getAllUser)
+    app.post('/api/admin/userauth', models.user.logined, models.user.checkadmin, controllers.user.reauth)
+    app.post('/api/admin/deleteuser', models.user.logined, models.user.checkadmin, controllers.sanpham.deletebyuser, controllers.duan.deletebyuser, controllers.user.delete)
 
     app.get('/', (req, res) => {
         res.render('trangchu')
@@ -76,6 +79,9 @@ module.exports = (app) => {
     })
     app.get('/user', (req, res) => {
         res.render('trangcanhan')
+    })
+    app.get('/admin', (req, res) => {
+        res.render('admin')
     })
 
 }
