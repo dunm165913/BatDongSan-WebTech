@@ -27,14 +27,29 @@ module.exports = (sequelize, DataTypes) => {
     if (check.tensp && check.gia && check.mota_soluoc) next();
     else res.json({ mes: 'loi tham so' })
   }
-  sanpham.checkuser = async function (req, res, next) {
+  sanpham.checkthanhtoan = async function (req, res, next) {
     try {
       if (req.userData.role == "admin") next()
     } catch (er) {
 
     }
     let sanpham = await sequelize.query('select * from sanphams where id_user = :id_user and id=:id and trangthai = "No"',
-      { replacements: { od_user: [req.userData.id], id: [req.query.id] }, type: sequelize.QueryTypes.SELECT })
+      { replacements: { id_user: [req.userData.id], id: [req.body.id] }, type: sequelize.QueryTypes.SELECT })
+    console.log(sanpham)
+    if (sanpham.length == 1) next();
+    else res.json({
+      code: 1111,
+      message: "ko chinh chu hoac ko co san pham can thanh toan duoc tim thay"
+    })
+  }
+  sanpham.checkuser = async function (req, res, next) {
+    try {
+      if (req.userData.role == "admin") next()
+    } catch (er) {
+
+    }
+    let sanpham = await sequelize.query('select * from sanphams where id_user = :id_user and id=:id ',
+      { replacements: { id_user: [req.userData.id], id: [req.query.id] }, type: sequelize.QueryTypes.SELECT })
     console.log(sanpham)
     if (sanpham.length == 1) next();
     else res.json({

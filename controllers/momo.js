@@ -5,7 +5,8 @@ const models = require('../models')
 const transporter = require('../mail/mail').transporter
 const sequelize = require('sequelize')
 
-function kiemtra(request, response) {
+function kiemtra(request, response, option) {
+    console.log(request.query.id)
     var partnerCode = "MOMOXSGV20190424"
     var accessKey = "mxX5K6WV2FRZxUUs"
     var serectkey = "mI7NugXjCv1egAg73vDKMBRqRt9lTsBi"
@@ -49,14 +50,20 @@ function kiemtra(request, response) {
             // // let r=JSON.parse(body.replace(/\n/g,''))
             if (d[d.length - 1] == '}') {
                 d = JSON.parse(d)
-                response.json({
-                    code: 1000,
-                    data: {
-                        errorCode: d.errorCode,
-                        id_sanpham: d.orderId,
-                        message: d.message
-                    }
-                })
+                if (!option) {
+                    response.json({
+                        code: 1000,
+                        data: {
+                            errorCode: d.errorCode,
+                            id_sanpham: d.orderId,
+                            message: d.message
+                        }
+                    })
+                }
+                else{
+                    response.redirect('/')
+                }
+
                 if (d.errorCode == 0) {
                     models.sanpham.update({
                         trangthai: "Yes"
@@ -70,13 +77,13 @@ function kiemtra(request, response) {
                             if (re == 1) {
 
                                 models.sequelize.query("Select email from users,sanphams where users.id=sanphams.id_user and sanphams.id=:id",
-                                    { replacements: { id: [request.query.id_sanpham] }, type: sequelize.QueryTypes.SELECT }).then(re => {
+                                    { replacements: { id: [request.query.id] }, type: sequelize.QueryTypes.SELECT }).then(re => {
                                         let option = {
 
                                             from: 'Batdongsan.test<no-rep>',
                                             to: re[0].email,
                                             subject: "Thong bao",
-                                            text: "ban da thanh toan cho san pham voi id=" + request.query.id_sanpham + "\nCam on ban!"
+                                            text: "ban da thanh toan cho san pham voi id=" + request.query.id + "\nCam on ban!"
                                         }
                                         transporter.sendMail(option)
                                     })
@@ -101,6 +108,7 @@ function kiemtra(request, response) {
 }
 module.exports = {
     async thanhtoan(request, response) {
+        request.query.id = request.body.id.toString()
         console.log(request.query)
         var partnerCode = "MOMOXSGV20190424"
         var accessKey = "mxX5K6WV2FRZxUUs"
@@ -189,15 +197,15 @@ module.exports = {
         req.end();
     },
     async kiemtra(request, response) {
-        await kiemtra(request, response)
+        await kiemtra(request, response,false)
     },
     async result(req, res) {
         // console.log(req)
         if (req.query.orderId) {
             if (req.query.errorCode == 0) {
                 //update trang thai
-                req.query.id_sanpham = req.query.orderId
-                await kiemtra(req, res);
+                req.query.id = req.query.orderId
+                await kiemtra(req, res,true);
             } else {
                 res.json({
                     code: 9999,
