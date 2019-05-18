@@ -59,6 +59,18 @@ module.exports = (app) => {
     app.get('/nhadatban', (req, res) => {
         res.render('nhadatban')
     })
+    app.get('/nhadatthue', (req, res) => {
+        res.render('nhadatthue')
+    })
+    app.get('/canmuathue', (req, res) => {
+        res.render('canmuathue')
+    })
+    app.get('/duan', (req, res) => {
+        res.render('duan')
+    })
+    app.get('/chitietduan', (req, res) => {
+        res.render('chitietduan')
+    })
     app.get('/user', (req, res) => {
         res.render('trangcanhan')
     })

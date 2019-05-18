@@ -126,6 +126,34 @@ const TinTuc = {
             }
         })
     },
+    getNhaDatThue: function () {
+        axios.get('/api/sanpham/getnsanpham?id=30&&id_loaisp=3').then(function (response) {
+            if (response.data.code == 1000) {
+                response.data.data.forEach(element => {
+                    $('.danhsach').append(TinTuc.buildNhaDatBan(element))
+                });
+            }
+        })
+    },
+    getCanMuaThue: function () {
+        axios.get('/api/sanpham/getnsanpham?id=30&&id_loaisp=4').then(function (response) {
+            if (response.data.code == 1000) {
+                response.data.data.forEach(element => {
+                    $('.danhsach').append(TinTuc.buildNhaDatBan(element))
+                });
+            }
+        })
+    },
+    getDuAn: function () {
+        axios.get('/api/duan/getnduan?id=30').then(function (response) {
+            console.log(response);
+            if (response.data.code == 1000) {
+                response.data.data.forEach(element => {
+                    $('.danhsach').append(TinTuc.buildDuAn(element))
+                });
+            }
+        })
+    },
     getBaiViet: function () {
         axios.get('/api/tintuc/getntintuc?id=30').then(function (response) {
             response.data.forEach((element, i) => {
@@ -142,9 +170,19 @@ const TinTuc = {
         let url = new URL(urlString);
         let id = url.searchParams.get('id');
         axios.get('/api/tintuc/getinfor?id=' + id).then(function (response) {
+            if (response.data.code == 1000) {
+                $('.noidung').append(TinTuc.buildTinTucDetail(response.data.data))
+            }
+        });
+    },
+    getDuAnDetail: function () {
+        let urlString = window.location.href;
+        let url = new URL(urlString);
+        let id = url.searchParams.get('id');
+        axios.get('/api/duan/getinfor?id=' + id).then(function (response) {
             console.log(response);
             if (response.data.code == 1000) {
-                $('.noidung').append(TinTuc.buildDetail(response.data.data[0]))
+                $('.noidung').append(TinTuc.buildDuAnDetail(response.data.data))
             }
         });
     },
@@ -179,6 +217,18 @@ const TinTuc = {
         element += '</div>';
         return element;
     },
+    buildTinTucDetail(data) {
+        let element = '';
+        element += '<div class="tieudechitiet">' + data.ten + '</div>';
+        element += '<div class="thongtinchitiet">';
+        element += '	<p style="color: gray;font-weight: 500;">Thông tin mô tả</p>';
+        element += '	<p>' + data.noidung + '</p>';
+        element += '</div>';
+        element += '<div class="anhchitiet">';
+        element += '	<img src="' + data.image + '" alt="">';
+        element += '</div>';
+        return element;
+    },
     buildNhaDatBan(data) {
         let element = '';
         element += '<div class="danhsach__item">';
@@ -207,5 +257,31 @@ const TinTuc = {
         element += '  <td><a href="/chitietbaiviet?id='+data.id+'">'+data.ten+'</a></td>';
         element += '</tr>';
         return element;
-    }
+    },
+    buildDuAn(data) {
+        let element = '';
+        element += '<div class="duanWrapper col-3">';
+        element += '<div class="p-main-image-crop">';
+        element += '	<a class="product-avatar" href="/chitietduan?id='+data.id+'" title="'+data.ten+'" onclick="">';
+        element += '		<img class="product-avatar-img" src="'+data.image+'" alt="'+data.ten+'">';
+        element += '	</a>';
+        element += '</div>';
+        element += '<div class="p-content">';
+        element += '	<div class="p-main-text" style="text-rendering: optimizelegibility;"><a href="/chitietduan?id='+data.id+'">'+data.ten+'</a></div>';
+        element += '</div>';
+        element += '</div>';
+        return element;
+    },
+    buildDuAnDetail(data) {
+        let element = '';
+        element += '<div class="tieudechitiet">' + data.ten + '</div>';
+        element += '<div class="thongtinchitiet">';
+        element += '	<p style="color: gray;font-weight: 500;">Thông tin mô tả</p>';
+        element += '	<p>' + data.mota + '</p>';
+        element += '</div>';
+        element += '<div class="anhchitiet">';
+        element += '	<img src="' + data.image + '" alt="">';
+        element += '</div>';
+        return element;
+    },
 }

@@ -318,3 +318,15 @@ font-weight: 500;
 .luuy p{
     margin: 0;
 }
+.duanWrapper{
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.p-main-image-crop img{
+    width: 100%;
+}
+.p-content{
+    margin-left: 10px;
+}
