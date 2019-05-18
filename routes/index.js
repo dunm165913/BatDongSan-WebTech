@@ -12,17 +12,20 @@ module.exports = (app) => {
     app.get('/api/sanpham/getinfor', controllers.sanpham.chitietsanpham)
     app.get('/api/tintuc/getntintuc', controllers.tintuc.getntintuc)
     app.get('/api/tintuc/getinfor', controllers.tintuc.getinfor)
+
+
     app.get('/api/duan/getinfor', controllers.duan.getinfor)
     app.get('/api/duan/getnduan', controllers.duan.getnduan)
     app.get('/kichhoat', controllers.user.kichhoat)
     app.get('/api/user/taoma', models.user.logined, controllers.user.taoma)
     app.get('/api/user/checkma', models.user.logined, controllers.user.checkma)
-    app.get('/api/huyen',controllers.huyen.select)
+    app.get('/api/huyen', controllers.huyen.select)
 
+    app.post('/api/sanpham/getbyuser', models.user.logined, controllers.sanpham.getbuyuser)
     app.post('/api/user/change_password', models.user.logined, controllers.user.thaymatkhau)
     app.post('/api/user/update', models.user.logined, models.user.checkemail, models.user.checksodienthoai, controllers.user.update)
     app.post('/api/user/getinfor', models.user.logined, controllers.user.getinfor)
-    app.post('/api/user/dangki', models.user.checksingup,models.user.checksodienthoai, controllers.user.singup)
+    app.post('/api/user/dangki', models.user.checksingup, models.user.checksodienthoai, controllers.user.singup)
     app.post('/api/user/login', controllers.user.login)
     app.post('/api/user/delete', models.user.logined, models.user.checkadmin, controllers.sanpham.deletebyuser, controllers.duan.deletebyuser, controllers.user.delete)
     app.post('/api/sanpham/dangsanpham', models.user.logined, models.sanpham.check, controllers.sanpham.create)
@@ -36,7 +39,7 @@ module.exports = (app) => {
 
     //momo
     app.get('/api/momo/result', controllers.momo.result)
-    app.get('/api/momo/thanhtoan', models.user.logined, models.sanpham.checkuser, controllers.momo.thanhtoan);
+    app.post('/api/momo/thanhtoan', models.user.logined, models.sanpham.checkthanhtoan, controllers.momo.thanhtoan);
     app.get('/api/momo/kiemtra', models.user.logined, models.sanpham.checkuser, controllers.momo.kiemtra)
 
 

@@ -71,7 +71,7 @@ module.exports = (sequelize, DataTypes) => {
       req.userData = decoded;
       next();
     } catch (err) {
-      // console.log(err)
+      console.log(err)
       res.json({
         code: 9999,
         message: "Khong xac thuc duoc"

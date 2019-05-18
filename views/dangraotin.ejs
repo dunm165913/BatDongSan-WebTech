@@ -264,7 +264,8 @@
                     </div>
 
                   </div>
-                  <div id="create_sp">Đăng bài</div>
+                  <div id="loadingstatus"></div>
+                  <div id="create_sp" >Đăng bài</div>
                 </form>
               </div>
               <div id="message"></div>
@@ -417,6 +418,8 @@
       else {
         if (flag == 1) {
           $('#loading').html("<img src='/img/loading.gif'style='width: 260px;margin-left:200px;' >")
+          $('#loadingstatus').html("<img src='/img/loading.gif'style='width: 90px;margin-left:200px;' >")
+          $('#message').html("<span>Uploading image...</span>")
           axios.post('/upload', formData, {
             headers: { "Authorization": "Bearer " + $.cookie('tokenId') }
           }).then(res => {
@@ -424,19 +427,22 @@
             if (res.data.length > 10) {
               image = res.data
               $('#loading').html('<img src=' + image + ' style="width: 260px;margin-left:200px;" >')
-              $('#message').html("")
+              $('#message').html("<span>Uploading ...</span>")
               axios.post("/api/sanpham/dangsanpham",
                 { id_tinh, id_huyen, gia, dientich, diachi, tensp, mota_soluoc, image, id_loaisp, chieudai, chieungang, loaidat },
                 { headers: { "Authorization": "Bearer " + $.cookie('tokenId') } }).then(res => {
                   if (res.data.code === 1000) {
                     $('#message').html("<span>Thanh cong</span>")
+                    $('#loadingstatus').html("")
                   }
                   else {
+                    $('#loadingstatus').html("")
                     $('#message').html("<span>" + res.data.message + "</span>")
                   }
                 })
             } else {
               $('#loading').html("")
+              $('#loadingstatus').html("")
               $('#message').html("<span>co loi xay ra, vui long thu lai</span>")
             }
 

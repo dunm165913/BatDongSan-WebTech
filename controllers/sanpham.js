@@ -31,14 +31,14 @@ module.exports = {
             image: request.image,
         }).then(re => {
             res.json({
-                code:1000,
-                message:"ok"
+                code: 1000,
+                message: "ok"
             })
         }).catch(err => {
             console.log(err)
             res.json({
-               code:1111,
-               message:"Loi database"
+                code: 1111,
+                message: "Loi database"
             })
         });
 
@@ -50,21 +50,43 @@ module.exports = {
                 id: req.query.id
             }
         });
-        if(resu){
+        if (resu) {
             res.json({
-                code:1000,
-                message:"ok",
-                data:resu
+                code: 1000,
+                message: "ok",
+                data: resu
             })
         }
-        else{
+        else {
             res.json({
-                code:9999,
-                message:"khong tim thay san pham"
+                code: 9999,
+                message: "khong tim thay san pham"
             })
         }
     },
-    //lay thongt tin co ban cua n du an
+
+    async getbuyuser(req, res) {
+        let id=100000000
+        req.query.id ? id = req.query.id : id = id
+        let result = await models.sanpham.findAll({
+            where: {
+                id_user: req.userData.id,
+                id_loaisp: req.query.id_loaisp ? req.query.id_loaisp : { [Op.in]: [1, 2, 3, 4] },
+                id: {
+                    [Op.lt]: id
+                },
+            },
+            order: [['id', 'DESC']],
+            attributes: ['id', 'trangthai', 'tensp', 'gia','id_loaisp','diachi'],
+            limit: 10,
+        })
+        console.log(result)
+        res.json({
+            code: 1000,
+            data: result
+        })
+    },
+
     async getnsanpham(req, res) {
         let id = 10000000;
         req.query.id ? id = req.query.id : id = id
@@ -74,15 +96,15 @@ module.exports = {
                 id: {
                     [Op.lt]: id
                 },
-                id_loaisp:req.query.id_loaisp?req.query.id_loaisp:{[Op.in]:[1,2,3,4]}
+                id_loaisp: req.query.id_loaisp ? req.query.id_loaisp : { [Op.in]: [1, 2, 3, 4] }
             },
             order: [['id', 'DESC']],
             attributes: ['id', 'image', 'tensp', 'gia', 'dientich'],
             limit: 10,
         })
         res.json({
-            code:1000,
-            data:resu
+            code: 1000,
+            data: resu
         })
     },
     //xoa bai dang
@@ -124,7 +146,7 @@ module.exports = {
             })
         })
     },
-    async deletebyuser(req, res,next) {
+    async deletebyuser(req, res, next) {
         models.sanpham.findAll({
             where: {
                 id_user: req.body.id
@@ -134,7 +156,7 @@ module.exports = {
             next()
         })
     },
-    async deletebyadmin(req, res,next) {
+    async deletebyadmin(req, res, next) {
         models.sanpham.findAll({
             where: {
                 id_duan: req.body.id
