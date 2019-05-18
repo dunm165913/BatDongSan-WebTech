@@ -343,17 +343,12 @@
     let formData = new FormData()
     function a() {
 
-      let cloudinary = {
-        uploadPreset: 'cc2rmml1',
-        apiKey: '384762415366912',
-        cloudName: 'dunguyen',
-      }
+
       try {
         let file = this.event.target.files
 
         formData.append('file', file[0])
-        formData.append('upload_preset', cloudinary.uploadPreset)
-        formData.append('tags', 'gs-vue,gs-vue-uploaded')
+
         // For debug purpose only
         // Inspects the content of formData
 
@@ -362,14 +357,7 @@
           flag = 1
           console.log(file[0])
           $('#title_image').html("<span>" + file[0].name + "</span>")
-          // $('#message').html("")
-          // image = "https://res.cloudinary.com/dunguyen/image/upload/v1556092492/otfy07rfrlmjnapmzd88.jpg"
-          // setTimeout(() => {
-          //   $('#loading').html('<img src=' + image + ' style="width: 260px;margin-left:200px;" >')
-          // }, 2000)
-          // axios.post('https://api.cloudinary.com/v1_1/dunguyen/image/upload', formData).then(res => {
-          //   console.log(res.data.secure_url)
-          // })
+
         } else {
 
           $('#message').html("<div>Loi anh</div>")
@@ -422,28 +410,36 @@
       let chieungang = $('#chieungang').val()
       let loaidat = $('#loaidat').val()
       let id_loaisp = $('#id_loaisp').find(':selected').val()
-       console.log(id_loaisp)
+      console.log(id_loaisp)
       if (id_tinh > 0 && id_huyen > 0 && gia.length > 0 && dientich.length > 0 && diachi.length > 0 && tensp.length > 0 && mota_soluoc.length > 0 && image.length > 10 && id_loaisp > 1) {
         $('#message').html("<span>Thông tin bạn nhập chưa chính xác, vui long kiem tra lại</span>")
       }
       else {
         if (flag == 1) {
           $('#loading').html("<img src='/img/loading.gif'style='width: 260px;margin-left:200px;' >")
-          axios.post('https://api.cloudinary.com/v1_1/dunguyen/image/upload', formData).then(res => {
+          axios.post('/upload', formData, {
+            headers: { "Authorization": "Bearer " + $.cookie('tokenId') }
+          }).then(res => {
             console.log(res)
-            image = res.data.secure_url
-            $('#loading').html('<img src=' + image + ' style="width: 260px;margin-left:200px;" >')
-            $('#message').html("")
-            axios.post("/api/sanpham/dangsanpham",
-              { id_tinh, id_huyen, gia, dientich, diachi, tensp, mota_soluoc, image, id_loaisp, chieudai, chieungang, loaidat },
-              { headers: { "Authorization": "Bearer " + $.cookie('tokenId') } }).then(res => {
-                if (res.data.code === 1000) {
-                  $('#message').html("<span>Thanh cong</span>")
-                }
-                else {
-                  $('#message').html("<span>" + res.data.message + "</span>")
-                }
-              })
+            if (res.data.length > 10) {
+              image = res.data
+              $('#loading').html('<img src=' + image + ' style="width: 260px;margin-left:200px;" >')
+              $('#message').html("")
+              axios.post("/api/sanpham/dangsanpham",
+                { id_tinh, id_huyen, gia, dientich, diachi, tensp, mota_soluoc, image, id_loaisp, chieudai, chieungang, loaidat },
+                { headers: { "Authorization": "Bearer " + $.cookie('tokenId') } }).then(res => {
+                  if (res.data.code === 1000) {
+                    $('#message').html("<span>Thanh cong</span>")
+                  }
+                  else {
+                    $('#message').html("<span>" + res.data.message + "</span>")
+                  }
+                })
+            } else {
+              $('#loading').html("")
+              $('#message').html("<span>co loi xay ra, vui long thu lai</span>")
+            }
+
           })
         }
         if (flag == 0) {
