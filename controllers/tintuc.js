@@ -23,7 +23,7 @@ module.exports = {
     async getinfor(req, res) {
         models.tintuc.findAll({
             where: {
-                id: req.params.id_tin
+                id: req.query.id
             }
         }).then(re => {
 
@@ -40,13 +40,13 @@ module.exports = {
             image: req.body.image
         }).then(re => {
             res.json({
-                code:1000,
-                message:"ok"
+                code: 1000,
+                message: "ok"
             })
         }).catch(err => {
             console.log(err)
             res.json({
-                code:9999,
+                code: 9999,
                 message: 'loi'
             })
         })
