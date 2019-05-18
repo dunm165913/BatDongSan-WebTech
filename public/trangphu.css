@@ -1,7 +1,5 @@
 .danhsach{
   width: 100%;
-  height: 952px;
-  border: 1px solid gray;
 }
 .danhsach__item{
 border-bottom: 1px solid;
@@ -14,6 +12,15 @@ border-bottom: 1px solid;
 .danhsach__item p{
   font-weight: 600;
   color: brown;
+}
+.danhsach__item a{
+  font-weight: 600;
+  color: brown;
+  text-decoration: none;
+}
+.danhsach__item a:hover{
+  color: brown;
+  text-decoration: none;
 }
 .danhsach__item img{
   padding: 5px;
@@ -34,10 +41,6 @@ border-bottom: 1px solid;
   color:blue;
   font-size: 1.5em;
 }
-.container .noidung{
-  width: 700px;
-  margin: 0 auto;
-}
 .huongdan{
   border: 1px solid gray;
   color: #605555;
@@ -50,7 +53,7 @@ border-bottom: 1px solid;
   text-align: center;
   height: 35px;
   line-height: 35px;
-  
+
 }
 .bancobiet{
   color: green;

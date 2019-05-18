@@ -46,6 +46,12 @@ module.exports = (app) => {
     app.get('/', (req, res) => {
         res.render('trangchu')
     })
+    app.get('/chitiet', (req, res) => {
+        res.render('chitiet')
+    })
+    app.get('/chitietbaiviet', (req, res) => {
+        res.render('chitietbaiviet')
+    })
     app.get('/dangtin', (req, res) => {
         res.render('dangraotin')
     })
@@ -56,8 +62,20 @@ module.exports = (app) => {
     app.get('/nhadatban', (req, res) => {
         res.render('nhadatban')
     })
+    app.get('/nhadatthue', (req, res) => {
+        res.render('nhadatthue')
+    })
+    app.get('/canmuathue', (req, res) => {
+        res.render('canmuathue')
+    })
+    app.get('/duan', (req, res) => {
+        res.render('duan')
+    })
+    app.get('/chitietduan', (req, res) => {
+        res.render('chitietduan')
+    })
     app.get('/user', (req, res) => {
         res.render('trangcanhan')
     })
 
-}   
+}
