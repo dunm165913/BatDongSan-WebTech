@@ -335,7 +335,7 @@
   cursor: pointer;
 }
 div#message {
-    /* color: red; */
+  
     margin-top: 50px;
     text-align: center;
 }
@@ -433,7 +433,7 @@ div#message {
       let id_loaisp = $('#id_loaisp').find(':selected').val()
       console.log(id_loaisp)
       if(!(id_tinh > 0 && id_huyen > 0 && gia.length > 0 && dientich.length > 0 && diachi.length > 0 && tensp.length > 0 && mota_soluoc.length > 0 && id_loaisp > 1)) {
-        $('#message').html("<span>Thông tin bạn nhập chưa chính xác, vui long kiem tra lại</span>")
+        $('#message').html("<span style='color:red;'>Thông tin bạn nhập chưa chính xác, vui lòng kiểm tra lại</span>")
       }
       else {
         if (flag == 1) {
@@ -469,7 +469,7 @@ div#message {
           })
         }
         if (flag == 0) {
-          $('#message').html("<span style='color:red;'>Thông tin bạn nhập chưa chính xác, vui long kiem tra lại</span>")
+         $('#message').html("<span style='color:red;'>Thông tin bạn nhập chưa chính xác, vui lòng kiểm tra lại</span>")
         }
 
       }
