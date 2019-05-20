@@ -330,3 +330,10 @@ font-weight: 500;
 .p-content{
     margin-left: 10px;
 }
+.right{
+    float: right;
+}
+.left{
+    float: left;
+    padding: 5px;
+}

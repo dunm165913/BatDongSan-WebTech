@@ -100,7 +100,7 @@ const Authenciate = {
 }
 const TinTuc = {
     getTinTuc: function () {
-        axios.get('/api/sanpham/getnsanpham?id=30').then(function (response) {
+        axios.get('/api/sanpham/getnsanpham').then(function (response) {
             if (response.data.code == 1000) {
                 response.data.data.forEach(element => {
                     $('.listtinrao').append(TinTuc.buildTinTucItem(element));
@@ -119,7 +119,7 @@ const TinTuc = {
         });
     },
     getNhaDatBan: function () {
-        axios.get('/api/sanpham/getnsanpham?id=30&&id_loaisp=2').then(function (response) {
+        axios.get('/api/sanpham/getnsanpham?id_loaisp=2').then(function (response) {
             if (response.data.code == 1000) {
                 response.data.data.forEach(element => {
                     $('.danhsach').append(TinTuc.buildNhaDatBan(element))
@@ -128,7 +128,7 @@ const TinTuc = {
         })
     },
     getNhaDatThue: function () {
-        axios.get('/api/sanpham/getnsanpham?id=30&&id_loaisp=3').then(function (response) {
+        axios.get('/api/sanpham/getnsanpham?id_loaisp=3').then(function (response) {
             if (response.data.code == 1000) {
                 response.data.data.forEach(element => {
                     $('.danhsach').append(TinTuc.buildNhaDatBan(element))
@@ -137,7 +137,7 @@ const TinTuc = {
         })
     },
     getCanMuaThue: function () {
-        axios.get('/api/sanpham/getnsanpham?id=30&&id_loaisp=4').then(function (response) {
+        axios.get('/api/sanpham/getnsanpham?id_loaisp=4').then(function (response) {
             if (response.data.code == 1000) {
                 response.data.data.forEach(element => {
                     $('.danhsach').append(TinTuc.buildNhaDatBan(element))
@@ -146,7 +146,7 @@ const TinTuc = {
         })
     },
     getDuAn: function () {
-        axios.get('/api/duan/getnduan?id=30').then(function (response) {
+        axios.get('/api/duan/getnduan').then(function (response) {
             console.log(response);
             if (response.data.code == 1000) {
                 response.data.data.forEach(element => {
@@ -156,7 +156,7 @@ const TinTuc = {
         })
     },
     getBaiViet: function () {
-        axios.get('/api/tintuc/getntintuc?id=30').then(function (response) {
+        axios.get('/api/tintuc/getntintuc').then(function (response) {
             response.data.forEach((element, i) => {
                 if (i == 0) {
                     $('.thongtinanh').append(TinTuc.buildBaiVietAnh(element));
@@ -190,8 +190,8 @@ const TinTuc = {
     buildTinTucItem(data) {
         let element1 = '';
         element1 += '<div class="iteminrao">';
-        element1 += '	<div class="tin">';
-        element1 += '	  <div class="tieudetin"><a href="/chitiet?id='+data.id+'">' + data.tensp + '</a></div>';
+        element1 += '	<div class="tin"><div class="left"><img src="' + data.image +'" width="120" height="90"></div>';
+        element1 += '	  <div class="right"><div class="tieudetin"><a href="/chitiet?id='+data.id+'">' + data.tensp + '</a></div>';
         element1 += '	  <div class="ndtin">';
         element1 += '		<div class="gia">';
         element1 += '		  <p>Giá:</p>' + data.gia + '';
@@ -199,7 +199,7 @@ const TinTuc = {
         element1 += '		<div class="gia">';
         element1 += '		  <p>Diện tích:</p>' + data.dientich + 'm2';
         element1 += '		</div>';
-        element1 += '	  </div>';
+        element1 += '	  </div></div>';
         element1 += '	</div>';
         element1 += '</div>';
         return element1;
@@ -235,7 +235,7 @@ const TinTuc = {
         element += '<div class="danhsach__item">';
         element += '    <p class="fa fa-star" style="margin:0"><a href="/chitiet?id='+data.id+'">'+data.tensp+'</a></p>';
         element += '    <div class="noidung ">';
-        element += '    <div style="display:flex;"> <strong>Giá:</strong><p>  ' + data.gia +'</p><strong>&#8195;Diện tích</strong><p>'+data.dientich+'m2</p></div>';
+        element += '    <div style="display:flex;"><img src="' + data.image +'" width="175" height="116"> <strong>Giá:</strong><p>  ' + data.gia +'</p><strong>&#8195;Diện tích</strong><p>'+data.dientich+'m2</p></div>';
         element += '    </div>';
         element += '    </div>';
         return element;
