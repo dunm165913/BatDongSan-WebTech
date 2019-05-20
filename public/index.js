@@ -189,9 +189,9 @@ const TinTuc = {
     },
     buildTinTucItem(data) {
         let element1 = '';
-        element1 += '<div class="iteminrao">';
-        element1 += '	<div class="tin"><div class="left"><img src="' + data.image +'" width="120" height="90"></div>';
-        element1 += '	  <div class="right"><div class="tieudetin"><a href="/chitiet?id='+data.id+'">' + data.tensp + '</a></div>';
+        element1 += '<div class="iteminrao container">';
+        element1 += '	<div class="row"><div class="col-2 py-2"><img src="' + data.image +'" width="120" height="90"></div>';
+        element1 += '	  <div class="col-10"><div class="tieudetin"><a href="/chitiet?id='+data.id+'" title="'+data.tensp+'">' + data.tensp + '</a></div>';
         element1 += '	  <div class="ndtin">';
         element1 += '		<div class="gia">';
         element1 += '		  <p>Giá:</p>' + data.gia + '';
@@ -233,9 +233,9 @@ const TinTuc = {
     buildNhaDatBan(data) {
         let element = '';
         element += '<div class="danhsach__item">';
-        element += '    <p class="fa fa-star" style="margin:0"><a href="/chitiet?id='+data.id+'">'+data.tensp+'</a></p>';
+        element += '    <p class="fa fa-star" style="margin:0"><a href="/chitiet?id='+data.id+'" title="'+data.tensp+'">'+data.tensp+'</a></p>';
         element += '    <div class="noidung ">';
-        element += '    <div style="display:flex;"><img src="' + data.image +'" width="175" height="116"> <strong>Giá:</strong><p>  ' + data.gia +'</p><strong>&#8195;Diện tích</strong><p>'+data.dientich+'m2</p></div>';
+        element += '    <div style="display:flex;"><img src="' + data.image + '" width="175" height="116"> <strong>Giá:&#8195;</strong><p>  ' + data.gia +'</p><strong>&#8195;Diện tích:&#8195;</strong><p>'+data.dientich+'</p></div>';
         element += '    </div>';
         element += '    </div>';
         return element;
