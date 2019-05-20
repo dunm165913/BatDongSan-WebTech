@@ -24,12 +24,7 @@
                 <div class="topleftmobile">
                     <i class="fa fa-bars" aria-hidden="true">
                         <div class="nav__hover">
-                            <div class="user">
-                                <div><i class="fa fa-user-circle" aria-hidden="true"></i></div>
-                                <div class="log__sign"><a href="/user">Xin chào admin</a>|<span
-                                        id="logout">Logout</span></div>
-                                <a href=""><div class="create__admin">Đăng tin</div></a>
-                            </div>
+
                             <div class="nav__list">
                                 <ul>
                                     <li>trang chủ</li>
@@ -64,8 +59,8 @@
                             <ul>
                                 <li><a href=""><img src="img/banxehoi.png" />Oto.com.vn</a></li>
                                 <li class="xanh"><a href=""><img src="img/plus.png" />Đăng rao tin</a></li>
-                                <li class="dangki"><img src="img/register.png" />Đăng ký</li>
-                                <li class="dangnhap"><img src="img/login.png" />Đăng nhập</li>
+                                <li class="dangki"><img src="img/register.png" />Xin chào admin</li>
+                                <li class="logout" id="logout"><img src="img/login.png" />Logout</li>
                                 <li><a href=""><img src="img/english.png" />English</a></li>
                             </ul>
 
@@ -77,10 +72,10 @@
                 <nav>
                     <ul>
                         <li class="itemmenu"><img src="img/homea.png" alt="" /></li>
-                        <li class="itemmenu"><a href="nhadatban.html">Nhà đất bán</a></li>
-                        <li class="itemmenu"><a href="">Nhà đất cho thuê</a></li>
-                        <li class="itemmenu"><a href="">Dự án</a></li>
-                        <li class="itemmenu"><a href="">Cần mua-Cần thuê</a></li>
+                        <li class="itemmenu"><a href="nhadatban">Nhà đất bán</a></li>
+                        <li class="itemmenu"><a href="nhadatthue">Nhà đất cho thuê</a></li>
+                        <li class="itemmenu"><a href="duan">Dự án</a></li>
+                        <li class="itemmenu"><a href="/canmuathue">Cần mua-Cần thuê</a></li>
                         <li class="itemmenu"><a href="">Tin tức</a></li>
                         <li class="itemmenu"><a href="">Xây dựng-Kiến trúc</a></li>
                         <li class="itemmenu"><a href="">Nội - Ngoại thất</a></li>
@@ -92,14 +87,18 @@
         </header>
         <!-- het header -->
         <div class="container">
-            <ul style="display: flex; color:royalblue; cursor: pointer;">
-                <li id="user">User </li>>
-                <li id="sanpham">Sản phẩm</li>>
-                <li id="tintuc">Tin tức</li>>
-                <li id="addtintuc">Thêm tin</li>>
-                <li id="duan">Dự án</li>>
+            <div style="margin:0 auto">
 
-            </ul>
+                <ul style="display: flex; color:royalblue; cursor: pointer;">
+                <li id="user"style="font-size: 25px;margin: 0 20px 0 20px;">User </li>|
+                <li id="sanpham"style="font-size: 25px;margin: 0 20px 0 20px;">Sản phẩm</li>|
+                <li id="tintuc"style="font-size: 25px;margin: 0 20px 0 20px;">Tin tức</li>|
+                <li id="addtintuc"style="font-size: 25px;margin: 0 20px 0 20px;">Thêm tin tức</li>|
+                <li id="duan"style="font-size: 25px;margin: 0 20px 0 20px;">Dự án</li>|
+                <li id="addduan"style="font-size: 25px;margin: 0 20px 0 20px;">Thêm dự án</li>|
+            </ul> 
+            </div>
+           
             <div id="list">
                 <div class="tittle">
                     <p id="tit">Danh sách user</p>
@@ -132,7 +131,7 @@
                                 <input id="ten" class="form-control" placeholder=""></div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" id="loaitinshow">
                         <label class="col-sm-3 control-label lable">Loại tin:</label>
                         <div class="col-sm-9">
                             <select name="" id="id_loaitin">
@@ -162,34 +161,49 @@
                             upload
                         </label>
                         <div id="title_image"></div>
-                        
+
                         <div id="loading"></div>
-                        <div id="create" class="create__admin">Đăng tin</div>
-                        
+                        <div style="display: flex">
+
+                            <div id="create" class="create__admin">
+                                <div id="loadingstatus">
+
+                                </div>
+                                <span>Đăng</span>
+                            </div>
+                        </div>
+
+
                 </form>
                 <div id="message"></div>
             </div>
 
             <script src="trangchu.js"></script>
             <style>
-            .create__admin{
-                background: #264383;
-                color: white;
-                width: 150px;
-                height: 40px;
-                line-height: 40px;
-                text-align: center;
-                margin-top: 30px;
-                margin-left: 42%;
-                cursor: pointer;
-            }
-            .row{
-                margin-bottom: 20px;
-            }
-            #message {
-    text-align: center;
-    font-size: 25pt;
-}
+                .create__admin {
+                    background: #264383;
+                    color: white;
+                    width: 150px;
+                    height: 40px;
+                    line-height: 40px;
+                    text-align: center;
+                    margin-top: 30px;
+                    margin-left: 42%;
+                    cursor: pointer;
+                }
+
+                .row {
+                    margin-bottom: 20px;
+                }
+
+                #message {
+                    text-align: center;
+                    font-size: 25pt;
+                }
+
+                .plus:hover {
+                    cursor: pointer;
+                }
             </style>
         </div>
         <!-- footer -->
@@ -240,8 +254,10 @@
             usershow(10000000)
         })
 
+        let addduan = false
         function usershow(id) {
             console.log("----user")
+            $('#add').html('')
             $('#tit').html("<span>Danh sách người dùng</span>")
             $('#list1').show()
             $('#formadd').hide()
@@ -301,34 +317,57 @@
             }
         }
         $('#sanpham').click(() => {
-            sanphamshow(10000000)
+            sanphamshow(10000000, true)
         })
-        function sanphamshow(id) {
+        function sanphamshow(id, option) {
+            id == 0 ? id = 100000000 : id = id
             $('#tit').html("<span>Danh sách sản phẩm</span>")
             $('#list1').show()
             $('#formadd').hide()
             $('#table').html("<th>id</th><th>Tên sản phẩm</th><th>giá</th><th>diện tich</th><th>thao tác</th>")
             let html = ''
-            axios.get('/api/sanpham/getnsanpham?id=' + id).then(res => {
+            console.log(option)
+            let url = ""
+            if (option) {
+                url = '/api/sanpham/getnsanpham?id=' + id
+            }
+            else {
+                url = '/api/sanpham/getnsanpham?option=false&&id=' + id
+            }
+            console.log("---------" + url)
+            axios.get(url).then(res => {
                 let id = 0;
                 console.log(res)
                 if (res.data.data.length > 0) {
                     res.data.data.map(x => {
                         id = x.id
                         html += '<tr>'
-                        html += '<td scope="row"><a href='+'"/chitiet?id='+x.id+'">' + x.id + '</a></td>'
+                        html += '<td scope="row"><a href=' + '"/chitiet?id=' + x.id + '">' + x.id + '</a></td>'
                         html += '<th>' + x.tensp + '</th>'
                         html += '<th>' + x.gia + '</th>'
                         html += '<th>' + x.dientich + '</th>'
-                        html += '<td><div onclick="kiemtra(' + x.id + ')"><i class="fa fa-check-circle" aria-hidden="true"></i></div>/ <div onclick="xoa(' + x.id + ')"><i class="fa fa-remove"aria-hidden="true"></i><div></td>'
+                        html += '<td><div style="display:flex"><div onclick="kiemtra(' + x.id + ')"><i class="fa fa-check-circle" aria-hidden="true"></i></div>/ <div onclick="xoa(' + x.id + ')"><i class="fa fa-remove"aria-hidden="true"></i><div></div></td>'
                     })
                     $('#showuser').html(html)
                     if (res.data.data.length == 10)
-                        $('#add').html("<span onclick='sanphamshow(" + id + ")'>Tiếp</span>")
+                        $('#add').html("<span class='plus' onclick=sanphamshow(" + res.data.data[0].id + ",false" + ")>Trước</span>/<span class='plus' onclick='sanphamshow(" + id + ",true" + ")'>Tiếp</span>")
+                    else {
+                        if (option) {
+                            $('#add').html("<span class='plus' onclick=sanphamshow(" + res.data.data[0].id + ",false" + ")>Trước</span>")
+                        }
+                        else {
+                            $('#add').html("<span class='plus' onclick=sanphamshow(" + id + ",true" + ")>Tiếp</span>")
+                        }
+                    }
                 }
                 else {
-                    $('#add').html("")
                     $('#showuser').html('<span>no data</span>')
+                    if (option) {
+                        $('#add').html("<span class='plus' onclick=sanphamshow(" + id + ",false" + ")>Trước</span>")
+                    }
+                    else {
+                        $('#add').html("<span class='plus' onclick=sanphamshow(" + id + ",true" + ")>Tiếp</span>")
+                    }
                 }
             })
         }
@@ -358,6 +397,7 @@
             $('#tit').html("<span>Danh sách tin tức</span>")
             $('#list1').show()
             $('#formadd').hide()
+            $('#add').html('')
             $('#table').html("<th>id</th><th>Tên </th><th>Loại tin</th><th>thao tác</th>")
             axios.get('/api/tintuc/getntintuc?id=' + id).then(res => {
                 let html = ''
@@ -371,7 +411,7 @@
                         if (x.id_loaitin == 3) x.id_loaitin = "tin cho thuê"
                         if (x.id_loaitin == 3) x.id_loaitin = "tin cần mua - cần thuê"
                         html += '<tr>'
-                        html += '<td scope="row"><a href='+'"/chitietbaiviet?id='+x.id+'">' + x.id + '</a></td>'
+                        html += '<td scope="row"><a href=' + '"/chitietbaiviet?id=' + x.id + '">' + x.id + '</a></td>'
                         html += '<th>' + x.ten + '</th>'
                         html += '<th>' + x.id_loaitin + '</th>'
                         html += '<td> <div onclick="xoatin(' + x.id + ')"><i class="fa fa-remove"aria-hidden="true"></i><div></td>'
@@ -398,9 +438,12 @@
                 })
         }
         $('#addtintuc').click(() => {
-            $('#tit').html("<span>Thêm tin tức</span>")
+            addduan = false
             $('#list1').hide()
             $('#formadd').show()
+            $('#loaitinshow').show()
+            $('#tit').html("<span>Thêm tin tức</span>")
+
         })
         let image = 'as'
         let flag = 0
@@ -434,19 +477,24 @@
         }
 
         $('#create').click(() => {
-            $('#tit').html("<span>Thêm tin tức</span>")
-            $('#list').hide()
+            let id_loaitin = 0
+            if (!addduan) {
+                $('#tit').html("<span>Thêm tin tức</span>")
+                id_loaitin = $('#id_loaitin').find(':selected').val()
+            }
+
+            // $('#list').hide()
             let noidung = $('#noidung').val()
             let ten = $('#ten').val()
-            let id_loaitin = $('#id_loaitin').find(':selected').val()
+
             console.log(id_loaitin)
             if (!(noidung.length > 0 && ten.length > 0)) {
                 $('#message').html("<span style='color:red;'>Thông tin bạn nhập chưa chính xác, vui long kiem tra lại</span>")
             }
             else {
                 if (flag == 1) {
-                    $('#loading').html("<img src='/img/loading.gif'style='width: 90px;margin-left:200px;' >")
-                    $('#loadingstatus').html("<img src='/img/loading.gif'style='width: 90px;margin-left:200px;' >")
+                    // $('#loading').html("<img src='/img/loading.gif'style='width: 90px;margin-left:200px;' >")
+                    $('#loadingstatus').html("<img src='/img/loading.gif'style='width: 90px' >")
                     $('#message').html("<span style='color:orange;'>Uploading image...</span>")
                     axios.post('/upload', formData, {
                         headers: { "Authorization": "Bearer " + $.cookie('tokenId') }
@@ -456,8 +504,17 @@
                             image = res.data
                             $('#loading').html('<img src=' + image + ' style="width: 260px;margin-left:200px;" >')
                             $('#message').html("<span style='color:orange;'>Uploading ...</span>")
-                            axios.post("/api/tintuc/taotintuc",
-                                { image, ten, noidung, id_loaitin },
+                            let url = ''
+                            let body = {}
+                            if (addduan) {
+                                url = "/api/duan/taoduan"
+                                body = { image: image, mota: noidung, ten: ten }
+                            } else {
+                                url = "/api/tintuc/taotintuc"
+                                body = { image: image, noidung: noidung, ten: ten, id_loaitin: id_loaitin }
+                            }
+                            axios.post(url,
+                                body,
                                 { headers: { "Authorization": "Bearer " + $.cookie('tokenId') } }).then(res => {
                                     if (res.data.code === 1000) {
                                         $('#message').html("<span style='color:blue;'>Thanh cong</span>")
@@ -487,6 +544,58 @@
             //     console.log(id_loaisp)
             //>>>>>>> master
         })
+        function duanshow(id) {
+            $('#tit').html("<span>Danh sách dự án</span>")
+            $('#list1').show()
+            $('#formadd').hide()
+            $('#add').html('')
+            $('#table').html("<th>id</th><th>Tên </th><th>thao tác</th>")
+            axios.get('/api/duan/getnduan?id=' + id).then(res => {
+                let html = ''
+                let id = 0;
+                console.log(res.data)
+                if (res.data.data.length > 0) {
+                    res.data.data.map(x => {
+                        id = x.id
+
+                        html += '<tr>'
+                        html += '<td scope="row"><a href=' + '"/chitietduan?id=' + x.id + '">' + x.id + '</a></td>'
+                        html += '<th>' + x.ten + '</th>'
+
+                        html += '<td> <div onclick="xoaduan(' + x.id + ')"><i class="fa fa-remove"aria-hidden="true"></i><div></td>'
+
+                    })
+                    $('#showuser').html(html)
+                    if (res.data.length == 10)
+                        $('#add').html("<span onclick='tintucshow(" + id + ")'>Tiếp</span>")
+                }
+                else {
+                    $('#add').html("")
+                    $('#showuser').html('<span>no data</span>')
+                }
+            })
+        }
+        $('#duan').click(() => {
+            duanshow(10000000)
+        })
+        function xoaduan(id) {
+            console.log(id)
+            if (window.confirm("Bạn muốn xóa dự án này?\n Tiếp tục?"))
+                axios.post('/api/duan/delete', { id }, {
+                    headers: { "Authorization": "Bearer " + $.cookie('tokenId') }
+                }).then(re => {
+                    alert("Xóa dự án :" + re.data.mesage)
+                })
+        }
+        $('#addduan').click(() => {
+            addduan = true
+            $('#list1').hide()
+            $('#formadd').show()
+            $('#loaitinshow').hide()
+            $('#tit').html("<span>Thêm tin dự án</span>")
+            
+        })
+
     </script>
 </body>
 

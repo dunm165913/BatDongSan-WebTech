@@ -76,11 +76,11 @@
       <div class="menu">
         <nav>
           <ul>
-            <li class="itemmenu"><img src="img/homea.png" alt="" /></li>
-            <li class="itemmenu"><a href="nhadatban.html">Nhà đất bán</a></li>
-            <li class="itemmenu"><a href="">Nhà đất cho thuê</a></li>
-            <li class="itemmenu"><a href="">Dự án</a></li>
-            <li class="itemmenu"><a href="">Cần mua-Cần thuê</a></li>
+           <a href="/"></a> <li class="itemmenu"><img src="img/homea.png" alt="" /></li></a>
+            <li class="itemmenu"><a href="nhadatban">Nhà đất bán</a></li>
+            <li class="itemmenu"><a href="nhadatthue">Nhà đất cho thuê</a></li>
+            <li class="itemmenu"><a href="/duan">Dự án</a></li>
+            <li class="itemmenu"><a href="canmuathue">Cần mua-Cần thuê</a></li>
             <li class="itemmenu"><a href="">Tin tức</a></li>
             <li class="itemmenu"><a href="">Xây dựng-Kiến trúc</a></li>
             <li class="itemmenu"><a href="">Nội - Ngoại thất</a></li>
@@ -119,21 +119,21 @@
                   <ul>
                     <li><span id="change_profile" style="cursor: pointer;">Thay đổi thông tin cá nhân</span></li>
                     <li>
-                      <sapn id="change_password"  style="cursor: pointer;">Thay đổi mật khẩu</span>
+                      <sapn id="change_password" style="cursor: pointer;">Thay đổi mật khẩu</span>
                     </li>
                   </ul>
                 </div>
               </div>
               <div class="info__item">
-                <div class="info__item__title"  >Quản lý tin đăng</div>
+                <div class="info__item__title">Quản lý tin đăng</div>
                 <div class="info__item__list">
                   <ul>
-                    <li><span id="ban"  style="cursor: pointer;">Quản lý tin rao bán</sapn>
+                    <li><span id="ban" style="cursor: pointer;">Quản lý tin rao bán</sapn>
                     </li>
-                    <li><span id="thue"  style="cursor: pointer;">Quản lý tin cho thuê</span></li>
-                    <li><span id="canban-thue"  style="cursor: pointer;">Quản lý tin rao bán</sapn>
+                    <li><span id="thue" style="cursor: pointer;">Quản lý tin cho thuê</span></li>
+                    <li><span id="canban-thue" style="cursor: pointer;">Quản lý tin rao bán</sapn>
                     </li>
-                    <li><a href="/dangtin"  style="cursor: pointer;">Đăng tin</a></li>
+                    <li><a href="/dangtin" style="cursor: pointer;">Đăng tin</a></li>
 
                   </ul>
                 </div>
@@ -144,9 +144,9 @@
                 <div class="info__item__title">Hướng dẫn & báo giá</div>
                 <div class="info__item__list">
                   <ul>
-                    <li  style="cursor: pointer;"><a href="">Hướng dẫn sử dụng</a></li>
-                    <li  style="cursor: pointer;"><a href="">Hướng dẫn thanh toán</a></li>
-                    <li  style="cursor: pointer;"><a href="">Báo giá</a></li>
+                    <li style="cursor: pointer;"><a href="">Hướng dẫn sử dụng</a></li>
+                    <li style="cursor: pointer;"><a href="">Hướng dẫn thanh toán</a></li>
+                    <li style="cursor: pointer;"><a href="">Báo giá</a></li>
 
                   </ul>
                 </div>
@@ -325,7 +325,12 @@
         console.log("--------------" + id + "-----------------" + id_loai)
         $('#sanpham').show()
         $('#profile__right').hide()
-        $('#title').html("<span>Danh sách tin cho thuê</span>")
+        if (id_loai == 2) {
+          $('#title').html("<span>Danh sách tin rao bán</span>")
+        }
+        else if (id_loai == 3) {
+          $('#title').html("<span>Danh sách tin cho thuê</span>")
+        } else $('#title').html("<span>Danh sách tin cần mua - cần thuê</span>")
         axios.post('/api/sanpham/getbyuser?id=' + id + '&&id_loaisp=' + id_loai, {}, {
           headers: { "Authorization": "Bearer " + $.cookie('tokenId') }
         }).then(res => {
@@ -342,7 +347,7 @@
               thue += "<tr>"
               console.log(x)
               x.trangthai === "Yes" ? x.trangthai = "đã thanh toán" : x.trangthai = "chưa thanh toán"
-              thue += '<td scope="row"><a href='+'"/chitiet?id='+x.id+'">' + x.id + '</a></td>'
+              thue += '<td scope="row"><a href=' + '"/chitiet?id=' + x.id + '">' + x.id + '</a></td>'
               thue += '<td style="width:200px">' + x.tensp + '</td>'
               thue += '<td >' + x.gia + '</td>'
               thue += '<td >' + x.diachi + '</td>'
@@ -359,7 +364,7 @@
             })
             let df = id + id_loai
             if (res.data.data.length == 10)
-            $('#add').html("<span onclick='loaisp(" + id + ',' + id_loai + ")' style='color:blue'>Tiep</span>")
+              $('#add').html("<span onclick='loaisp(" + id + ',' + id_loai + ")' style='color:blue'>Tiep</span>")
 
             $('#show').html(thue)
           }
@@ -417,11 +422,12 @@
         height: 40px;
         box-shadow: 2px 2px 2px #9593d0;
       }
-      .input__ttuser{
+
+      .input__ttuser {
         width: 75%;
-    margin-bottom: 33px;
-    height: 40px;
-    border: none;
+        margin-bottom: 33px;
+        height: 40px;
+        border: none;
       }
 
       .check {
@@ -440,12 +446,15 @@
         text-align: center;
         margin-bottom: 20px;
       }
-     .dialog{
-       color: red;
-     }
-     .dialog:first-child{
-       color: blue;
-     }
+
+      .dialog {
+        color: red;
+      }
+
+      .dialog:first-child {
+        color: blue;
+      }
+
       .dialogsucess {
         color: white;
         background: green;

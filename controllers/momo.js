@@ -100,6 +100,12 @@ function kiemtra(request, response, option) {
     });
     req.on('error', (e) => {
         console.log(`problem with request: ${e.message}`);
+        response.json({
+            code:2222,
+            data:{
+                message:"loi ket noi momo"
+            }
+        })
     });
 
     // write data to request body
@@ -190,6 +196,12 @@ module.exports = {
         });
         req.on('error', (e) => {
             console.log(`problem with request: ${e.message}`);
+            response.json({
+                code:2222,
+                data:{
+                    message:"loi ket noi momo"
+                }
+            })
         });
 
         // write data to request body
