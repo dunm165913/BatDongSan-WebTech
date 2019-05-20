@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
 </head>
 
 <body>
@@ -90,15 +93,15 @@
             <div style="margin:0 auto">
 
                 <ul style="display: flex; color:royalblue; cursor: pointer;">
-                <li id="user"style="font-size: 25px;margin: 0 20px 0 20px;">User </li>|
-                <li id="sanpham"style="font-size: 25px;margin: 0 20px 0 20px;">Sản phẩm</li>|
-                <li id="tintuc"style="font-size: 25px;margin: 0 20px 0 20px;">Tin tức</li>|
-                <li id="addtintuc"style="font-size: 25px;margin: 0 20px 0 20px;">Thêm tin tức</li>|
-                <li id="duan"style="font-size: 25px;margin: 0 20px 0 20px;">Dự án</li>|
-                <li id="addduan"style="font-size: 25px;margin: 0 20px 0 20px;">Thêm dự án</li>|
-            </ul> 
+                    <li id="user" style="font-size: 25px;margin: 0 20px 0 20px;">User </li>|
+                    <li id="sanpham" style="font-size: 25px;margin: 0 20px 0 20px;">Sản phẩm</li>|
+                    <li id="tintuc" style="font-size: 25px;margin: 0 20px 0 20px;">Tin tức</li>|
+                    <li id="addtintuc" style="font-size: 25px;margin: 0 20px 0 20px;">Thêm tin tức</li>|
+                    <li id="duan" style="font-size: 25px;margin: 0 20px 0 20px;">Dự án</li>|
+                    <li id="addduan" style="font-size: 25px;margin: 0 20px 0 20px;">Thêm dự án</li>|
+                </ul>
             </div>
-           
+
             <div id="list">
                 <div class="tittle">
                     <p id="tit">Danh sách user</p>
@@ -142,11 +145,10 @@
                     <div class="row">
                         <label class="col-sm-3 control-label lable">Nội dung</label>
                         <div class="col-sm-9">
-                            <div class="number required" aria-required="true">
-                                <textarea name="" id="noidung" cols="60" rows="10" style="width:100%;"></textarea></div>
+                            <div id="editor"></div>
                         </div>
                     </div>
-                    <div>
+                    <div style="margin-top: 100px">
                         chỗ up ảnh(* nhỏ hơn 5MB)<label class="file-upload-container" for="file-upload" style="    width: 150px;
                 height: 50px;
                 background: green;
@@ -484,10 +486,10 @@
             }
 
             // $('#list').hide()
-            let noidung = $('#noidung').val()
+            let noidung = sa()
             let ten = $('#ten').val()
 
-            console.log(id_loaitin)
+            console.log(noidung)
             if (!(noidung.length > 0 && ten.length > 0)) {
                 $('#message').html("<span style='color:red;'>Thông tin bạn nhập chưa chính xác, vui long kiem tra lại</span>")
             }
@@ -593,8 +595,44 @@
             $('#formadd').show()
             $('#loaitinshow').hide()
             $('#tit').html("<span>Thêm tin dự án</span>")
-            
+
         })
+        var toolbarOptions = [
+            ['bold', 'italic', 'underline', 'strike', 'link'],        // toggled buttons
+            ['blockquote', 'code-block'],
+            ['video', 'formula', 'image'],
+            [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+            [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
+            [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
+            [{ 'direction': 'rtl' }],                         // text direction
+
+            [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+            [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+            [{ 'font': [] }],
+            [{ 'align': [] }],
+
+            ['clean']                                         // remove formatting button
+        ];
+
+        var options = {
+            theme: 'snow',
+            modules: {
+                toolbar: toolbarOptions,
+                // formula: true          // Include formula module (needs extra css + Katex Script)
+            },
+            placeholder: 'Halloween is Coming'
+        }
+
+        var container = document.getElementById('editor');
+        var editor = new Quill(container, options);
+        function sa() {
+            let a = editor.root.innerHTML
+            console.log(a)
+            return a
+        }
 
     </script>
 </body>
