@@ -66,7 +66,7 @@ module.exports = {
     },
 
     async getbuyuser(req, res) {
-        let id=100000000
+        let id = 100000000
         console.log(req.query)
         req.query.id ? id = req.query.id : id = id
         let result = await models.sanpham.findAll({
@@ -78,7 +78,7 @@ module.exports = {
                 },
             },
             order: [['id', 'DESC']],
-            attributes: ['id', 'trangthai', 'tensp', 'gia','id_loaisp','diachi'],
+            attributes: ['id', 'trangthai', 'tensp', 'gia', 'id_loaisp', 'diachi'],
             limit: 10,
         })
         // console.log(result)
@@ -90,23 +90,47 @@ module.exports = {
 
     async getnsanpham(req, res) {
         let id = 10000000;
+        let option = true
         req.query.id ? id = req.query.id : id = id
-
-        let resu = await models.sanpham.findAll({
-            where: {
-                id: {
-                    [Op.lt]: id
+        if (!req.query.option) option = true
+        else  req.query.option==="false"?option=false:option=true
+console.log(option)
+        if (option) {
+            let resu = await models.sanpham.findAll({
+                where: {
+                    id: {
+                        [Op.lt]: id
+                    },
+                    id_loaisp: req.query.id_loaisp ? req.query.id_loaisp : { [Op.in]: [1, 2, 3, 4] }
                 },
-                id_loaisp: req.query.id_loaisp ? req.query.id_loaisp : { [Op.in]: [1, 2, 3, 4] }
-            },
-            order: [['id', 'DESC']],
-            attributes: ['id', 'image', 'tensp', 'gia', 'dientich'],
-            limit: 10,
-        })
-        res.json({
-            code: 1000,
-            data: resu
-        })
+                order: [['id', 'DESC']],
+                attributes: ['id', 'image', 'tensp', 'gia', 'dientich'],
+                limit: 10,
+            })
+            res.json({
+                code: 1000,
+                data: resu
+            })
+        }
+        else {
+            console.log("_____")
+            let resu = await models.sanpham.findAll({
+                where: {
+                    id: {
+                        [Op.gt]: id
+                    },
+                    id_loaisp: req.query.id_loaisp ? req.query.id_loaisp : { [Op.in]: [1, 2, 3, 4] }
+                },
+                order: [['id', 'ASC']],
+                attributes: ['id', 'image', 'tensp', 'gia', 'dientich'],
+                limit: 10,
+            })
+            res.json({
+                code: 1000,
+                data: resu.reverse()
+            })
+        }
+
     },
     //xoa bai dang
     async delete(req, res) {

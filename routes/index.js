@@ -33,7 +33,7 @@ module.exports = (app) => {
     app.post('/api/tintuc/taotintuc', models.user.logined, models.tintuc.check, controllers.tintuc.create)
     app.post('/api/tintuc/delete', models.user.logined, models.user.checkadmin, controllers.tintuc.delete)
     app.post('/api/duan/taoduan', models.user.logined, controllers.duan.create)
-    app.post('/api/duan/delete', models.user.logined, controllers.duan.delete)
+    app.post('/api/duan/delete', models.user.logined,models.user.checkadmin, controllers.duan.delete)
     app.post('/api/duan/deletebyadmin', models.user.logined, models.user.checkadmin, controllers.sanpham.deletebyadmin, controllers.duan.deletebyadmin)
 
     //momo

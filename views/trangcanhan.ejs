@@ -76,11 +76,11 @@
       <div class="menu">
         <nav>
           <ul>
-            <li class="itemmenu"><img src="img/homea.png" alt="" /></li>
-            <li class="itemmenu"><a href="nhadatban.html">Nhà đất bán</a></li>
-            <li class="itemmenu"><a href="">Nhà đất cho thuê</a></li>
-            <li class="itemmenu"><a href="">Dự án</a></li>
-            <li class="itemmenu"><a href="">Cần mua-Cần thuê</a></li>
+           <a href="/"></a> <li class="itemmenu"><img src="img/homea.png" alt="" /></li></a>
+            <li class="itemmenu"><a href="nhadatban">Nhà đất bán</a></li>
+            <li class="itemmenu"><a href="nhadatthue">Nhà đất cho thuê</a></li>
+            <li class="itemmenu"><a href="/duan">Dự án</a></li>
+            <li class="itemmenu"><a href="canmuathue">Cần mua-Cần thuê</a></li>
             <li class="itemmenu"><a href="">Tin tức</a></li>
             <li class="itemmenu"><a href="">Xây dựng-Kiến trúc</a></li>
             <li class="itemmenu"><a href="">Nội - Ngoại thất</a></li>
@@ -117,9 +117,9 @@
                 <div class="info__item__title">Quản lý thông tin cá nhân</div>
                 <div class="info__item__list">
                   <ul>
-                    <li><span id="change_profile">Thay đổi thông tin cá nhân</span></li>
+                    <li><span id="change_profile" style="cursor: pointer;">Thay đổi thông tin cá nhân</span></li>
                     <li>
-                      <sapn id="change_password">Thay đổi mật khẩu</span>
+                      <sapn id="change_password" style="cursor: pointer;">Thay đổi mật khẩu</span>
                     </li>
                   </ul>
                 </div>
@@ -128,12 +128,12 @@
                 <div class="info__item__title">Quản lý tin đăng</div>
                 <div class="info__item__list">
                   <ul>
-                    <li><span id="ban">Quản lý tin rao bán</sapn>
+                    <li><span id="ban" style="cursor: pointer;">Quản lý tin rao bán</sapn>
                     </li>
-                    <li><span id="thue">Quản lý tin cho thuê</span></li>
-                    <li><span id="canban-thue">Quản lý tin rao bán</sapn>
+                    <li><span id="thue" style="cursor: pointer;">Quản lý tin cho thuê</span></li>
+                    <li><span id="canban-thue" style="cursor: pointer;">Quản lý tin rao bán</sapn>
                     </li>
-                    <li><a href="/dangtin">Đăng tin</a></li>
+                    <li><a href="/dangtin" style="cursor: pointer;">Đăng tin</a></li>
 
                   </ul>
                 </div>
@@ -144,9 +144,9 @@
                 <div class="info__item__title">Hướng dẫn & báo giá</div>
                 <div class="info__item__list">
                   <ul>
-                    <li><a href="">Hướng dẫn sử dụng</a></li>
-                    <li><a href="">Hướng dẫn thanh toán</a></li>
-                    <li><a href="">Báo giá</a></li>
+                    <li style="cursor: pointer;"><a href="">Hướng dẫn sử dụng</a></li>
+                    <li style="cursor: pointer;"><a href="">Hướng dẫn thanh toán</a></li>
+                    <li style="cursor: pointer;"><a href="">Báo giá</a></li>
 
                   </ul>
                 </div>
@@ -243,13 +243,13 @@
           console.log(data)
           let html = '<div class="profile__right__title">Thông tin cá nhân</div>'
           html += '<div id="img_profile"></div>'
-          html += '<div  style="display:flex>'
-          html += '<div style="display:flex"><span style="width:100px">        Tên đăng nhậo:</span><input class=" input__changemk" type="text " id="tendangnhap" placeholder=' + data.tendangnhap.replace(/\s/g, "_") + ' ></div>'
-          html += '<div style="display:flex"><span style="width:100px">        Email:</span><input class=" input__changemk" type="text " id="new_email" placeholder=' + data.email + ' ></div>'
-          html += '<div style="display:flex"<span style="width:100px">Số điện thoại:</span><input  class=" input__changemk" type="text " id="new_sodienthoai" placeholder=' + data.sodienthoai + ' ></span></div>'
-          html += '<div style="display:flex"><span>Active:</span>' + data.isactive + ' </div>'
-          html += '<div style="display:flex"><span>Ngày sinh:</span><input class=" input__changemk" type="text" id="ngaysinh" placeholder=' + data.ngaysinh + '  ></div>'
-          html += '<div style="display:flex"><span>Địa chỉ:</span><input class=" input__changemk" type="text" id="diachi" placeholder=' + data.diachi.replace(/\s/g, "_") + '  ></div>'
+          html += '<div >'
+          html += '<div style="display:flex"><span style="width:25%">        Tên đăng nhập:</span><input class=" input__ttuser" type="text " id="tendangnhap" placeholder=' + data.tendangnhap.replace(/\s/g, "_") + ' ></div>'
+          html += '<div style="display:flex"><span style="width:25%">        Email:</span><input class=" input__ttuser" type="text " id="new_email" placeholder=' + data.email + ' ></div>'
+          html += '<div style="display:flex"><span style="width:25%">Số điện thoại:</span><input  class=" input__ttuser" type="text " id="new_sodienthoai" placeholder=' + data.sodienthoai + ' ></span></div>'
+          html += '<div style="display:flex"><span style="width:25%">Active:</span>' + data.isactive + ' </div>'
+          html += '<div style="display:flex"><span style="width:25%">Ngày sinh:</span><input class=" input__ttuser" type="text" id="ngaysinh" placeholder=' + data.ngaysinh + '  ></div>'
+          html += '<div style="display:flex"><span style="width:25%">Địa chỉ:</span><input class=" input__ttuser" type="text" id="diachi" placeholder=' + data.diachi.replace(/\s/g, "_") + '  ></div>'
           html += '<div style="display:flex;margin-left: 290px"><span style="display:flex"  onclick="send_profile()"><div id="loading"></div><p class="check">Cập nhật</p></span></div>'
           html += '<div id="dialog" class="hidden"></div>'
           html += '</div>'
@@ -261,11 +261,11 @@
       })
 
       $('#change_password').click(() => {
-        let html = '<div class="profile__right__title">Thay mat khau</div>'
+        let html = '<div class="profile__right__title">thay mật khẩu</div>'
 
-        html += '<input class=" input__changemk" type="text" id="old_password" placeholder="Mật khẩu cũ" >'
-        html += '<input  class=" input__changemk" type="text" id="new_password" placeholder="Mật khẩu mới" >'
-        html += '<div style="display:flex;margin-left: 290px"><span style="display:flex"  onclick="send_password()"><div id="loading"></div><p class="check">Thay mật khau</p></span></div>'
+        html += '<input class=" input__changemk" type="password" id="old_password" placeholder="Mật khẩu cũ" >'
+        html += '<input  class=" input__changemk" type="password" id="new_password" placeholder="Mật khẩu mới" >'
+        html += '<div style="display:flex;margin-left: 290px"><span style="display:flex"  onclick="send_password()"><div id="loading"></div><p class="check">Thay mật khẩu</p></span></div>'
         html += '<div id="dialog" class="hidden"></div>'
         $('#profile__right').html(html)
       })
@@ -282,7 +282,7 @@
         }).then(res => {
           console.log(res.data)
           if (res.data.code == 1000) {
-            $('#dialog').html('<div class="dialogsucess">Thanh cong</div>')
+            $('#dialog').html('<div class="dialogsucess " >success</div>')
             $('#loading').html("<div></div>")
           }
           else {
@@ -298,11 +298,11 @@
         let new_password = $('#new_password').val()
         if (old_password.length < 6) {
           $('#old_password').focus()
-          $('#dialog').html('<div class="dialog">Mat khau cu khong hop le</div>')
+          $('#dialog').html('<div class="dialog" style="color:red;">Mat khau cu khong hop le</div>')
         }
         else if (new_password.length < 6) {
           $('#new_password').focus()
-          $('#dialog').html('<div class="dialog">Mat khau hon 6 ki tu</div>')
+          $('#dialog').html('<div class="dialog" style="color:red;">Mat khau hon 6 ki tu</div>')
         }
 
         else {
@@ -325,7 +325,12 @@
         console.log("--------------" + id + "-----------------" + id_loai)
         $('#sanpham').show()
         $('#profile__right').hide()
-        $('#title').html("<span>Danh sách tin cho thuê</span>")
+        if (id_loai == 2) {
+          $('#title').html("<span>Danh sách tin rao bán</span>")
+        }
+        else if (id_loai == 3) {
+          $('#title').html("<span>Danh sách tin cho thuê</span>")
+        } else $('#title').html("<span>Danh sách tin cần mua - cần thuê</span>")
         axios.post('/api/sanpham/getbyuser?id=' + id + '&&id_loaisp=' + id_loai, {}, {
           headers: { "Authorization": "Bearer " + $.cookie('tokenId') }
         }).then(res => {
@@ -342,12 +347,12 @@
               thue += "<tr>"
               console.log(x)
               x.trangthai === "Yes" ? x.trangthai = "đã thanh toán" : x.trangthai = "chưa thanh toán"
-              thue += '<td scope="row"><a href='+'"/chitiet?id='+x.id+'">' + x.id + '</a></td>'
+              thue += '<td scope="row"><a href=' + '"/chitiet?id=' + x.id + '">' + x.id + '</a></td>'
               thue += '<td style="width:200px">' + x.tensp + '</td>'
               thue += '<td >' + x.gia + '</td>'
               thue += '<td >' + x.diachi + '</td>'
               thue += '<td >' + x.trangthai + '</td>'
-              thue += '<td>'
+              thue += '<td style="display:flex;">'
               if (x.trangthai === "đã thanh toán") {
                 thue += '<div onclick="xoa(' + x.id + ')"><i class="fa fa-remove"aria-hidden="true"></i><div></td>'
               }
@@ -359,7 +364,7 @@
             })
             let df = id + id_loai
             if (res.data.data.length == 10)
-            $('#add').html("<span onclick='loaisp(" + id + ',' + id_loai + ")'>Tiep</span>")
+              $('#add').html("<span onclick='loaisp(" + id + ',' + id_loai + ")' style='color:blue'>Tiep</span>")
 
             $('#show').html(thue)
           }
@@ -418,6 +423,13 @@
         box-shadow: 2px 2px 2px #9593d0;
       }
 
+      .input__ttuser {
+        width: 75%;
+        margin-bottom: 33px;
+        height: 40px;
+        border: none;
+      }
+
       .check {
         color: white;
         font-size: 14pt;
@@ -430,16 +442,17 @@
         border-radius: 6px;
       }
 
-      .dialog {
-        color: white;
-        background: red;
-        height: 30px;
+      #dialog {
         text-align: center;
-        font-size: 15pt;
-        border-radius: 6px;
-        box-shadow: 2px 2px 2px yellow;
-        width: 460px;
-        margin-left: 150px
+        margin-bottom: 20px;
+      }
+
+      .dialog {
+        color: red;
+      }
+
+      .dialog:first-child {
+        color: blue;
       }
 
       .dialogsucess {

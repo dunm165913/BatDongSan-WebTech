@@ -61,31 +61,39 @@ app.post('/upload', models.user.logined, function (req, res) {
 
     var fstream;
     req.pipe(req.busboy);
+    console.log(req)
     req.busboy.on('file', function (fieldname, file, filename) {
         console.log("Uploading: " + file._readableState);
         if (filename) {
-            fstream = fs.createWriteStream(__dirname + '/public/' + filename);
-            file.pipe(fstream);
-            fstream.on('close', function () {
-                cloudinary.v2.uploader.upload(__dirname + '/public/' + filename,
-                    function (error, result) {
-                        res.json(result.secure_url ? result.secure_url : "")
-                        // console.log(result, error)
-                        fs.unlink(__dirname + '/public/' + filename)
-                    });
+            try {
+                fstream = fs.createWriteStream(__dirname + '/public/' + filename);
+                file.pipe(fstream);
+                fstream.on('close', function () {
+                    cloudinary.v2.uploader.upload(__dirname + '/public/' + filename,
+                        function (error, result) {
+                            try {
+                                fs.unlink(__dirname + '/public/' + filename)
+                            } catch (err) {
+                                res.json({ code: 9999, message: "loi ket noi server" })
+                            }
+                            console.log(result)
+                            if (error)
+                                res.json({ code: 9999, message: "loi ket noi server" })
+                            else res.json(result.secure_url ? result.secure_url : "")
+                            // console.log(result, error)
 
-            });
+                        });
+                });
+            } catch (err){
+                res.json({ code: 9999, message: "loi ket noi server" })
+            }
+            
         } else {
             res.send("loi")
             console.log("loi")
         }
 
     });
-
-
-
-
-
 
 });
 
