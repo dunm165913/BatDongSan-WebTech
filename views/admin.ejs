@@ -28,7 +28,7 @@
                                 <div><i class="fa fa-user-circle" aria-hidden="true"></i></div>
                                 <div class="log__sign"><a href="/user">Xin chào admin</a>|<span
                                         id="logout">Logout</span></div>
-                                <a href=""><button>Đăng tin</button></a>
+                                <a href=""><div class="create__admin">Đăng tin</div></a>
                             </div>
                             <div class="nav__list">
                                 <ul>
@@ -125,7 +125,7 @@
             </div>
             <div id="formadd">
                 <form>
-                    <div class="row">
+                    <div class="row" style="margin-top: 30px;">
                         <label class="col-sm-3 control-label lable">Title:</label>
                         <div class="col-sm-9">
                             <div class="number required" aria-required="true">
@@ -144,7 +144,7 @@
                         <label class="col-sm-3 control-label lable">Nội dung</label>
                         <div class="col-sm-9">
                             <div class="number required" aria-required="true">
-                                <textarea name="" id="noidung" cols="60" rows="10"></textarea></div>
+                                <textarea name="" id="noidung" cols="60" rows="10" style="width:100%;"></textarea></div>
                         </div>
                     </div>
                     <div>
@@ -162,14 +162,35 @@
                             upload
                         </label>
                         <div id="title_image"></div>
+                        
                         <div id="loading"></div>
-                        <div id="create">Đăng tin</div>
-
+                        <div id="create" class="create__admin">Đăng tin</div>
+                        
                 </form>
                 <div id="message"></div>
             </div>
 
             <script src="trangchu.js"></script>
+            <style>
+            .create__admin{
+                background: #264383;
+                color: white;
+                width: 150px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                margin-top: 30px;
+                margin-left: 42%;
+                cursor: pointer;
+            }
+            .row{
+                margin-bottom: 20px;
+            }
+            #message {
+    text-align: center;
+    font-size: 25pt;
+}
+            </style>
         </div>
         <!-- footer -->
         <footer>
@@ -403,12 +424,12 @@
 
                 } else {
 
-                    $('#message').html("<div>Loi anh</div>")
+                    $('#message').html("<div style='color:red;'>Loi anh</div>")
                 }
             } catch (err) {
                 console.log(err)
                 $('#loading').html("")
-                $('#message').html("<div>Loi anh</div>")
+                $('#message').html("<div style='color:red;'>Loi anh</div>")
             }
         }
 
@@ -420,13 +441,13 @@
             let id_loaitin = $('#id_loaitin').find(':selected').val()
             console.log(id_loaitin)
             if (!(noidung.length > 0 && ten.length > 0)) {
-                $('#message').html("<span>Thông tin bạn nhập chưa chính xác, vui long kiem tra lại</span>")
+                $('#message').html("<span style='color:red;'>Thông tin bạn nhập chưa chính xác, vui long kiem tra lại</span>")
             }
             else {
                 if (flag == 1) {
-                    $('#loading').html("<img src='/img/loading.gif'style='width: 260px;margin-left:200px;' >")
+                    $('#loading').html("<img src='/img/loading.gif'style='width: 90px;margin-left:200px;' >")
                     $('#loadingstatus').html("<img src='/img/loading.gif'style='width: 90px;margin-left:200px;' >")
-                    $('#message').html("<span>Uploading image...</span>")
+                    $('#message').html("<span style='color:orange;'>Uploading image...</span>")
                     axios.post('/upload', formData, {
                         headers: { "Authorization": "Bearer " + $.cookie('tokenId') }
                     }).then(res => {
@@ -434,12 +455,12 @@
                         if (res.data.length > 10) {
                             image = res.data
                             $('#loading').html('<img src=' + image + ' style="width: 260px;margin-left:200px;" >')
-                            $('#message').html("<span>Uploading ...</span>")
+                            $('#message').html("<span style='color:orange;'>Uploading ...</span>")
                             axios.post("/api/tintuc/taotintuc",
                                 { image, ten, noidung, id_loaitin },
                                 { headers: { "Authorization": "Bearer " + $.cookie('tokenId') } }).then(res => {
                                     if (res.data.code === 1000) {
-                                        $('#message').html("<span>Thanh cong</span>")
+                                        $('#message').html("<span style='color:blue;'>Thanh cong</span>")
                                         $('#loadingstatus').html("")
                                     }
                                     else {
@@ -450,13 +471,13 @@
                         } else {
                             $('#loading').html("")
                             $('#loadingstatus').html("")
-                            $('#message').html("<span>co loi xay ra, vui long thu lai</span>")
+                            $('#message').html("<spanstyle='color:red;' >co loi xay ra, vui long thu lai</span>")
                         }
 
                     })
                 }
                 if (flag == 0) {
-                    $('#message').html("<span>Thông tin bạn nhập chưa chính xác, vui long kiem tra lại</span>")
+                    $('#message').html("<span style='color:red;'>Thông tin bạn nhập chưa chính xác, vui long kiem tra lại</span>")
                 }
 
             }
