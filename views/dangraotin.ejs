@@ -132,7 +132,7 @@
                         <div class="col-md-6 flex">
                           <div class="row">
                             <div class="col-md-5">Quận/Huyện</div>
-                            <div id="selecthuyen"></div>
+                            <div id="selecthuyen" style="margin-left: 50px;"></div>
                           </div>
                         </div>
 
@@ -158,13 +158,14 @@
                         <div class="col-md-6 flex">
                           <div class="row">
                             <div class="col-md-5">Loại tin (*)</div>
+                            <div class="col-md-7">
                             <select id="id_loaisp">
 
                               <option value="2">Tin bán</option>
                               <option value="3">Tin thuê</option>
                               <option value="4">Tin cần mua - cần thuê</option>
                             </select>
-
+                            </div>
                           </div>
                         </div>
                         <div>
@@ -263,8 +264,10 @@
                     </div>
 
                   </div>
+                  <div style="display:flex;justify-content: center;">
                   <div id="loadingstatus"></div>
                   <div id="create_sp" >Đăng bài</div>
+                  </div>
                 </form>
               </div>
               <div id="message"></div>
@@ -319,7 +322,25 @@
   </div>
   <div class="optrai"><img src="img/quangcaotrai.jpg" alt="" /></div>
   <div class="opphai"><img src="img/quangcaophai.jpg" alt="" /></div>
+<style>
+#create_sp{
+  background: #264383;
+  color: white;
+  width: 150px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  margin-top: 30px;
+  /* margin-left: 40%; */
+  cursor: pointer;
+}
+div#message {
+    /* color: red; */
+    margin-top: 50px;
+    text-align: center;
+}
 
+</style>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="trangchu.js"></script>
@@ -418,7 +439,7 @@
         if (flag == 1) {
           $('#loading').html("<img src='/img/loading.gif'style='width: 260px;margin-left:200px;' >")
           $('#loadingstatus').html("<img src='/img/loading.gif'style='width: 90px;margin-left:200px;' >")
-          $('#message').html("<span>Uploading image...</span>")
+          $('#message ' ).html("<span style='color:orange;'>Uploading image...</span>")
           axios.post('/upload', formData, {
             headers: { "Authorization": "Bearer " + $.cookie('tokenId') }
           }).then(res => {
@@ -426,12 +447,12 @@
             if (res.data.length > 10) {
               image = res.data
               $('#loading').html('<img src=' + image + ' style="width: 260px;margin-left:200px;" >')
-              $('#message').html("<span>Uploading ...</span>")
+              $('#message').html("<span style='color:orange;'>Uploading ...</span>")
               axios.post("/api/sanpham/dangsanpham",
                 { id_tinh, id_huyen, gia, dientich, diachi, tensp, mota_soluoc, image, id_loaisp, chieudai, chieungang, loaidat },
                 { headers: { "Authorization": "Bearer " + $.cookie('tokenId') } }).then(res => {
                   if (res.data.code === 1000) {
-                    $('#message').html("<span>Thanh cong</span>")
+                    $('#message').html("<span style='color:blue;'>Thanh cong</span>")
                     $('#loadingstatus').html("")
                   }
                   else {
@@ -442,13 +463,13 @@
             } else {
               $('#loading').html("")
               $('#loadingstatus').html("")
-              $('#message').html("<span>co loi xay ra, vui long thu lai</span>")
+              $('#message').html("<span style='color:red;'>co loi xay ra, vui long thu lai</span>")
             }
 
           })
         }
         if (flag == 0) {
-          $('#message').html("<span>Thông tin bạn nhập chưa chính xác, vui long kiem tra lại</span>")
+          $('#message').html("<span style='color:red;'>Thông tin bạn nhập chưa chính xác, vui long kiem tra lại</span>")
         }
 
       }

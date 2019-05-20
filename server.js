@@ -69,6 +69,8 @@ app.post('/upload', models.user.logined, function (req, res) {
             fstream.on('close', function () {
                 cloudinary.v2.uploader.upload(__dirname + '/public/' + filename,
                     function (error, result) {
+                        console.log(result)
+                        console.log(error)
                         res.json(result.secure_url ? result.secure_url : "")
                         // console.log(result, error)
                         fs.unlink(__dirname + '/public/' + filename)

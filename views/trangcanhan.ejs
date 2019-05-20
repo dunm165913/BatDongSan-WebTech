@@ -243,13 +243,13 @@
           console.log(data)
           let html = '<div class="profile__right__title">Thông tin cá nhân</div>'
           html += '<div id="img_profile"></div>'
-          html += '<div  style="display:flex>'
-          html += '<div style="display:flex"><span style="width:100px">        Tên đăng nhậo:</span><input class=" input__changemk" type="text " id="tendangnhap" placeholder=' + data.tendangnhap.replace(/\s/g, "_") + ' ></div>'
-          html += '<div style="display:flex"><span style="width:100px">        Email:</span><input class=" input__changemk" type="text " id="new_email" placeholder=' + data.email + ' ></div>'
-          html += '<div style="display:flex"<span style="width:100px">Số điện thoại:</span><input  class=" input__changemk" type="text " id="new_sodienthoai" placeholder=' + data.sodienthoai + ' ></span></div>'
-          html += '<div style="display:flex"><span>Active:</span>' + data.isactive + ' </div>'
-          html += '<div style="display:flex"><span>Ngày sinh:</span><input class=" input__changemk" type="text" id="ngaysinh" placeholder=' + data.ngaysinh + '  ></div>'
-          html += '<div style="display:flex"><span>Địa chỉ:</span><input class=" input__changemk" type="text" id="diachi" placeholder=' + data.diachi.replace(/\s/g, "_") + '  ></div>'
+          html += '<div >'
+          html += '<div style="display:flex"><span style="width:25%">        Tên đăng nhậo:</span><input class=" input__ttuser" type="text " id="tendangnhap" placeholder=' + data.tendangnhap.replace(/\s/g, "_") + ' ></div>'
+          html += '<div style="display:flex"><span style="width:25%">        Email:</span><input class=" input__ttuser" type="text " id="new_email" placeholder=' + data.email + ' ></div>'
+          html += '<div style="display:flex"><span style="width:25%">Số điện thoại:</span><input  class=" input__ttuser" type="text " id="new_sodienthoai" placeholder=' + data.sodienthoai + ' ></span></div>'
+          html += '<div style="display:flex"><span style="width:25%">Active:</span>' + data.isactive + ' </div>'
+          html += '<div style="display:flex"><span style="width:25%">Ngày sinh:</span><input class=" input__ttuser" type="text" id="ngaysinh" placeholder=' + data.ngaysinh + '  ></div>'
+          html += '<div style="display:flex"><span style="width:25%">Địa chỉ:</span><input class=" input__ttuser" type="text" id="diachi" placeholder=' + data.diachi.replace(/\s/g, "_") + '  ></div>'
           html += '<div style="display:flex;margin-left: 290px"><span style="display:flex"  onclick="send_profile()"><div id="loading"></div><p class="check">Cập nhật</p></span></div>'
           html += '<div id="dialog" class="hidden"></div>'
           html += '</div>'
@@ -282,7 +282,7 @@
         }).then(res => {
           console.log(res.data)
           if (res.data.code == 1000) {
-            $('#dialog').html('<div class="dialogsucess">Thanh cong</div>')
+            $('#dialog').html('<div class="dialogsucess " >Thanh cong</div>')
             $('#loading').html("<div></div>")
           }
           else {
@@ -417,6 +417,12 @@
         height: 40px;
         box-shadow: 2px 2px 2px #9593d0;
       }
+      .input__ttuser{
+        width: 75%;
+    margin-bottom: 33px;
+    height: 40px;
+    border: none;
+      }
 
       .check {
         color: white;
@@ -430,16 +436,9 @@
         border-radius: 6px;
       }
 
-      .dialog {
-        color: white;
-        background: red;
-        height: 30px;
-        text-align: center;
-        font-size: 15pt;
-        border-radius: 6px;
-        box-shadow: 2px 2px 2px yellow;
-        width: 460px;
-        margin-left: 150px
+      #dialog {
+        
+        margin-bottom: 20px;
       }
 
       .dialogsucess {
