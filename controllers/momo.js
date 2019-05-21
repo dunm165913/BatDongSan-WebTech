@@ -60,7 +60,7 @@ function kiemtra(request, response, option) {
                         }
                     })
                 }
-                else{
+                else {
                     response.redirect('/')
                 }
 
@@ -101,9 +101,9 @@ function kiemtra(request, response, option) {
     req.on('error', (e) => {
         console.log(`problem with request: ${e.message}`);
         response.json({
-            code:2222,
-            data:{
-                message:"loi ket noi momo"
+            code: 2222,
+            data: {
+                message: "loi ket noi momo"
             }
         })
     });
@@ -123,7 +123,7 @@ module.exports = {
         var returnUrl = "http://localhost:1000/api/momo/result"
         var notifyurl = "http://localhost:1000/api/momo/result1"
         var amount = "1000"
-        var orderId = request.query.id
+        var orderId =  request.query.id
         var requestId = request.query.id
         var requestType = "captureMoMoWallet"
         var extraData = "merchantName=;merchantId="
@@ -154,11 +154,12 @@ module.exports = {
                 'Content-Length': Buffer.byteLength(body)
             }
         };
+
         console.log("Sending....")
         var req = https.request(options, (res) => {
             console.log(`Status: ${res.statusCode}`);
             let d = '';
-            console.log(`Headers: ${JSON.stringify(res.headers)}`);
+            // console.log(`Headers: ${JSON.stringify(res.headers)}`);
             res.setEncoding('utf8');
             res.on('data', (body) => {
                 d = d + body;
@@ -167,49 +168,36 @@ module.exports = {
                 // // let r=JSON.parse(body.replace(/\n/g,''))
                 if (d[d.length - 1] == '}') {
                     d = JSON.parse(d)
-                    if (d.errorCode == 0) {
-                        response.json({
-                            code: 1000,
-                            data: {
-                                url: d.payUrl,
-                                errorCode: d.errorCode,
-                                message: d.message
-                            }
-                        })
-                    } else {
-                        response.json({
-                            code: 1111,
-                            data: {
-                                errorCode: d.errorCode,
-                                message: d.message
-                            }
-                        })
-                    }
+                    // console.log(d)
+                    console.log(typeof (d))
+                    response.json({
+                        code: d.errorCode === 0 ? 1000 : 1111,
+                        data: {
+                            url: d.payUrl,
+                            errorCode: d.errorCode,
+                            message: d.message
+                        }
+                    })
                 }
-
-
-
             });
             res.on('end', () => {
+            
+
                 console.log('No more data in response.');
             });
         });
         req.on('error', (e) => {
             console.log(`problem with request: ${e.message}`);
-            response.json({
-                code:2222,
-                data:{
-                    message:"loi ket noi momo"
-                }
-            })
+
         });
 
         // write data to request body
         req.write(body);
         req.end();
+
     },
     async kiemtra(request, response) {
-        await kiemtra(request, response,false)
+        await kiemtra(request, response, false)
     },
     async result(req, res) {
         // console.log(req)
@@ -217,7 +205,7 @@ module.exports = {
             if (req.query.errorCode == 0) {
                 //update trang thai
                 req.query.id = req.query.orderId
-                await kiemtra(req, res,true);
+                await kiemtra(req, res, true);
             } else {
                 res.json({
                     code: 9999,

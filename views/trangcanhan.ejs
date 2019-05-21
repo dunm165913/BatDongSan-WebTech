@@ -20,7 +20,7 @@
   <div class="container">
     <header>
       <div class="header__top">
-        <div class="logo"><img src="img/logo.jpg" alt=""></div>
+        <div class="logo"><a href="/"><img src="img/logo.jpg" alt=""></a></div>
         <div class="topleftmobile">
           <i class="fa fa-bars" aria-hidden="true">
             <div class="nav__hover">
@@ -31,7 +31,7 @@
               </div>
               <div class="nav__list">
                 <ul>
-                  <li>trang chủ</li>
+                  <li>Trang chủ</li>
                   <li>Nhà đất bán</li>
                   <li>nhà đất cho thuê</li>
                   <li>Cần mua/cần thuê</li>
@@ -105,10 +105,10 @@
                 </i>
               </div>
               <div class="taikhoan">
-                <p>tài khoản rao tin: <b>0</b></p>
-                <p>tài khoản ngoài rao tin: <b>0</b></p>
-                <p>tài khoản KM1: <b>0</b></p>
-                <p>tài khoản KM2: <b>0</b></p>
+                <p>Tài khoản rao tin: <b>0</b></p>
+                <p>Tài khoản ngoài rao tin: <b>0</b></p>
+                <p>Tài khoản KM1: <b>0</b></p>
+                <p>Tài khoản KM2: <b>0</b></p>
               </div>
               <a href=""><button>Đăng tin</button></a>
             </div>
@@ -190,18 +190,24 @@
     </div>
 
     <!-- footer -->
-    <footer>
+    <div class="footer">
       <div style="text-align: center;">
         <h5>Công ty cổ Phần và Đầu tư thương Mại MMD</h5>
         <h6 style="color: gray;">Tổng Đài chăm sóc Khách Hàng:0989879000</h6>
         <div>
-          <p>coppyright 2017-2019 Batdongsan.com</p>
-          <p>email: batdongsan@gmail.com|batdongsan.com.vn</p>
-          <p>giấy đăng kí kinh doanh số 23445566 sở kế hoạch đầu tư thahf phố hà nội vấp 23/3/2019</p>
+          <p>Copyright © 2007 - 2019 Batdongsan.com.vn.
+            <br>Email: hotro@batdongsan.com.vn | cskh@batdongsan.com.vn
+            <br>Giấy ĐKKD số: 0104630479 Do Sở Kế hoạch và Đầu tư Thành phố Hà Nội cấp lần đầu ngày 02/06/2010
+            <br>Giấy phép ICP số 3399/GP-STTTT do Sở Thông tin và Truyền thông Hà Nội cấp ngày 4 tháng 9 năm 2014.
+            <br>Chịu trách nhiệm nội dung: Bà Trần Thị Hồng Thúy - ® Ghi rõ nguồn "Batdongsan.com.vn" khi phát hành lại
+            thông tin từ
+            website này.
+            Toàn bộ quy chế, quy định giao dịch chung được đăng tải trên website áp dụng từ ngày 20/02/2019.
+          </p>
         </div>
       </div>
       <img src="img/dadangki.jpg" alt="">
-    </footer>
+    </div>
     <script src="trangchu.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.js"
       integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
@@ -222,7 +228,7 @@
       $('#profile__right').hide()
 
       let tokenID = $.cookie('tokenId');
-      tokenID && tokenID.length > 0 ? ($('#dangki').text("Xin chao"), $('#dangnhap').text("Thoat")) : window.location.replace('/')
+      tokenID && tokenID.length > 0 ? ($('#dangki').text("Xin chào"),$('#dangnhap').html('')) : window.location.replace('/')
       $('#dangnhap').click(() => {
         $.removeCookie('tokenId', { path: "/" });
         window.location.reload()
