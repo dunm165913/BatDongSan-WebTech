@@ -95,7 +95,7 @@ require('./routes')(app);
 
 
 
-app.listen(1000, () => {
+app.listen( process.env.PORT || 1000, () => {
     console.log("server is starting at 1000 ")
 })
 
