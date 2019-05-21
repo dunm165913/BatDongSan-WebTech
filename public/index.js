@@ -56,7 +56,6 @@ const Authenciate = {
             let gioitinh = $('#gender :selected').val();
             $('.loading').show();
             axios.post('/api/user/dangki', { sodienthoai, matkhau, email, ngaysinh, diachi, gioitinh }).then(function (response) {
-                console.log(response);
                 if (response.data.code == 1000) {
                     // Dang ky thanh cong
                     axios.post('/api/user/login', { sodienthoai, matkhau }).then(function (response) {
@@ -147,7 +146,6 @@ const TinTuc = {
     },
     getDuAn: function () {
         axios.get('/api/duan/getnduan').then(function (response) {
-            console.log(response);
             if (response.data.code == 1000) {
                 response.data.data.forEach(element => {
                     $('.danhsach').append(TinTuc.buildDuAn(element))
@@ -181,7 +179,6 @@ const TinTuc = {
         let url = new URL(urlString);
         let id = url.searchParams.get('id');
         axios.get('/api/duan/getinfor?id=' + id).then(function (response) {
-            console.log(response);
             if (response.data.code == 1000) {
                 $('.noidung').append(TinTuc.buildDuAnDetail(response.data.data))
             }
