@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
         integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+        
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -92,14 +94,20 @@
         </header>
         <!-- het header -->
         <div class="container">
-            <ul style="display: flex; color:royalblue; cursor: pointer;">
-                <li id="user">User </li>>
-                <li id="sanpham">Sản phẩm</li>>
-                <li id="tintuc">Tin tức</li>>
-                <li id="addtintuc">Thêm tin</li>>
-                <li id="duan">Dự án</li>>
+            <div class="row">
+                <div class="col-md-3 admin__left" style="background: #264383;">
+                        <div style="text-align: center"><i class="fa fa-user-circle" aria-hidden="true" style="color: white; font-size:110pt;"></i>
+                          </div>
+            <ul style=" color:royalblue; cursor: pointer;">
+                <li id="user"> <i class="fa fa-user-circle" aria-hidden="true"></i> User </li>
+                <li id="sanpham"> <i class="fa fa-pie-chart" aria-hidden="true"></i> Sản phẩm</li>
+                <li id="tintuc"> <i class="fa fa-info" aria-hidden="true"></i> Tin tức</li>
+                <li id="addtintuc"><i class="fa fa-plus-square" aria-hidden="true"></i>Thêm tin</li>
+                <li id="duan"><i class="fa fa-qrcode" aria-hidden="true"></i> Dự án</li>
 
             </ul>
+            </div>
+            <div class="col-md-9 admin__right">
             <div id="list">
                 <div class="tittle">
                     <p id="tit">Danh sách user</p>
@@ -123,6 +131,7 @@
                     <div id="add"></div>
                 </div>
             </div>
+           
             <div id="formadd">
                 <form>
                     <div class="row" style="margin-top: 30px;">
@@ -169,7 +178,8 @@
                 </form>
                 <div id="message"></div>
             </div>
-
+        </div>
+    </div>
             <script src="trangchu.js"></script>
             <style>
             .create__admin{
@@ -189,6 +199,11 @@
             #message {
     text-align: center;
     font-size: 25pt;
+}
+.admin__left ul li{
+    color: white;
+    border-bottom: 1px solid;
+    line-height: 50px;
 }
             </style>
         </div>
@@ -267,7 +282,7 @@
                     })
                     $('#showuser').html(html)
                     if (res.data.data.length == 10)
-                        $('#add').html("<span onclick='usershow(" + id + ")'>Tiếp</span>")
+                        $('#add').html("<span style='color:blue;    font-size: 15pt;' onclick='usershow(" + id + ")'>Tiếp...</span>")
                 }
                 else {
                     $('#add').html("")
@@ -317,14 +332,14 @@
                         id = x.id
                         html += '<tr>'
                         html += '<td scope="row"><a href='+'"/chitiet?id='+x.id+'">' + x.id + '</a></td>'
-                        html += '<th>' + x.tensp + '</th>'
-                        html += '<th>' + x.gia + '</th>'
-                        html += '<th>' + x.dientich + '</th>'
-                        html += '<td><div onclick="kiemtra(' + x.id + ')"><i class="fa fa-check-circle" aria-hidden="true"></i></div>/ <div onclick="xoa(' + x.id + ')"><i class="fa fa-remove"aria-hidden="true"></i><div></td>'
+                        html += '<td>' + x.tensp + '</td>'
+                        html += '<td>' + x.gia + '</td>'
+                        html += '<td>' + x.dientich + '</td>'
+                        html += '<td style="display:flex;"><div onclick="kiemtra(' + x.id + ')"><i class="fa fa-check-circle" aria-hidden="true"></i></div>/ <div onclick="xoa(' + x.id + ')"><i class="fa fa-remove"aria-hidden="true"></i><div></td>'
                     })
                     $('#showuser').html(html)
                     if (res.data.data.length == 10)
-                        $('#add').html("<span onclick='sanphamshow(" + id + ")'>Tiếp</span>")
+                        $('#add').html("<span style='color:blue;    font-size: 15pt;' onclick='sanphamshow(" + id + ")'>Tiếp...</span>")
                 }
                 else {
                     $('#add').html("")
@@ -379,7 +394,7 @@
                     })
                     $('#showuser').html(html)
                     if (res.data.length == 10)
-                        $('#add').html("<span onclick='tintucshow(" + id + ")'>Tiếp</span>")
+                        $('#add').html("<span style='color:blue;    font-size: 15pt;' onclick='tintucshow(" + id + ")'>Tiếp...</span>")
                 }
                 else {
                     $('#add').html("")
