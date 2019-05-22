@@ -69,9 +69,9 @@ function isLogin() {
     element += '<div class="itemtop xanh">';
     element += '  <a href=""><img src="img/plus.png" />Đăng rao tin</a>';
     element += '</div>';
-    // element += '<div class="itemtop">';
-    // element += '  <img src="img/register.png" />'+sdt+'';
-    // element += '</div>';
+    element += '<div class="itemtop">';
+    element += '  <a href="/user"><img src="img/register.png" /></a>';
+    element += '</div>';
     element += '<div class="itemtop" onclick="Authenciate.dangXuat()">';
     element += '  <img src="img/login.png" />Đăng xuất';
     element += '</div>';

@@ -61,22 +61,27 @@ app.post('/upload', models.user.logined, function (req, res) {
 
     var fstream;
     req.pipe(req.busboy);
+    console.log(req)
     req.busboy.on('file', function (fieldname, file, filename) {
         console.log("Uploading: " + file._readableState);
         if (filename) {
-            fstream = fs.createWriteStream(__dirname + '/public/' + filename);
-            file.pipe(fstream);
-            fstream.on('close', function () {
-                cloudinary.v2.uploader.upload(__dirname + '/public/' + filename,
-                    function (error, result) {
-                        console.log(result)
-                        console.log(error)
-                        res.json(result.secure_url ? result.secure_url : "")
-                        // console.log(result, error)
-                        fs.unlink(__dirname + '/public/' + filename)
-                    });
+            
+                fstream = fs.createWriteStream(__dirname + '/public/' + filename);
+                file.pipe(fstream);
+                fstream.on('close', function () {
+                    cloudinary.v2.uploader.upload(__dirname + '/public/' + filename,
+                        function (error, result) {
+                           
+                                fs.unlink(__dirname + '/public/' + filename)
+                            console.log(result)
+                            if (error)
+                                res.json({ code: 9999, message: "loi ket noi server" })
+                            else res.json(result.secure_url ? result.secure_url : "")
+                            console.log(result, error)
 
-            });
+                        });
+                });
+           
         } else {
             res.send("loi")
             console.log("loi")
@@ -84,18 +89,13 @@ app.post('/upload', models.user.logined, function (req, res) {
 
     });
 
-
-
-
-
-
 });
 
 require('./routes')(app);
 
 
 
-app.listen(1000, () => {
+app.listen( process.env.PORT || 1000, () => {
     console.log("server is starting at 1000 ")
 })
 

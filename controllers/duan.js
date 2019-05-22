@@ -42,10 +42,11 @@ module.exports = {
         })
     },
     async create(req, res) {
+        console.log(req.body)
         models.duan.create({
-            ten: req.body.tem,
+            ten: req.body.ten,
             mota: req.body.mota,
-            image: req.body.mota,
+            image: req.body.image,
             id_user: req.userData.id
 
         }).then(re => {
@@ -60,7 +61,6 @@ module.exports = {
         models.duan.findAll({
             where: {
                 id: req.body.id,
-                id_user: req.userData.id
             }
         }).then(re => {
             if (re[0]) {
