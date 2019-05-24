@@ -48,7 +48,7 @@ module.exports = (sequelize, DataTypes) => {
     if (req.userData.role == "admin") next()
     else {
       let sanpham = await sequelize.query('select * from sanphams where id_user = :id_user and id=:id ',
-        { replacements: { id_user: [req.userData.id], id: [req.query.id] }, type: sequelize.QueryTypes.SELECT })
+        { replacements: { id_user: [req.userData.id], id: [req.body.id] }, type: sequelize.QueryTypes.SELECT })
       console.log(sanpham)
       if (sanpham.length == 1) next();
       else res.json({
